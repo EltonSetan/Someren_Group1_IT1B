@@ -9,6 +9,7 @@ namespace SomerenDAL
     {
         private SqlDataAdapter adapter;
         private SqlConnection conn;
+        // HELLO
 
         public BaseDao()
         {
