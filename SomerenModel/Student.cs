@@ -9,7 +9,7 @@ namespace SomerenModel
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Number { get; set; } // StudentNumber, e.g. 474791
-        public DateTime BirthDate { get; set; }
+        //public DateTime BirthDate { get; set; }
         //public int Age { get; set; } // Student age added by Hasib
         public int TelephoneNumber { get; set; }
         public int StudentNumber { get; set; }
@@ -17,6 +17,5 @@ namespace SomerenModel
         public int RoomId { get; set; }
         public int DrinkId { get; set; }
         public object StudentId { get; set; }
-        //public System.Windows.Forms.ListViewItem.ListViewSubItem FirstName { get; set; }
     }
 }
