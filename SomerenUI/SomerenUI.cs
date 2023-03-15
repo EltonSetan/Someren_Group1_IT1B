@@ -11,86 +11,20 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
-            ShowDashboardPanel();
+            ShowPanel(pnlDashboard);
         }
 
-        private void ShowDashboardPanel()
+        private void ShowPanel(Panel panelToShow)
         {
-            // hide all other panels
-            pnlStudents.Hide();
-            teacherpanel.Hide();
-            pnlActivity.Hide();
-            roomsPanel.Hide();
+            Panel[] panels = { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel };
 
-            // show dashboard
-            pnlDashboard.Show();
-        }
-
-        private void ShowStudentsPanel()
-        {
-            // hide all other panels
-            pnlDashboard.Hide();
-            pnlActivity.Hide();
-            roomsPanel.Hide();
-
-            // show students
-            pnlStudents.Show();
-
-            try
+            foreach (var panel in panels)
             {
-                // get and display all students
-                List<Student> students = GetStudents();
-                DisplayStudents(students);
+                panel.Visible = false;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the students: " + e.Message);
-            }
-        }
 
-        private void ShowTeachersPanel()
-        {
-            // hide all other panels
-            pnlDashboard.Hide();
-            pnlStudents.Hide();
-            pnlActivity.Hide();
-            roomsPanel.Hide();
-
-            // show teachers panel
-            teacherpanel.Show();
-
-            try
-            {
-                // get and display all teachers
-                List<Teacher> teachers = GetTeachers();
-                DisplayTeachers(teachers);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something went wrong while loading the teachers: " + ex.Message);
-            }
-        }
-
-        private void ShowRoomsPanel()
-        {
-            // hide all other panels
-            pnlDashboard.Hide();
-            pnlActivity.Hide();
-            pnlStudents.Hide();
-
-            // show rooms
-            roomsPanel.Show();
-
-            try
-            {
-                // get and display all rooms
-                List<Room> rooms = GetRooms();
-                DisplayRooms(rooms);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
-            }
+            panelToShow.Visible = true;
+            panelToShow.BringToFront();
         }
 
         private List<Student> GetStudents()
@@ -106,14 +40,14 @@ namespace SomerenUI
             List<Teacher> teachers = teacherService.GetTeachers();
             return teachers;
         }
-        
+
         private List<Room> GetRooms()
         {
             RoomService roomService = new RoomService();
             List<Room> rooms = roomService.GetRooms();
             return rooms;
         }
-        
+
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
@@ -220,14 +154,12 @@ namespace SomerenUI
             }
             listViewteachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        private void dashboardToolStripMenuItem1_Click(object sender, System.EventArgs e)
-        {
-            ShowDashboardPanel();
-        }
 
-        private void exitToolStripMenuItem_Click(object sender, System.EventArgs e)
+        // ... (the rest of the code, including GetStudents, GetTeachers, GetRooms, DisplayStudents, DisplayTeachers, DisplayRooms, etc.)
+
+        private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ShowPanel(pnlDashboard);
         }
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -235,36 +167,9 @@ namespace SomerenUI
             ShowStudentsPanel();
         }
 
-        private void teacherpanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowTeachersPanel();
-        }
-        
-        private void ShowActivitiesPanel()
-        {
-            // hide all other panels
-            pnlDashboard.Hide();
-            pnlStudents.Hide();
-            roomsPanel.Hide();
-
-            // show students
-            pnlActivity.Show();
-
-            try
-            {
-                // get and display all students
-                List<Activity> activities = GetActivities();
-                DisplayActivities(activities);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the activities: " + e.Message);
-            }
         }
 
         private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -276,6 +181,75 @@ namespace SomerenUI
         {
             ShowRoomsPanel();
         }
+
+        private void ShowStudentsPanel()
+        {
+            ShowPanel(pnlStudents);
+
+            try
+            {
+                // get and display all students
+                List<Student> students = GetStudents();
+                DisplayStudents(students);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + e.Message);
+            }
+        }
+
+        private void ShowTeachersPanel()
+        {
+            ShowPanel(teacherpanel);
+
+            try
+            {
+                // get and display all teachers
+                List<Teacher> teachers = GetTeachers();
+                DisplayTeachers(teachers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading the teachers: " + ex.Message);
+            }
+        }
+
+        private void ShowRoomsPanel()
+        {
+            ShowPanel(roomsPanel);
+
+            try
+            {
+                // get and display all rooms
+                List<Room> rooms = GetRooms();
+                DisplayRooms(rooms);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
+            }
+        }
+
+        private void ShowActivitiesPanel()
+        {
+            ShowPanel(pnlActivity);
+
+            try
+            {
+                // get and display all activities
+                List<Activity> activities = GetActivities();
+                DisplayActivities(activities);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the activities: " + e.Message);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }
-
