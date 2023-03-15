@@ -54,7 +54,7 @@ namespace SomerenUI
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
-            listViewStudents.Clear();
+            listViewStudents.Items.Clear();
 
             foreach (Student student in students)
             {
@@ -73,24 +73,18 @@ namespace SomerenUI
         private void DisplayActivities(List<Activity> activities)
         {
             // clear the listview before filling it
-            lvActivities.Clear();
-            
-            lvActivities.View = View.Details;
-            lvActivities.Columns.Add("Activity Id");
-            lvActivities.Columns.Add("Name");
-            lvActivities.Columns.Add("Date and Time");
+            lvActivities.Items.Clear();
 
             foreach (Activity activity in activities)
             {
                 ListViewItem li = new ListViewItem(activity.Id.ToString());
+                
                 li.SubItems.Add(activity.Name);
                 li.SubItems.Add(activity.Date);
 
                 li.Tag = activity;   // link student object to listview item
+                
                 lvActivities.Items.Add(li);
-
-                lvActivities.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                lvActivities.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
 

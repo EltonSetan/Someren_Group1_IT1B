@@ -45,6 +45,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlActivity = new System.Windows.Forms.Panel();
             this.lvActivities = new System.Windows.Forms.ListView();
+            this.Id = new System.Windows.Forms.ColumnHeader();
+            this.Activity = new System.Windows.Forms.ColumnHeader();
+            this.Date = new System.Windows.Forms.ColumnHeader();
             this.lblActivities = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -187,11 +190,30 @@
             // 
             // lvActivities
             // 
+            this.lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Id,
+            this.Activity,
+            this.Date});
             this.lvActivities.Location = new System.Drawing.Point(19, 60);
             this.lvActivities.Name = "lvActivities";
             this.lvActivities.Size = new System.Drawing.Size(978, 362);
             this.lvActivities.TabIndex = 1;
             this.lvActivities.UseCompatibleStateImageBehavior = false;
+            this.lvActivities.View = System.Windows.Forms.View.Details;
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id";
+            // 
+            // Activity
+            // 
+            this.Activity.Text = "Activity";
+            this.Activity.Width = 300;
+            // 
+            // Date
+            // 
+            this.Date.Text = "Date";
+            this.Date.Width = 300;
             // 
             // lblActivities
             // 
@@ -250,5 +272,8 @@
         private System.Windows.Forms.Panel pnlActivity;
         private System.Windows.Forms.ListView lvActivities;
         private System.Windows.Forms.Label lblActivities;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader Activity;
+        private System.Windows.Forms.ColumnHeader Date;
     }
 }
