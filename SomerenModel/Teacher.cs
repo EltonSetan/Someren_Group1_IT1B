@@ -13,6 +13,6 @@
 
         public int RoomId { get; set; }
         public int DrinkId { get; set; }
-
+        public string IsSupervisor { get; set; }
     }
 }

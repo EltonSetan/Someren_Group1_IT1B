@@ -102,21 +102,23 @@ namespace SomerenUI
             listViewteachers.Columns.Add("Phone Number");
             listViewteachers.Columns.Add("RoomId");
             listViewteachers.Columns.Add("DrinkId");
+            listViewteachers.Columns.Add("IsSupervisor");
 
             foreach (Teacher teacher in teachers)
             {
 
-                ListViewItem item = new ListViewItem(teacher.Id.ToString());
+                ListViewItem item = new ListViewItem(teacher.Number.ToString());
                 item.SubItems.Add(teacher.Name);
                 item.SubItems.Add(teacher.LastName);
                 item.SubItems.Add(teacher.Age.ToString());
                 item.SubItems.Add(teacher.TelephoneNumber.ToString());
                 item.SubItems.Add(teacher.RoomId.ToString());
                 item.SubItems.Add(teacher.DrinkId.ToString());
+                item.SubItems.Add(teacher.IsSupervisor);
                 item.Tag = teacher;
-                listViewStudents.Items.Add(item);
+                listViewteachers.Items.Add(item);
             }
-            listViewStudents.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listViewteachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
         private void dashboardToolStripMenuItem1_Click(object sender, System.EventArgs e)
         {

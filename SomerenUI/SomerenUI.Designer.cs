@@ -44,12 +44,14 @@
             this.listViewStudents = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.teacherpanel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.listViewteachers = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             this.pnlStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.teacherpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -179,18 +181,29 @@
             // 
             // teacherpanel
             // 
+            this.teacherpanel.Controls.Add(this.pictureBox2);
             this.teacherpanel.Controls.Add(this.listViewteachers);
-            this.teacherpanel.Location = new System.Drawing.Point(40, 115);
+            this.teacherpanel.Location = new System.Drawing.Point(17, 45);
             this.teacherpanel.Name = "teacherpanel";
-            this.teacherpanel.Size = new System.Drawing.Size(1093, 509);
+            this.teacherpanel.Size = new System.Drawing.Size(1345, 777);
             this.teacherpanel.TabIndex = 3;
             this.teacherpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.teacherpanel_Paint);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1154, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(186, 205);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            // 
             // listViewteachers
             // 
-            this.listViewteachers.Location = new System.Drawing.Point(3, 0);
+            this.listViewteachers.Location = new System.Drawing.Point(0, 70);
             this.listViewteachers.Name = "listViewteachers";
-            this.listViewteachers.Size = new System.Drawing.Size(1093, 509);
+            this.listViewteachers.Size = new System.Drawing.Size(1084, 509);
             this.listViewteachers.TabIndex = 0;
             this.listViewteachers.UseCompatibleStateImageBehavior = false;
             this.listViewteachers.View = System.Windows.Forms.View.Details;
@@ -216,6 +229,7 @@
             this.pnlStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.teacherpanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +253,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel teacherpanel;
         private System.Windows.Forms.ListView listViewteachers;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
