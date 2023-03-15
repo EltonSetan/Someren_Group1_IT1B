@@ -45,6 +45,50 @@
             label1 = new System.Windows.Forms.Label();
 
             roomsPanel = new System.Windows.Forms.Panel();
+
+            // Id
+            Id = new System.Windows.Forms.ColumnHeader();
+            Id.Text = "Id";
+            Id.Width = 50;
+
+            // Activity
+            Activity = new System.Windows.Forms.ColumnHeader();
+            Activity.Text = "Activity";
+            Activity.Width = 200;
+
+            // Date
+            Date = new System.Windows.Forms.ColumnHeader();
+            Date.Text = "Date";
+            Date.Width = 100;
+
+            // lvActivities
+            lvActivities = new System.Windows.Forms.ListView();
+            lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            Id,
+            Activity,
+            Date});
+            lvActivities.FullRowSelect = true;
+            lvActivities.GridLines = true;
+            lvActivities.Location = new System.Drawing.Point(18, 56);
+            lvActivities.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            lvActivities.Name = "lvActivities";
+            lvActivities.Size = new System.Drawing.Size(875, 408);
+            lvActivities.TabIndex = 1;
+            lvActivities.UseCompatibleStateImageBehavior = false;
+            lvActivities.View = System.Windows.Forms.View.Details;
+
+            // 
+            // pnlActivity
+            // 
+            pnlActivity = new System.Windows.Forms.Panel();
+            pnlActivity.Controls.Add(lvActivities);
+            pnlActivity.Controls.Add(lblActivities);
+            pnlActivity.Location = new System.Drawing.Point(14, 34);
+            pnlActivity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pnlActivity.Name = "pnlActivity";
+            pnlActivity.Size = new System.Drawing.Size(1072, 621);
+            pnlActivity.TabIndex = 4;
+
             pictureBox2 = new System.Windows.Forms.PictureBox();
             listViewRooms = new System.Windows.Forms.ListView();
             roomsLabel = new System.Windows.Forms.Label();
@@ -113,8 +157,8 @@
             // 
             activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-
             activitiesToolStripMenuItem.Text = "Activities";
+            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click; // This line is new.
             // 
             // roomsToolStripMenuItem
             // 
@@ -208,6 +252,7 @@
             roomsPanel.Controls.Add(pictureBox2);
             roomsPanel.Controls.Add(listViewRooms);
             roomsPanel.Controls.Add(roomsLabel);
+            Controls.Add(pnlActivity);
             roomsPanel.Location = new System.Drawing.Point(14, 34);
             roomsPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             roomsPanel.Name = "roomsPanel";

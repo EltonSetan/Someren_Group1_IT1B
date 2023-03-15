@@ -30,6 +30,7 @@ namespace SomerenUI
             // hide all other panels
             pnlDashboard.Hide();
             pnlActivity.Hide();
+            roomsPanel.Hide();
 
             // show students
             pnlStudents.Show();
@@ -50,6 +51,7 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlDashboard.Hide();
+            pnlActivity.Hide();
             pnlStudents.Hide();
 
             // show rooms
@@ -147,17 +149,15 @@ namespace SomerenUI
             foreach (Activity activity in activities)
             {
                 ListViewItem li = new ListViewItem(activity.Id.ToString());
-                
+
                 li.SubItems.Add(activity.Name);
                 li.SubItems.Add(activity.Date);
 
                 li.Tag = activity;   // link student object to listview item
-                
+
                 lvActivities.Items.Add(li);
             }
         }
-
-
 
         private void dashboardToolStripMenuItem1_Click(object sender, System.EventArgs e)
         {
@@ -174,11 +174,12 @@ namespace SomerenUI
             ShowStudentsPanel();
         }
 
-         private void ShowActivitiesPanel()
+        private void ShowActivitiesPanel()
         {
             // hide all other panels
             pnlDashboard.Hide();
             pnlStudents.Hide();
+            roomsPanel.Hide();
 
             // show students
             pnlActivity.Show();
@@ -196,12 +197,14 @@ namespace SomerenUI
         }
 
         private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
-        
         {
             ShowActivitiesPanel();
+        }
+
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowRoomsPanel();
         }
     }
 }
+
