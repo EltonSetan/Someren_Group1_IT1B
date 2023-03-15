@@ -58,7 +58,6 @@
             // 
             // menuStrip1
             // 
-
             menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -175,6 +174,25 @@
             listViewStudents.TabIndex = 1;
             listViewStudents.UseCompatibleStateImageBehavior = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(920, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(149, 164);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // listViewStudents
+            // 
+            this.listViewStudents.Location = new System.Drawing.Point(18, 56);
+            this.listViewStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listViewStudents.Name = "listViewStudents";
+            this.listViewStudents.Size = new System.Drawing.Size(875, 408);
+            this.listViewStudents.TabIndex = 1;
+            this.listViewStudents.UseCompatibleStateImageBehavior = false;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -248,7 +266,6 @@
             roomsPanel.ResumeLayout(false);
             roomsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-
             ResumeLayout(false);
             PerformLayout();
         }
@@ -269,6 +286,14 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.Panel pnlActivity;
+        private System.Windows.Forms.ListView lvActivities;
+        private System.Windows.Forms.Label lblActivities;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader Activity;
+        private System.Windows.Forms.ColumnHeader Date;
+
         private System.Windows.Forms.Panel roomsPanel;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ListView listViewRooms;
