@@ -19,6 +19,8 @@ namespace SomerenUI
             // hide all other panels
             pnlStudents.Hide();
             teacherpanel.Hide();
+            pnlActivity.Hide();
+            roomsPanel.Hide();
 
             // show dashboard
             pnlDashboard.Show();
@@ -28,6 +30,8 @@ namespace SomerenUI
         {
             // hide all other panels
             pnlDashboard.Hide();
+            pnlActivity.Hide();
+            roomsPanel.Hide();
 
             // show students
             pnlStudents.Show();
@@ -53,6 +57,16 @@ namespace SomerenUI
             // show students
             teacherpanel.Show();
 
+        private void ShowRoomsPanel()
+        {
+            // hide all other panels
+            pnlDashboard.Hide();
+            pnlActivity.Hide();
+            pnlStudents.Hide();
+
+            // show rooms
+            roomsPanel.Show();
+
             try
             {
                 // get and display all students
@@ -62,6 +76,14 @@ namespace SomerenUI
             catch (Exception e)
             {
                 MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+            }
+        }
+                List<Room> rooms = GetRooms();
+                DisplayRooms(rooms);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
             }
         }
         private List<Student> GetStudents()
@@ -77,16 +99,87 @@ namespace SomerenUI
             List<Teacher> teachers = teacherService.GetTeachers();
             return teachers;
         }
+        
+        private List<Room> GetRooms()
+        {
+            RoomService roomService = new RoomService();
+            List<Room> rooms = roomService.GetRooms();
+            return rooms;
+        }
+        
         private void DisplayStudents(List<Student> students)
         {
             // clear the listview before filling it
             listViewStudents.Clear();
-
+            listViewStudents.View = View.Details;
+            listViewStudents.Columns.Add("Student ID");
+            listViewStudents.Columns.Add("First Name");
+            listViewStudents.Columns.Add("Last Name");
+            listViewStudents.Columns.Add("Phone Number");
+            //foreach (Student student in students)
+            //{
+            //    ListViewItem li = new ListViewItem(student.Name);
+            //    li.Tag = student;   // link student object to listview item
+            //    listViewStudents.Items.Add(li);
+            //}
             foreach (Student student in students)
             {
-                ListViewItem li = new ListViewItem(student.Name);
-                li.Tag = student;   // link student object to listview item
-                listViewStudents.Items.Add(li);
+
+                ListViewItem item = new ListViewItem(student.Id.ToString());
+                item.SubItems.Add(student.FirstName);
+                item.SubItems.Add(student.LastName);
+                item.SubItems.Add(student.TelephoneNumber.ToString());
+                item.Tag = student;
+                listViewStudents.Items.Add(item);
+            }
+            listViewStudents.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
+        private void DisplayRooms(List<Room> rooms)
+        {
+            // clear the listview before filling it
+            listViewRooms.Clear();
+
+            listViewRooms.View = View.Details;
+            listViewRooms.Columns.Add("Room ID");
+            listViewRooms.Columns.Add("Building");
+            listViewRooms.Columns.Add("Floor");
+            listViewRooms.Columns.Add("Room type");
+            listViewRooms.Columns.Add("Number of beds");
+
+            foreach (Room room in rooms)
+            {
+                ListViewItem item = new ListViewItem(room.RoomId.ToString());
+                item.SubItems.Add(room.Building.ToString());
+                item.SubItems.Add(room.Floor.ToString());
+                item.SubItems.Add(room.RoomType);
+                item.SubItems.Add(room.NrOfBeds.ToString());
+                item.Tag = room;
+                listViewRooms.Items.Add(item);
+            }
+            listViewRooms.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+        private List<Activity> GetActivities()
+        {
+            ActivityService activityService = new ActivityService();
+            List<Activity> activities = activityService.GetActivity();
+            return activities;
+        }
+
+        private void DisplayActivities(List<Activity> activities)
+        {
+            // clear the listview before filling it
+            lvActivities.Items.Clear();
+
+            foreach (Activity activity in activities)
+            {
+                ListViewItem li = new ListViewItem(activity.Id.ToString());
+
+                li.SubItems.Add(activity.Name);
+                li.SubItems.Add(activity.Date);
+
+                li.Tag = activity;   // link student object to listview item
+
+                lvActivities.Items.Add(li);
             }
         }
         private void DisplayTeachers(List<Teacher> teachers)
@@ -144,5 +237,38 @@ namespace SomerenUI
         {
             ShowTeachersPanel();
         }
+        
+        private void ShowActivitiesPanel()
+        {
+            // hide all other panels
+            pnlDashboard.Hide();
+            pnlStudents.Hide();
+            roomsPanel.Hide();
+
+            // show students
+            pnlActivity.Show();
+
+            try
+            {
+                // get and display all students
+                List<Activity> activities = GetActivities();
+                DisplayActivities(activities);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the activities: " + e.Message);
+            }
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowActivitiesPanel();
+        }
+
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRoomsPanel();
+        }
     }
 }
+

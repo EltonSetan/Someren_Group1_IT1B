@@ -2,15 +2,16 @@
 using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
+using System;
 
 namespace SomerenDAL
 {
+    
     public class StudentDao : BaseDao
     {
         public List<Student> GetAllStudents()
         {
-            string query = "SELECT StudentId, FirstName, LastName, Class, TelephoneNumber ,StudentNumber, RoomId, DrinkId  FROM [Student]";
-           
+            string query = "SELECT StudentId, FirstName, LastName, TelephoneNumber, StudentNumber, Class, RoomId, DrinkId FROM [Student]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -23,15 +24,16 @@ namespace SomerenDAL
             {
                 Student student = new Student()
                 {
-                    Number = (int)dr["StudentId"],
-                    Name = dr["FirstName"].ToString(), //,+ " " + dr["LastName"].ToString(),
-                    TelephoneNumber = (int)dr["TelephoneNumber"],
-                    Class = dr["Class"].ToString(),
+                    Id = (int)dr["StudentId"],
+                    FirstName = dr["FirstName"].ToString(), 
+                    LastName = dr["LastName"].ToString(),//Added
+                    //Age = (int)dr["StudentAge"], //added
+                    //BirthDate = (DateTime)dr["StudentBirthDate"], //Added
+                    TelephoneNumber = (int)dr["TelephoneNumber"],//Added
+                    StudentNumber = (int)dr["StudentNumber"],
+                    Class = (string)dr["Class"],
                     RoomId = (int)dr["RoomId"],
                     DrinkId = (int)dr["DrinkId"],
-                    StudentNumber = (int)dr["StudentNumber"],
-                    //BirthDate = (DateTime)dr["guhu"],
-                      LastName = dr["LastName"].ToString(),
                 };
                 students.Add(student);
             }
