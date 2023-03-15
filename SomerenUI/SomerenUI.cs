@@ -83,13 +83,28 @@ namespace SomerenUI
         {
             // clear the listview before filling it
             listViewStudents.Clear();
-
+            listViewStudents.View = View.Details;
+            listViewStudents.Columns.Add("Student ID");
+            listViewStudents.Columns.Add("First Name");
+            listViewStudents.Columns.Add("Last Name");
+            listViewStudents.Columns.Add("Phone Number");
+            //foreach (Student student in students)
+            //{
+            //    ListViewItem li = new ListViewItem(student.Name);
+            //    li.Tag = student;   // link student object to listview item
+            //    listViewStudents.Items.Add(li);
+            //}
             foreach (Student student in students)
             {
-                ListViewItem li = new ListViewItem(student.Name);
-                li.Tag = student;   // link student object to listview item
-                listViewStudents.Items.Add(li);
+
+                ListViewItem item = new ListViewItem(student.Id.ToString());
+                item.SubItems.Add(student.FirstName);
+                item.SubItems.Add(student.LastName);
+                item.SubItems.Add(student.TelephoneNumber.ToString());
+                item.Tag = student;
+                listViewStudents.Items.Add(item);
             }
+            listViewStudents.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
         private void DisplayRooms(List<Room> rooms)
         {

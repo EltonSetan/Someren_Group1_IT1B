@@ -43,6 +43,7 @@
             pictureBox1 = new System.Windows.Forms.PictureBox();
             listViewStudents = new System.Windows.Forms.ListView();
             label1 = new System.Windows.Forms.Label();
+
             roomsPanel = new System.Windows.Forms.Panel();
             pictureBox2 = new System.Windows.Forms.PictureBox();
             listViewRooms = new System.Windows.Forms.ListView();
@@ -57,6 +58,7 @@
             // 
             // menuStrip1
             // 
+
             menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -70,12 +72,14 @@
             // 
             dashboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { dashboardToolStripMenuItem1, exitToolStripMenuItem });
             dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+
             dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             dashboardToolStripMenuItem.Text = "Application";
             // 
             // dashboardToolStripMenuItem1
             // 
             dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
+
             dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             dashboardToolStripMenuItem1.Text = "Dashboard";
             dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
@@ -83,27 +87,34 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+
             exitToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
+
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // studentsToolStripMenuItem
             // 
             studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+
             studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+
             studentsToolStripMenuItem.Text = "Students";
             studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
             lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
+
             lecturersToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+
             lecturersToolStripMenuItem.Text = "Lecturers";
             // 
             // activitiesToolStripMenuItem
             // 
             activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+
             activitiesToolStripMenuItem.Text = "Activities";
             // 
             // roomsToolStripMenuItem
@@ -112,6 +123,7 @@
             roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             roomsToolStripMenuItem.Text = "Rooms";
             roomsToolStripMenuItem.Click += roomsToolStripMenuItem_Click;
+
             // 
             // pnlDashboard
             // 
@@ -136,6 +148,7 @@
             pnlStudents.Controls.Add(pictureBox1);
             pnlStudents.Controls.Add(listViewStudents);
             pnlStudents.Controls.Add(label1);
+
             pnlStudents.Location = new System.Drawing.Point(14, 36);
             pnlStudents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlStudents.Name = "pnlStudents";
@@ -145,6 +158,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+
             pictureBox1.Location = new System.Drawing.Point(920, 0);
             pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
@@ -234,6 +248,7 @@
             roomsPanel.ResumeLayout(false);
             roomsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+
             ResumeLayout(false);
             PerformLayout();
         }
