@@ -33,7 +33,7 @@ namespace SomerenDAL
                     StudentNumber = (int)dr["StudentNumber"],
                     Class = (string)dr["Class"],
                     RoomId = (int)dr["RoomId"],
-                    DrinkId = (int)dr["DrinkId"],
+                    //DrinkId = (int)dr["DrinkId"],
                 };
                 students.Add(student);
             }

@@ -33,7 +33,7 @@ namespace SomerenDAL
                     Age = (int)dr["Age"],
                     TelephoneNumber = (int)dr["TelephoneNumber"],
                     RoomId = (int)dr["RoomId"],
-                    DrinkId = (int)dr["DrinkId"],
+                    //DrinkId = (int)dr["DrinkId"],
                     IsSupervisor = dr["IsSupervisor"].ToString()
                 };
                 teachers.Add(teacher);
