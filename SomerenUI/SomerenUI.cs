@@ -108,7 +108,7 @@ namespace SomerenUI
                 new ColumnHeader { Text = "Age" },
                 new ColumnHeader { Text = "Phone Number" },
                 new ColumnHeader { Text = "RoomId" },
-                new ColumnHeader { Text = "IsSupervisor" },
+                new ColumnHeader { Text = "isSupervisor" },
             });
 
             foreach (Teacher teacher in teachers)
@@ -120,8 +120,8 @@ namespace SomerenUI
                     teacher.Age.ToString(),
                     teacher.TelephoneNumber.ToString(),
                     teacher.RoomId.ToString(),
+                    teacher.isSupervisor,
                     teacher.DrinkId.ToString(),
-                    teacher.IsSupervisor,
                 });
                 item.Tag = teacher;
                 listViewteachers.Items.Add(item);
