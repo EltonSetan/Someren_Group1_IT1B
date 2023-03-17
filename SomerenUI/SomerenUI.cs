@@ -108,7 +108,6 @@ namespace SomerenUI
                 new ColumnHeader { Text = "Age" },
                 new ColumnHeader { Text = "Phone Number" },
                 new ColumnHeader { Text = "RoomId" },
-                new ColumnHeader { Text = "DrinkId" },
                 new ColumnHeader { Text = "IsSupervisor" },
             });
 
