@@ -121,7 +121,7 @@ namespace SomerenUI
                     teacher.TelephoneNumber.ToString(),
                     teacher.RoomId.ToString(),
                     teacher.isSupervisor,
-                    teacher.DrinkId.ToString(),
+                    //teacher.DrinkId.ToString(),
                 });
                 item.Tag = teacher;
                 listViewteachers.Items.Add(item);

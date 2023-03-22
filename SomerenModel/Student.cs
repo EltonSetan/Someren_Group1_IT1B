@@ -15,7 +15,7 @@ namespace SomerenModel
         public int StudentNumber { get; set; }
         public string Class { get; set; }
         public int RoomId { get; set; }
-        public int DrinkId { get; set; }
+        //public int DrinkId { get; set; }
         public object StudentId { get; set; }
     }
 }
