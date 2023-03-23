@@ -11,8 +11,21 @@ namespace SomerenDAL
 {
     public class CashRegisterDao : BaseDao
     {
+        public void CheckDateRange(DateTime startDate, DateTime endDate)
+        {
+            if (startDate > DateTime.Now || endDate > DateTime.Now)
+            {
+                throw new Exception("You can't select a date in the future");
+            }
+            else if (endDate < startDate)
+            {
+                throw new Exception("The end date has to be later than the start date");
+            }
+        }
         public List<CashRegister> GetAllSales(DateTime startDate, DateTime endDate)
         {
+            CheckDateRange(startDate, endDate);
+
             string query = "SELECT StudentId, DrinkId, DateOfSale FROM CashRegister WHERE DateOfSale >= @startDate AND DateOfSale <= @endDate";
             SqlParameter[] sqlParameters = new SqlParameter[2];
 
@@ -30,9 +43,11 @@ namespace SomerenDAL
         }
         //public int GetSales(DateTime startDate, DateTime endDate)
         //{
+
+        //      CheckDateRange(startDate, endDate);
         //    string query = "SELECT COUNT(*) AS Sales FROM CashRegister WHERE DateOfSale >= @startDate AND <= @endDate";
         //    SqlParameter[] sqlParameters = new SqlParameter[2];
-            
+
         //    SqlParameter parameter1 = new SqlParameter();
         //    parameter1.ParameterName = "@startDate";
         //    parameter1.Value = startDate;
@@ -63,8 +78,10 @@ namespace SomerenDAL
             return sales;
         }
 
-        public List<CashRegister> GetTurnover(DateOnly startDate, DateOnly endDate)
+        public List<CashRegister> GetTurnover(DateTime startDate, DateTime endDate)
         {
+            CheckDateRange(startDate, endDate);
+
             string query = "SELECT SUM(Drink.PriceOfDrink) FROM CashRegister JOIN Drink ON DrinkID = CashRegister.DrinkId WHERE DateOfSale >= @startDate AND DateOfSale <= @endDate";
             SqlParameter[] sqlParameters = new SqlParameter[2];
 
@@ -81,8 +98,10 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        public List<CashRegister> GetTotalCustomers(DateOnly startDate, DateOnly endDate)
+        public List<CashRegister> GetTotalCustomers(DateTime startDate, DateTime endDate)
         {
+            CheckDateRange(startDate, endDate);
+
             string query = "SELECT COUNT(DISTINCT StudentId) AS Nr of Customers FROM CashRegister WHERE DateOfSale >= @startDate AND DateOfSale <= @endDate";
             SqlParameter[] sqlParameters = new SqlParameter[2];
 
