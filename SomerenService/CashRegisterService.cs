@@ -17,10 +17,22 @@ namespace SomerenService
             cashRegisterdb = new CashRegisterDao();
         }
 
-        public List<CashRegister> GetAllSales(DateTime startDate, DateTime endDate)
+        public int GetSales(DateTime startDate, DateTime endDate)
         {
-            List<CashRegister> sales = cashRegisterdb.GetAllSales(startDate,endDate);
+            int sales = cashRegisterdb.GetSales(startDate,endDate);
             return sales;
+        }
+
+        public double GetTurnover(DateTime startDate, DateTime endDate)
+        {
+            double turnover = cashRegisterdb.GetTurnover(startDate,endDate); ;
+            return turnover;
+        }
+
+        public int GetTotalCustomers(DateTime startDate, DateTime endDate)
+        {
+            int nrOfCustomers = cashRegisterdb.GetTotalCustomers(startDate,endDate);
+            return nrOfCustomers;
         }
     }
 }

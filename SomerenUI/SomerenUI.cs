@@ -230,10 +230,14 @@ namespace SomerenUI
 
             try
             {
-               DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
+                DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
                 DateTime endDate = monthCalendarEndDate.SelectionRange.End;
-                List<CashRegister> sales = GetAllSales(startDate,endDate);
-                DisplaySales(sales);
+
+                int sales = GetSales(startDate,endDate);
+                double turnover = GetTurnover(startDate, endDate);
+                int nrOfCustomers = GetTotalCustomers(startDate,endDate);
+
+                DisplayReport(sales, turnover, nrOfCustomers);
             }
             catch (Exception e)
             {
@@ -241,35 +245,47 @@ namespace SomerenUI
             }
         }
 
-        private List<CashRegister> GetAllSales(DateTime startDate, DateTime endDate)
+
+        private int GetSales(DateTime startDate, DateTime endDate)
         {
-            return new CashRegisterService().GetAllSales(startDate, endDate);
+            return new CashRegisterService().GetSales(startDate, endDate);
         }
 
-        private void DisplaySales(List<CashRegister> sales)
+        private double GetTurnover(DateTime startDate, DateTime endDate)
+        {
+            return new CashRegisterService().GetTurnover(startDate, endDate);
+        }
+
+        private int GetTotalCustomers(DateTime startDate, DateTime endDate)
+        {
+            return new CashRegisterService().GetTotalCustomers(startDate, endDate);
+        }
+
+        private void DisplayReport(int sales, double turnover, int nrOfCustomers)
         {
             lvRevenueReport.Clear();
             lvRevenueReport.View = View.Details;
             lvRevenueReport.Columns.AddRange(new[] {
-            new ColumnHeader { Text = "Student ID" },
-            new ColumnHeader { Text = "Drink ID" },
-            new ColumnHeader { Text = "Date of Sale"}
+            new ColumnHeader { Text = "Sales" },
+            new ColumnHeader { Text = "Turnover" },
+            new ColumnHeader { Text = "Number of Customers"}
         });
+            List<double> report = new List<double>();
+            report.Add(sales);
+            report.Add(turnover);
+            report.Add(nrOfCustomers);
 
-            foreach (CashRegister sale in sales)
-            {
-                var item = new ListViewItem(sale.StudentId.ToString());
-                item.SubItems.AddRange(new[] {
-                    //sale.StudentId.ToString(),
-                    sale.DrinkId.ToString(),
-                    sale.DateOfSale.ToString("dd/MM/yyyy")
-                });
-                item.Tag = sale;
-                lvRevenueReport.Items.Add(item);
-            }
+            var item = new ListViewItem(sales.ToString());
+            item.SubItems.AddRange(new[] {
+                  turnover.ToString(),
+                  nrOfCustomers.ToString()
+            });
+            item.Tag = report;
+            lvRevenueReport.Items.Add(item);
 
             lvRevenueReport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+        
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -312,7 +328,7 @@ namespace SomerenUI
 
         private void monthCalendarEndDate_DateChanged(object sender, DateRangeEventArgs e)
         {
-            DateTime endDate = monthCalendarStartDate.SelectionRange.Start;
+            DateTime endDate = monthCalendarEndDate.SelectionRange.Start;
             lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {endDate.ToString("dd/MM/yyyy")}";
             ShowRevenuePanel();
         }
