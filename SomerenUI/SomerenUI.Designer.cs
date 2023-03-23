@@ -453,9 +453,9 @@ namespace SomerenUI
             this.lblRevenueDateRange.AutoSize = true;
             this.lblRevenueDateRange.Location = new System.Drawing.Point(32, 289);
             this.lblRevenueDateRange.Name = "lblRevenueDateRange";
-            this.lblRevenueDateRange.Size = new System.Drawing.Size(50, 20);
+            this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
             this.lblRevenueDateRange.TabIndex = 4;
-            this.lblRevenueDateRange.Text = "label1";
+            this.lblRevenueDateRange.Text = "Revenue Report";
             // 
             // lblChooseEndDate
             // 

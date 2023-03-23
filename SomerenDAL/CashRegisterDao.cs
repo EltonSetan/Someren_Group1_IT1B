@@ -43,8 +43,8 @@ namespace SomerenDAL
         }
         //public int GetSales(DateTime startDate, DateTime endDate)
         //{
+        //    CheckDateRange(startDate, endDate);
 
-        //      CheckDateRange(startDate, endDate);
         //    string query = "SELECT COUNT(*) AS Sales FROM CashRegister WHERE DateOfSale >= @startDate AND <= @endDate";
         //    SqlParameter[] sqlParameters = new SqlParameter[2];
 

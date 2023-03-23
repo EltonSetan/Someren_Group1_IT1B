@@ -313,6 +313,7 @@ namespace SomerenUI
         private void monthCalendarEndDate_DateChanged(object sender, DateRangeEventArgs e)
         {
             DateTime endDate = monthCalendarStartDate.SelectionRange.Start;
+            lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {endDate.ToString("dd/MM/yyyy")}";
             ShowRevenuePanel();
         }
     }
