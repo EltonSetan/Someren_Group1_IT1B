@@ -122,6 +122,7 @@ namespace SomerenUI
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
             this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
+            dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -134,24 +135,28 @@ namespace SomerenUI
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.studentsToolStripMenuItem.Text = "Students";
+            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
             this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.lecturersToolStripMenuItem.Text = "Lecturers";
+            lecturersToolStripMenuItem.Click += lecturersToolStripMenuItem_Click;
             // 
             // activitiesToolStripMenuItem
             // 
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.activitiesToolStripMenuItem.Text = "Activities";
+            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.roomsToolStripMenuItem.Text = "Rooms";
+            roomsToolStripMenuItem.Click += roomsToolStripMenuItem_Click;
             // 
             // drinksToolStripMenuItem
             // 
@@ -499,7 +504,6 @@ namespace SomerenUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(861, 580);
-            this.Controls.Add(this.pnlRevenueReport);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -528,7 +532,6 @@ namespace SomerenUI
             this.pnlRevenueReport.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
