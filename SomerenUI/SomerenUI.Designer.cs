@@ -181,7 +181,7 @@ namespace SomerenUI
             this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
             this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.revenueReportToolStripMenuItem.Text = "Revenue Report";
-            this.revenueReportToolStripMenuItem.Click += new System.EventHandler(this.revenueReportToolStripMenuItem_Click);
+            //this.revenueReportToolStripMenuItem.Click += new System.EventHandler(this.revenueReportToolStripMenuItem_Click);
             // 
             // vATCalculationToolStripMenuItem
             // 
@@ -482,7 +482,7 @@ namespace SomerenUI
             this.monthCalendarEndDate.ShowToday = false;
             this.monthCalendarEndDate.ShowTodayCircle = false;
             this.monthCalendarEndDate.TabIndex = 1;
-            this.monthCalendarEndDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
+            //this.monthCalendarEndDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
             // 
             // monthCalendarStartDate
             // 
@@ -492,7 +492,7 @@ namespace SomerenUI
             this.monthCalendarStartDate.ShowToday = false;
             this.monthCalendarStartDate.ShowTodayCircle = false;
             this.monthCalendarStartDate.TabIndex = 0;
-            this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
+            //this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
             // 
             // SomerenUI
             // 
