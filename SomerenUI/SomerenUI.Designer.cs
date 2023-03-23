@@ -41,6 +41,11 @@ namespace SomerenUI
             this.lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drinkStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.revenueReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vATCalculationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.dashboardPictureBox = new System.Windows.Forms.PictureBox();
             this.lblDashboard = new System.Windows.Forms.Label();
@@ -65,12 +70,12 @@ namespace SomerenUI
             this.listViewteachers = new System.Windows.Forms.ListView();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.pnlRevenueReport = new System.Windows.Forms.Panel();
-            this.monthCalendarStartDate = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendarEndDate = new System.Windows.Forms.MonthCalendar();
-            this.lblChooseStartDate = new System.Windows.Forms.Label();
-            this.lblChooseEndDate = new System.Windows.Forms.Label();
-            this.lblRevenueDateRange = new System.Windows.Forms.Label();
             this.lvRevenueReport = new System.Windows.Forms.ListView();
+            this.lblRevenueDateRange = new System.Windows.Forms.Label();
+            this.lblChooseEndDate = new System.Windows.Forms.Label();
+            this.lblChooseStartDate = new System.Windows.Forms.Label();
+            this.monthCalendarEndDate = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendarStartDate = new System.Windows.Forms.MonthCalendar();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardPictureBox)).BeginInit();
@@ -94,7 +99,8 @@ namespace SomerenUI
             this.studentsToolStripMenuItem,
             this.lecturersToolStripMenuItem,
             this.activitiesToolStripMenuItem,
-            this.roomsToolStripMenuItem});
+            this.roomsToolStripMenuItem,
+            this.drinksToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 4, 0, 4);
@@ -146,6 +152,42 @@ namespace SomerenUI
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.roomsToolStripMenuItem.Text = "Rooms";
+            // 
+            // drinksToolStripMenuItem
+            // 
+            this.drinksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drinkStockToolStripMenuItem,
+            this.cashRegisterToolStripMenuItem,
+            this.revenueReportToolStripMenuItem,
+            this.vATCalculationToolStripMenuItem});
+            this.drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
+            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.drinksToolStripMenuItem.Text = "Drinks";
+            // 
+            // drinkStockToolStripMenuItem
+            // 
+            this.drinkStockToolStripMenuItem.Name = "drinkStockToolStripMenuItem";
+            this.drinkStockToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.drinkStockToolStripMenuItem.Text = "Drink Stock";
+            // 
+            // cashRegisterToolStripMenuItem
+            // 
+            this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
+            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.cashRegisterToolStripMenuItem.Text = "Cash Register";
+            // 
+            // revenueReportToolStripMenuItem
+            // 
+            this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
+            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.revenueReportToolStripMenuItem.Text = "Revenue Report";
+            this.revenueReportToolStripMenuItem.Click += new System.EventHandler(this.revenueReportToolStripMenuItem_Click);
+            // 
+            // vATCalculationToolStripMenuItem
+            // 
+            this.vATCalculationToolStripMenuItem.Name = "vATCalculationToolStripMenuItem";
+            this.vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.vATCalculationToolStripMenuItem.Text = "VAT calculation";
             // 
             // pnlDashboard
             // 
@@ -398,40 +440,13 @@ namespace SomerenUI
             this.pnlRevenueReport.Size = new System.Drawing.Size(861, 548);
             this.pnlRevenueReport.TabIndex = 3;
             // 
-            // monthCalendarStartDate
+            // lvRevenueReport
             // 
-            this.monthCalendarStartDate.Location = new System.Drawing.Point(32, 36);
-            this.monthCalendarStartDate.MaxDate = new System.DateTime(2023, 3, 22, 0, 0, 0, 0);
-            this.monthCalendarStartDate.Name = "monthCalendarStartDate";
-            this.monthCalendarStartDate.ShowToday = false;
-            this.monthCalendarStartDate.ShowTodayCircle = false;
-            this.monthCalendarStartDate.TabIndex = 0;
-            // 
-            // monthCalendarEndDate
-            // 
-            this.monthCalendarEndDate.Location = new System.Drawing.Point(393, 36);
-            this.monthCalendarEndDate.Name = "monthCalendarEndDate";
-            this.monthCalendarEndDate.ShowToday = false;
-            this.monthCalendarEndDate.ShowTodayCircle = false;
-            this.monthCalendarEndDate.TabIndex = 1;
-            // 
-            // lblChooseStartDate
-            // 
-            this.lblChooseStartDate.AutoSize = true;
-            this.lblChooseStartDate.Location = new System.Drawing.Point(32, 7);
-            this.lblChooseStartDate.Name = "lblChooseStartDate";
-            this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
-            this.lblChooseStartDate.TabIndex = 2;
-            this.lblChooseStartDate.Text = "Choose a start date";
-            // 
-            // lblChooseEndDate
-            // 
-            this.lblChooseEndDate.AutoSize = true;
-            this.lblChooseEndDate.Location = new System.Drawing.Point(393, 7);
-            this.lblChooseEndDate.Name = "lblChooseEndDate";
-            this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
-            this.lblChooseEndDate.TabIndex = 3;
-            this.lblChooseEndDate.Text = "Choose an end date";
+            this.lvRevenueReport.Location = new System.Drawing.Point(32, 332);
+            this.lvRevenueReport.Name = "lvRevenueReport";
+            this.lvRevenueReport.Size = new System.Drawing.Size(623, 204);
+            this.lvRevenueReport.TabIndex = 5;
+            this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
             // 
             // lblRevenueDateRange
             // 
@@ -442,13 +457,42 @@ namespace SomerenUI
             this.lblRevenueDateRange.TabIndex = 4;
             this.lblRevenueDateRange.Text = "label1";
             // 
-            // lvRevenueReport
+            // lblChooseEndDate
             // 
-            this.lvRevenueReport.Location = new System.Drawing.Point(32, 332);
-            this.lvRevenueReport.Name = "lvRevenueReport";
-            this.lvRevenueReport.Size = new System.Drawing.Size(623, 204);
-            this.lvRevenueReport.TabIndex = 5;
-            this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
+            this.lblChooseEndDate.AutoSize = true;
+            this.lblChooseEndDate.Location = new System.Drawing.Point(393, 7);
+            this.lblChooseEndDate.Name = "lblChooseEndDate";
+            this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
+            this.lblChooseEndDate.TabIndex = 3;
+            this.lblChooseEndDate.Text = "Choose an end date";
+            // 
+            // lblChooseStartDate
+            // 
+            this.lblChooseStartDate.AutoSize = true;
+            this.lblChooseStartDate.Location = new System.Drawing.Point(32, 7);
+            this.lblChooseStartDate.Name = "lblChooseStartDate";
+            this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
+            this.lblChooseStartDate.TabIndex = 2;
+            this.lblChooseStartDate.Text = "Choose a start date";
+            // 
+            // monthCalendarEndDate
+            // 
+            this.monthCalendarEndDate.Location = new System.Drawing.Point(393, 36);
+            this.monthCalendarEndDate.Name = "monthCalendarEndDate";
+            this.monthCalendarEndDate.ShowToday = false;
+            this.monthCalendarEndDate.ShowTodayCircle = false;
+            this.monthCalendarEndDate.TabIndex = 1;
+            this.monthCalendarEndDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
+            // 
+            // monthCalendarStartDate
+            // 
+            this.monthCalendarStartDate.Location = new System.Drawing.Point(32, 36);
+            this.monthCalendarStartDate.MaxDate = new System.DateTime(2023, 3, 22, 0, 0, 0, 0);
+            this.monthCalendarStartDate.Name = "monthCalendarStartDate";
+            this.monthCalendarStartDate.ShowToday = false;
+            this.monthCalendarStartDate.ShowTodayCircle = false;
+            this.monthCalendarStartDate.TabIndex = 0;
+            this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
             // 
             // SomerenUI
             // 
@@ -529,5 +573,10 @@ namespace SomerenUI
         private Label lblChooseEndDate;
         private Label lblChooseStartDate;
         private MonthCalendar monthCalendarEndDate;
+        private ToolStripMenuItem drinksToolStripMenuItem;
+        private ToolStripMenuItem drinkStockToolStripMenuItem;
+        private ToolStripMenuItem cashRegisterToolStripMenuItem;
+        private ToolStripMenuItem revenueReportToolStripMenuItem;
+        private ToolStripMenuItem vATCalculationToolStripMenuItem;
     }
 }

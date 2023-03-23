@@ -16,7 +16,7 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel })
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, pnlRevenueReport })
             {
                 panel.Visible = false;
             }
@@ -224,7 +224,52 @@ namespace SomerenUI
             lvActivities.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        private void ShowRevenuePanel()
+        {
+            ShowPanel(pnlRevenueReport);
 
+            try
+            {
+               DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
+                DateTime endDate = monthCalendarEndDate.SelectionRange.End;
+                List<CashRegister> sales = GetAllSales(startDate,endDate);
+                DisplaySales(sales);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the revenue report: {e.Message}");
+            }
+        }
+
+        private List<CashRegister> GetAllSales(DateTime startDate, DateTime endDate)
+        {
+            return new CashRegisterService().GetAllSales(startDate, endDate);
+        }
+
+        private void DisplaySales(List<CashRegister> sales)
+        {
+            lvRevenueReport.Clear();
+            lvRevenueReport.View = View.Details;
+            lvRevenueReport.Columns.AddRange(new[] {
+            new ColumnHeader { Text = "Student ID" },
+            new ColumnHeader { Text = "Drink ID" },
+            new ColumnHeader { Text = "Date of Sale"}
+        });
+
+            foreach (CashRegister sale in sales)
+            {
+                var item = new ListViewItem(sale.StudentId.ToString());
+                item.SubItems.AddRange(new[] {
+                    //sale.StudentId.ToString(),
+                    sale.DrinkId.ToString(),
+                    sale.DateOfSale.ToString("dd/MM/yyyy")
+                });
+                item.Tag = sale;
+                lvRevenueReport.Items.Add(item);
+            }
+
+            lvRevenueReport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -253,6 +298,22 @@ namespace SomerenUI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRevenuePanel();
+        }
+
+        private void monthCalendarStartDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            DateTime startDate = monthCalendarStartDate.SelectionRange.Start;   
+        }
+
+        private void monthCalendarEndDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            DateTime endDate = monthCalendarStartDate.SelectionRange.Start;
+            ShowRevenuePanel();
         }
     }
 }
