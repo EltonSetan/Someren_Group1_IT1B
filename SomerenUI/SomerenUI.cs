@@ -277,7 +277,7 @@ namespace SomerenUI
 
             var item = new ListViewItem(sales.ToString());
             item.SubItems.AddRange(new[] {
-                  turnover.ToString(),
+                  turnover.ToString("0.00€"),
                   nrOfCustomers.ToString()
             });
             item.Tag = report;
@@ -323,7 +323,9 @@ namespace SomerenUI
 
         private void monthCalendarStartDate_DateChanged(object sender, DateRangeEventArgs e)
         {
-            DateTime startDate = monthCalendarStartDate.SelectionRange.Start;   
+            DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
+            lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {monthCalendarEndDate.SelectionRange.Start.ToString("dd/MM/yyyy")}";
+            ShowRevenuePanel();
         }
 
         private void monthCalendarEndDate_DateChanged(object sender, DateRangeEventArgs e)

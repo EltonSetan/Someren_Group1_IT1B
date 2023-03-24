@@ -22,6 +22,8 @@ namespace SomerenDAL
                 throw new Exception("The end date has to be later than the start date");
             }
         }
+
+       
         //public List<CashRegister> GetAllSales(DateTime startDate, DateTime endDate)
         //{
         //    CheckDateRange(startDate, endDate);
@@ -53,6 +55,11 @@ namespace SomerenDAL
             };
 
             DataTable result = ExecuteSelectQuery(query, sqlParameters);
+            
+            if (result.Rows[0].IsNull(0))
+            {
+                return 0;
+            }
             return (int)result.Rows[0]["Sales"];
         }
 
@@ -86,6 +93,12 @@ namespace SomerenDAL
              };
 
             DataTable result = ExecuteSelectQuery(query, sqlParameters);
+            
+            if (result.Rows[0].IsNull(0))
+            {
+                return 0;
+            }
+
             return (double)result.Rows[0]["Turnover"];
         }
 
@@ -101,6 +114,12 @@ namespace SomerenDAL
              };
 
             DataTable result = ExecuteSelectQuery(query, sqlParameters);
+
+            if (result.Rows[0].IsNull(0))
+            {
+                return 0;
+            }
+
             return (int)result.Rows[0]["NrOfCustomers"];
         }
     }
