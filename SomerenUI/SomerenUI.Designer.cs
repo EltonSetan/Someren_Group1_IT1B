@@ -49,10 +49,19 @@ namespace SomerenUI
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.dashboardPictureBox = new System.Windows.Forms.PictureBox();
             this.lblDashboard = new System.Windows.Forms.Label();
+            this.pnlRevenueReport = new System.Windows.Forms.Panel();
+            this.lblRevenueReportHeader = new System.Windows.Forms.Label();
+            this.lvRevenueReport = new System.Windows.Forms.ListView();
+            this.lblRevenueDateRange = new System.Windows.Forms.Label();
+            this.lblChooseEndDate = new System.Windows.Forms.Label();
+            this.lblChooseStartDate = new System.Windows.Forms.Label();
+            this.monthCalendarEndDate = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendarStartDate = new System.Windows.Forms.MonthCalendar();
             this.studentsPictureBox = new System.Windows.Forms.PictureBox();
             this.lecturersPictureBox = new System.Windows.Forms.PictureBox();
             this.activitiesPictureBox = new System.Windows.Forms.PictureBox();
             this.roomsPictureBox = new System.Windows.Forms.PictureBox();
+            this.revenuePictureBox = new System.Windows.Forms.PictureBox();
             this.pnlStudents = new System.Windows.Forms.Panel();
             this.listViewStudents = new System.Windows.Forms.ListView();
             this.studentsLabel = new System.Windows.Forms.Label();
@@ -69,26 +78,20 @@ namespace SomerenUI
             this.teacherpanel = new System.Windows.Forms.Panel();
             this.listViewteachers = new System.Windows.Forms.ListView();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.pnlRevenueReport = new System.Windows.Forms.Panel();
-            this.lvRevenueReport = new System.Windows.Forms.ListView();
-            this.lblRevenueDateRange = new System.Windows.Forms.Label();
-            this.lblChooseEndDate = new System.Windows.Forms.Label();
-            this.lblChooseStartDate = new System.Windows.Forms.Label();
-            this.monthCalendarEndDate = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendarStartDate = new System.Windows.Forms.MonthCalendar();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardPictureBox)).BeginInit();
+            this.pnlRevenueReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lecturersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activitiesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomsPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.revenuePictureBox)).BeginInit();
             this.pnlStudents.SuspendLayout();
             this.roomsPanel.SuspendLayout();
             this.pnlActivity.SuspendLayout();
             this.teacherpanel.SuspendLayout();
             this.panelContainer.SuspendLayout();
-            this.pnlRevenueReport.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -167,26 +170,26 @@ namespace SomerenUI
             // drinkStockToolStripMenuItem
             // 
             this.drinkStockToolStripMenuItem.Name = "drinkStockToolStripMenuItem";
-            this.drinkStockToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.drinkStockToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.drinkStockToolStripMenuItem.Text = "Drink Stock";
             // 
             // cashRegisterToolStripMenuItem
             // 
             this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
-            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.cashRegisterToolStripMenuItem.Text = "Cash Register";
             // 
             // revenueReportToolStripMenuItem
             // 
             this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
-            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.revenueReportToolStripMenuItem.Text = "Revenue Report";
             this.revenueReportToolStripMenuItem.Click += new System.EventHandler(this.revenueReportToolStripMenuItem_Click);
             // 
             // vATCalculationToolStripMenuItem
             // 
             this.vATCalculationToolStripMenuItem.Name = "vATCalculationToolStripMenuItem";
-            this.vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.vATCalculationToolStripMenuItem.Text = "VAT calculation";
             // 
             // pnlDashboard
@@ -219,6 +222,88 @@ namespace SomerenUI
             this.lblDashboard.Size = new System.Drawing.Size(262, 20);
             this.lblDashboard.TabIndex = 0;
             this.lblDashboard.Text = "Welcome to the Someren Application!";
+            // 
+            // pnlRevenueReport
+            // 
+            this.pnlRevenueReport.Controls.Add(this.lblRevenueReportHeader);
+            this.pnlRevenueReport.Controls.Add(this.lvRevenueReport);
+            this.pnlRevenueReport.Controls.Add(this.lblRevenueDateRange);
+            this.pnlRevenueReport.Controls.Add(this.lblChooseEndDate);
+            this.pnlRevenueReport.Controls.Add(this.lblChooseStartDate);
+            this.pnlRevenueReport.Controls.Add(this.monthCalendarEndDate);
+            this.pnlRevenueReport.Controls.Add(this.monthCalendarStartDate);
+            this.pnlRevenueReport.Location = new System.Drawing.Point(0, 0);
+            this.pnlRevenueReport.Controls.Add(this.revenuePictureBox);
+            this.revenuePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pnlRevenueReport.Name = "pnlRevenueReport";
+            this.pnlRevenueReport.Size = new System.Drawing.Size(861, 548);
+            this.pnlRevenueReport.TabIndex = 3;
+            // 
+            // lblRevenueReportHeader
+            // 
+            this.lblRevenueReportHeader.AutoSize = true;
+            this.lblRevenueReportHeader.Location = new System.Drawing.Point(11, 5);
+            this.lblRevenueReportHeader.Name = "lblRevenueReportHeader";
+            this.lblRevenueReportHeader.Size = new System.Drawing.Size(114, 20);
+            this.lblRevenueReportHeader.TabIndex = 6;
+            this.lblRevenueReportHeader.Text = "Revenue Report";
+            // 
+            // lvRevenueReport
+            // 
+            this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvRevenueReport.Location = new System.Drawing.Point(15, 341);
+            this.lvRevenueReport.Margin = new System.Windows.Forms.Padding(1);
+            this.lvRevenueReport.MultiSelect = false;
+            this.lvRevenueReport.Name = "lvRevenueReport";
+            this.lvRevenueReport.Size = new System.Drawing.Size(623, 204);
+            this.lvRevenueReport.TabIndex = 5;
+            this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
+            // 
+            // lblRevenueDateRange
+            // 
+            this.lblRevenueDateRange.AutoSize = true;
+            this.lblRevenueDateRange.Location = new System.Drawing.Point(15, 300);
+            this.lblRevenueDateRange.Name = "lblRevenueDateRange";
+            this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
+            this.lblRevenueDateRange.TabIndex = 4;
+            this.lblRevenueDateRange.Text = "Revenue Report";
+            // 
+            // lblChooseEndDate
+            // 
+            this.lblChooseEndDate.AutoSize = true;
+            this.lblChooseEndDate.Location = new System.Drawing.Point(373, 46);
+            this.lblChooseEndDate.Name = "lblChooseEndDate";
+            this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
+            this.lblChooseEndDate.TabIndex = 3;
+            this.lblChooseEndDate.Text = "Choose an end date";
+            // 
+            // lblChooseStartDate
+            // 
+            this.lblChooseStartDate.AutoSize = true;
+            this.lblChooseStartDate.Location = new System.Drawing.Point(15, 46);
+            this.lblChooseStartDate.Name = "lblChooseStartDate";
+            this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
+            this.lblChooseStartDate.TabIndex = 2;
+            this.lblChooseStartDate.Text = "Choose a start date";
+            // 
+            // monthCalendarEndDate
+            // 
+            this.monthCalendarEndDate.Location = new System.Drawing.Point(373, 75);
+            this.monthCalendarEndDate.Name = "monthCalendarEndDate";
+            this.monthCalendarEndDate.ShowToday = false;
+            this.monthCalendarEndDate.ShowTodayCircle = false;
+            this.monthCalendarEndDate.TabIndex = 1;
+            this.monthCalendarEndDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
+            // 
+            // monthCalendarStartDate
+            // 
+            this.monthCalendarStartDate.Location = new System.Drawing.Point(15, 75);
+            this.monthCalendarStartDate.MaxDate = new System.DateTime(2024, 3, 22, 0, 0, 0, 0);
+            this.monthCalendarStartDate.Name = "monthCalendarStartDate";
+            this.monthCalendarStartDate.ShowToday = false;
+            this.monthCalendarStartDate.ShowTodayCircle = false;
+            this.monthCalendarStartDate.TabIndex = 0;
+            this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
             // 
             // studentsPictureBox
             // 
@@ -263,6 +348,17 @@ namespace SomerenUI
             this.roomsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.roomsPictureBox.TabIndex = 2;
             this.roomsPictureBox.TabStop = false;
+            // 
+            // revenuePictureBox
+            // 
+            this.revenuePictureBox.Image = global::SomerenUI.Properties.Resources.someren;
+            this.revenuePictureBox.Location = new System.Drawing.Point(715, 0);
+            this.revenuePictureBox.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.revenuePictureBox.Name = "revenuePictureBox";
+            this.revenuePictureBox.Size = new System.Drawing.Size(145, 136);
+            this.revenuePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.revenuePictureBox.TabIndex = 2;
+            this.revenuePictureBox.TabStop = false;
             // 
             // pnlStudents
             // 
@@ -420,6 +516,7 @@ namespace SomerenUI
             this.panelContainer.Controls.Add(this.pnlActivity);
             this.panelContainer.Controls.Add(this.teacherpanel);
             this.panelContainer.Controls.Add(this.pnlStudents);
+            this.panelContainer.Controls.Add(this.pnlRevenueReport);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(0, 32);
             this.panelContainer.Margin = new System.Windows.Forms.Padding(1);
@@ -427,80 +524,12 @@ namespace SomerenUI
             this.panelContainer.Size = new System.Drawing.Size(861, 548);
             this.panelContainer.TabIndex = 2;
             // 
-            // pnlRevenueReport
-            // 
-            this.pnlRevenueReport.Controls.Add(this.lvRevenueReport);
-            this.pnlRevenueReport.Controls.Add(this.lblRevenueDateRange);
-            this.pnlRevenueReport.Controls.Add(this.lblChooseEndDate);
-            this.pnlRevenueReport.Controls.Add(this.lblChooseStartDate);
-            this.pnlRevenueReport.Controls.Add(this.monthCalendarEndDate);
-            this.pnlRevenueReport.Controls.Add(this.monthCalendarStartDate);
-            this.pnlRevenueReport.Location = new System.Drawing.Point(0, 32);
-            this.pnlRevenueReport.Name = "pnlRevenueReport";
-            this.pnlRevenueReport.Size = new System.Drawing.Size(861, 548);
-            this.pnlRevenueReport.TabIndex = 3;
-            // 
-            // lvRevenueReport
-            // 
-            this.lvRevenueReport.Location = new System.Drawing.Point(32, 332);
-            this.lvRevenueReport.Name = "lvRevenueReport";
-            this.lvRevenueReport.Size = new System.Drawing.Size(623, 204);
-            this.lvRevenueReport.TabIndex = 5;
-            this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
-            // 
-            // lblRevenueDateRange
-            // 
-            this.lblRevenueDateRange.AutoSize = true;
-            this.lblRevenueDateRange.Location = new System.Drawing.Point(32, 289);
-            this.lblRevenueDateRange.Name = "lblRevenueDateRange";
-            this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
-            this.lblRevenueDateRange.TabIndex = 4;
-            this.lblRevenueDateRange.Text = "Revenue Report";
-            // 
-            // lblChooseEndDate
-            // 
-            this.lblChooseEndDate.AutoSize = true;
-            this.lblChooseEndDate.Location = new System.Drawing.Point(393, 7);
-            this.lblChooseEndDate.Name = "lblChooseEndDate";
-            this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
-            this.lblChooseEndDate.TabIndex = 3;
-            this.lblChooseEndDate.Text = "Choose an end date";
-            // 
-            // lblChooseStartDate
-            // 
-            this.lblChooseStartDate.AutoSize = true;
-            this.lblChooseStartDate.Location = new System.Drawing.Point(32, 7);
-            this.lblChooseStartDate.Name = "lblChooseStartDate";
-            this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
-            this.lblChooseStartDate.TabIndex = 2;
-            this.lblChooseStartDate.Text = "Choose a start date";
-            // 
-            // monthCalendarEndDate
-            // 
-            this.monthCalendarEndDate.Location = new System.Drawing.Point(393, 36);
-            this.monthCalendarEndDate.Name = "monthCalendarEndDate";
-            this.monthCalendarEndDate.ShowToday = false;
-            this.monthCalendarEndDate.ShowTodayCircle = false;
-            this.monthCalendarEndDate.TabIndex = 1;
-            this.monthCalendarEndDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
-            // 
-            // monthCalendarStartDate
-            // 
-            this.monthCalendarStartDate.Location = new System.Drawing.Point(32, 36);
-            this.monthCalendarStartDate.MaxDate = new System.DateTime(2024, 3, 22, 0, 0, 0, 0);
-            this.monthCalendarStartDate.Name = "monthCalendarStartDate";
-            this.monthCalendarStartDate.ShowToday = false;
-            this.monthCalendarStartDate.ShowTodayCircle = false;
-            this.monthCalendarStartDate.TabIndex = 0;
-            this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
-            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(861, 580);
             this.Controls.Add(this.panelContainer);
-            this.Controls.Add(this.pnlRevenueReport);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
@@ -511,10 +540,13 @@ namespace SomerenUI
             this.pnlDashboard.ResumeLayout(false);
             this.pnlDashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardPictureBox)).EndInit();
+            this.pnlRevenueReport.ResumeLayout(false);
+            this.pnlRevenueReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lecturersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activitiesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomsPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.revenuePictureBox)).EndInit();
             this.pnlStudents.ResumeLayout(false);
             this.pnlStudents.PerformLayout();
             this.roomsPanel.ResumeLayout(false);
@@ -524,8 +556,6 @@ namespace SomerenUI
             this.teacherpanel.ResumeLayout(false);
             this.teacherpanel.PerformLayout();
             this.panelContainer.ResumeLayout(false);
-            this.pnlRevenueReport.ResumeLayout(false);
-            this.pnlRevenueReport.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -549,6 +579,7 @@ namespace SomerenUI
         private System.Windows.Forms.PictureBox lecturersPictureBox;
         private System.Windows.Forms.PictureBox activitiesPictureBox;
         private System.Windows.Forms.PictureBox roomsPictureBox;
+        private System.Windows.Forms.PictureBox revenuePictureBox;
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.Panel teacherpanel;
         private System.Windows.Forms.ListView listViewteachers;
@@ -578,5 +609,6 @@ namespace SomerenUI
         private ToolStripMenuItem cashRegisterToolStripMenuItem;
         private ToolStripMenuItem revenueReportToolStripMenuItem;
         private ToolStripMenuItem vATCalculationToolStripMenuItem;
+        private Label lblRevenueReportHeader;
     }
 }
