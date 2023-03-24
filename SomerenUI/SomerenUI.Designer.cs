@@ -241,6 +241,8 @@ namespace SomerenUI
             this.listViewdrinks.Size = new System.Drawing.Size(709, 146);
             this.listViewdrinks.TabIndex = 1;
             this.listViewdrinks.UseCompatibleStateImageBehavior = false;
+            this.listViewdrinks.FullRowSelect = true;
+            this.listViewdrinks.GridLines = true;
             // 
             // listViewstudent1
             // 
@@ -249,6 +251,8 @@ namespace SomerenUI
             this.listViewstudent1.Size = new System.Drawing.Size(709, 146);
             this.listViewstudent1.TabIndex = 0;
             this.listViewstudent1.UseCompatibleStateImageBehavior = false;
+            this.listViewstudent1.FullRowSelect = true;
+            this.listViewstudent1.GridLines = true;
             // 
             // studentsPictureBox
             // 
