@@ -631,7 +631,7 @@ namespace SomerenUI
             lblLowTariffTotal.Text = $"Total VAT (low tariff, 6%) amount payable: {lowTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
             lblHighTariffTotal.Text = $"Total VAT (high tariff, 21%) amount payable: {highTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
             lblTotalVAT.Text = $"Total VAT amount payable: {(lowTariffTotal + highTariffTotal).ToString("C", CultureInfo.CurrentCulture)}";
-
+        }
 
         private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
