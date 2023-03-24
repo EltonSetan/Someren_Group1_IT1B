@@ -49,19 +49,37 @@ namespace SomerenDAL
 
             ExecuteEditQuery(query, sqlParameters);
         }
-public void AddSale(int studentId, int drinkId)
-{
-    string query = "INSERT INTO CashRegister (StudentId, DrinkId, DateOfSale) VALUES (@studentId, @drinkId, @dateOfSale)";
+        public void AddSale(int studentId, int drinkId)
+        {
+            int nextSalesId = GetNextSalesId();
 
-    SqlParameter[] sqlParameters = new SqlParameter[]
-    {
+            string query = "INSERT INTO CashRegister (SalesId, StudentId, DrinkId, DateOfSale) VALUES (@salesId, @studentId, @drinkId, @dateOfSale)";
+
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+        new SqlParameter("@salesId", SqlDbType.Int) { Value = nextSalesId },
         new SqlParameter("@studentId", SqlDbType.Int) { Value = studentId },
         new SqlParameter("@drinkId", SqlDbType.Int) { Value = drinkId },
-        new SqlParameter("@dateOfSale", SqlDbType.DateTime) { Value = DateTime.Now } // use DateTime.Now to include both date and time
-    };
+        new SqlParameter("@dateOfSale", SqlDbType.DateTime) { Value = DateTime.Now }
+            };
 
-    ExecuteEditQuery(query, sqlParameters);
-}
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        private int GetNextSalesId()
+        {
+            string query = "SELECT MAX(SalesId) FROM CashRegister";
+
+            DataTable result = ExecuteSelectQuery(query, new SqlParameter[0]);
+
+            if (result.Rows.Count > 0 && !DBNull.Value.Equals(result.Rows[0][0]))
+            {
+                return Convert.ToInt32(result.Rows[0][0]) + 1;
+            }
+
+            return 1;
+        }
+
 
     }
 }

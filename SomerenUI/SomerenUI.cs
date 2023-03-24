@@ -340,7 +340,6 @@ namespace SomerenUI
         {
             Showcashpanel();
         }
-
         private void btnCheckout_Click(object sender, EventArgs e)
         {
             if (listViewstudent1.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
@@ -365,8 +364,5 @@ namespace SomerenUI
             // Refresh the students and drinks lists
             Showcashpanel();
         }
-
-
-
     }
 }
