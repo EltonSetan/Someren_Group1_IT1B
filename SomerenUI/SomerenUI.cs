@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
+using SomerenDAL;
+using SomerenLogic;
 using SomerenModel;
 using SomerenService;
 
@@ -11,12 +15,13 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
+            InitializeComboBoxes();
             ShowDashboardPanel();
         }
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel })
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel })
             {
                 panel.Visible = false;
             }
@@ -49,6 +54,12 @@ namespace SomerenUI
         {
             return new StudentService().GetStudents();
         }
+
+        private List<Drink> GetDrinks()
+        {
+            return new DrinkService().GetDrinks();
+        }
+
 
         private void DisplayStudents(List<Student> students)
         {
@@ -202,7 +213,6 @@ namespace SomerenUI
                     teacher.TelephoneNumber.ToString(),
                     teacher.RoomId.ToString(),
                     teacher.isSupervisor,
-                   // teacher.DrinkId.ToString(),
                 });
                 item.Tag = teacher;
                 listViewteachers.Items.Add(item);
@@ -261,6 +271,36 @@ namespace SomerenUI
             listViewRooms.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        private void DisplayDrinks(List<Drink> drinks)
+        {
+            listViewDrinks.Clear();
+            listViewDrinks.View = View.Details;
+            listViewDrinks.Columns.AddRange(new[] {
+        new ColumnHeader { Text = "Drink ID" },
+        new ColumnHeader { Text = "Drink Name" },
+        new ColumnHeader { Text = "Is Alcoholic" },
+        new ColumnHeader { Text = "Stock" },
+        new ColumnHeader { Text = "Price of Drink" },
+    });
+
+            foreach (Drink drink in drinks)
+            {
+                var item = new ListViewItem(drink.drinkId.ToString());
+                item.SubItems.AddRange(new[] {
+            drink.drinkName,
+            drink.isAlcoholic.ToString(),
+            drink.Stock.ToString(),
+            drink.drinkPrice.ToString("F2"), // Display price with two decimal places
+        });
+                item.Tag = drink;
+                listViewDrinks.Items.Add(item);
+            }
+
+            listViewDrinks.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+
+
         private void ShowActivitiesPanel()
         {
             ShowPanel(pnlActivity);
@@ -275,6 +315,27 @@ namespace SomerenUI
                 MessageBox.Show($"Something went wrong while loading the activities: {e.Message}");
             }
         }
+
+        private void ShowDrinksPanel()
+        {
+            ShowPanel(panelDrinks);
+
+            try
+            {
+                List<Drink> drinks = GetDrinks();
+                DisplayDrinks(drinks);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the drinks: {e.Message}");
+            }
+        }
+
+        private void ShowVATPanel()
+        {
+            ShowPanel(vatPanel);
+        }
+
 
         private List<Activity> GetActivities()
         {
@@ -331,6 +392,10 @@ namespace SomerenUI
             ShowRoomsPanel();
         }
 
+        private void drinkStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDrinksPanel();
+        }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -380,5 +445,171 @@ namespace SomerenUI
             lblTotalPrice.Text = $"Total Price: {amountPaid.ToString("C2")}";
         }
 
+        private void vATCalculationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowVATPanel();
+        }
+
+
+        private void listViewDrinks_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listViewDrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewDrinks.SelectedItems[0];
+                Drink selectedDrink = selectedItem.Tag as Drink;
+
+                txtDrinkId.Text = selectedDrink.drinkId.ToString();
+                txtDrinkName.Text = selectedDrink.drinkName;
+                txtPriceOfDrink.Text = selectedDrink.drinkPrice.ToString();
+                txtIsAlcoholic.Text = selectedDrink.isAlcoholic;
+                txtStock.Text = selectedDrink.Stock.ToString();
+
+                // Change the Add button to Update
+                btnAdd.Text = "Update";
+                btnAdd.Click -= BtnAdd_Click; // Remove the Add event handler
+                btnAdd.Click += BtnUpdate_Click; // Add the Update event handler
+            }
+        }
+        private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewDrinks.SelectedItems.Count == 0)
+            {
+                // Clear input fields
+                txtDrinkId.Clear();
+                txtDrinkName.Clear();
+                txtStock.Clear();
+                txtPriceOfDrink.Clear();
+                txtIsAlcoholic.Clear();
+
+                // Change the Update button back to Add if it's not already "Add"
+                if (btnAdd.Text != "Add")
+                {
+                    btnAdd.Text = "Add";
+                    btnAdd.Click -= BtnUpdate_Click; // Remove the Update event handler
+                    btnAdd.Click += BtnAdd_Click; // Add the Add event handler
+                }
+            }
+        }
+
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            DrinkService drinkService = new DrinkService();
+
+            // Get the input values and create a new Drink object
+            int DrinkId = int.Parse(txtDrinkId.Text);
+            string DrinkName = txtDrinkName.Text;
+            double PriceOfDrink = double.Parse(txtPriceOfDrink.Text);
+            string isAlcoholic = txtIsAlcoholic.Text;
+            int Stock = int.Parse(txtStock.Text);
+
+            Drink updatedDrink = new Drink()
+            {
+                drinkId = DrinkId,
+                drinkName = DrinkName,
+                drinkPrice = PriceOfDrink,
+                isAlcoholic = isAlcoholic,
+                Stock = Stock
+            };
+
+            drinkService.UpdateDrink(updatedDrink);
+            DisplayDrinks(drinkService.GetDrinks());
+
+            // Clear input fields after updating the drink
+            txtDrinkId.Clear();
+            txtDrinkName.Clear();
+            txtStock.Clear();
+            txtPriceOfDrink.Clear();
+            txtIsAlcoholic.Clear();
+
+            // Change the Update button back to Add
+            btnAdd.Text = "Add";
+            btnAdd.Click -= BtnUpdate_Click; // Remove the Update event handler
+            btnAdd.Click += BtnAdd_Click; // Add the Add event handler
+        }
+
+
+
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            DrinkService drinkService = new DrinkService();
+            if (listViewDrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewDrinks.SelectedItems[0];
+                Drink selectedDrink = selectedItem.Tag as Drink;
+
+                // Check if the drink has been sold
+                if (selectedDrink.TimesSold == 0)
+                {
+                    drinkService.RemoveDrink(selectedDrink.drinkId);
+                    DisplayDrinks(drinkService.GetDrinks());
+                }
+                else
+                {
+                    MessageBox.Show("Cannot remove a drink that has been sold.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a drink to remove.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            DrinkService drinkService = new DrinkService();
+
+            // Automatically generate the next available drinkId
+            int DrinkId = drinkService.GetNextDrinkId();
+            txtDrinkId.Text = DrinkId.ToString();
+
+            // Get the input values and create a new Drink object
+            string DrinkName = txtDrinkName.Text;
+            double PriceOfDrink = double.Parse(txtPriceOfDrink.Text);
+            string isAlcoholic = txtIsAlcoholic.Text;
+            int Stock = int.Parse(txtStock.Text);
+
+            Drink newDrink = new Drink()
+            {
+                drinkId = DrinkId,
+                drinkName = DrinkName,
+                drinkPrice = PriceOfDrink,
+                isAlcoholic = isAlcoholic,
+                Stock = Stock
+            };
+
+            drinkService.AddDrink(newDrink);
+            DisplayDrinks(drinkService.GetDrinks());
+
+            // Clear input fields after adding a new drink
+            txtDrinkId.Clear();
+            txtDrinkName.Clear();
+            txtStock.Clear();
+            txtPriceOfDrink.Clear();
+            txtIsAlcoholic.Clear();
+        }
+
+        private void btnCalculateVAT_Click(object sender, EventArgs e)
+        {
+            int year = int.Parse(cmbYear.SelectedItem.ToString());
+            int quarter = cmbQuarter.SelectedIndex + 1;
+
+            DateTime startDate = new DateTime(year, 3 * quarter - 2, 1);
+            DateTime endDate = startDate.AddMonths(3).AddDays(-1);
+
+            VATDao vatDao = new VATDao();
+            (decimal lowTariffTotal, decimal highTariffTotal) = vatDao.GetVATTotals(startDate, endDate);
+
+            DisplayResults(startDate, endDate, lowTariffTotal, highTariffTotal);
+        }
+
+
+        private void DisplayResults(DateTime startDate, DateTime endDate, decimal lowTariffTotal, decimal highTariffTotal)
+        {
+            lblQuarterDates.Text = $"Quarter runs from: {startDate.ToString("dd-MM-yyyy")} to: {endDate.ToString("dd-MM-yyyy")}";
+            lblLowTariffTotal.Text = $"Total VAT (low tariff, 6%) amount payable: {lowTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
+            lblHighTariffTotal.Text = $"Total VAT (high tariff, 21%) amount payable: {highTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
+            lblTotalVAT.Text = $"Total VAT amount payable: {(lowTariffTotal + highTariffTotal).ToString("C", CultureInfo.CurrentCulture)}";
+        }
     }
 }

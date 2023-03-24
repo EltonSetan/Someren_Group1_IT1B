@@ -1,6 +1,7 @@
-﻿using SomerenModel;
+﻿using SomerenDAL;
 using SomerenUI.Properties;
-using System.Resources;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -25,11 +26,29 @@ namespace SomerenUI
             base.Dispose(disposing);
         }
 
+        public void InitializeComboBoxes() //Is called after initialize component in SomerenUI.cs
+        {
+            VATDao VATDao = new VATDao();
+            List<int> years = VATDao.GetAvailableYears();
+
+            // Fill cmbYear with available years from the database
+            cmbYear.DataSource = years;
+
+            // Fill cmbQuarter with quarter options
+            cmbQuarter.Items.Add("Q1");
+            cmbQuarter.Items.Add("Q2");
+            cmbQuarter.Items.Add("Q3");
+            cmbQuarter.Items.Add("Q4");
+        }
+
+
+
         #region Windows Form Designer generated code
 
         /// <summary>
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
+        ///  Kappa
         /// </summary>
         private void InitializeComponent()
         {
@@ -53,6 +72,13 @@ namespace SomerenUI
             btnCheckout = new Button();
             listViewdrinks = new ListView();
             listViewstudent1 = new ListView();
+            btnRemove = new Button();
+            btnAdd = new Button();
+            txtStock = new TextBox();
+            txtPriceOfDrink = new TextBox();
+            txtIsAlcoholic = new TextBox();
+            txtDrinkName = new TextBox();
+            txtDrinkId = new TextBox();
             studentsPictureBox = new PictureBox();
             lecturersPictureBox = new PictureBox();
             activitiesPictureBox = new PictureBox();
@@ -73,6 +99,20 @@ namespace SomerenUI
             teacherpanel = new Panel();
             listViewteachers = new ListView();
             panelContainer = new Panel();
+            vatPanel = new Panel();
+            btnCalculateVAT = new Button();
+            lblTotalVAT = new Label();
+            lblHighTariffTotal = new Label();
+            lblLowTariffTotal = new Label();
+            lblQuarterDates = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            cmbQuarter = new ComboBox();
+            cmbYear = new ComboBox();
+            pictureBox = new PictureBox();
+            panelDrinks = new Panel();
+            listViewDrinks = new ListView();
+            labelDrinks = new Label();
             pnlRevenueReport = new Panel();
             lvRevenueReport = new ListView();
             lblRevenueDateRange = new Label();
@@ -98,6 +138,10 @@ namespace SomerenUI
             panelContainer.SuspendLayout();
             pnlRevenueReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            vatPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
+            panelDrinks.SuspendLayout();
+            pnlRevenueReport.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -186,6 +230,39 @@ namespace SomerenUI
             vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             vATCalculationToolStripMenuItem.Text = "VAT calculation";
             // 
+            // drinksToolStripMenuItem
+            // 
+            drinksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drinkStockToolStripMenuItem, cashRegisterToolStripMenuItem, revenueReportToolStripMenuItem, vATCalculationToolStripMenuItem });
+            drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
+            drinksToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            drinksToolStripMenuItem.Text = "Drinks";
+            // 
+            // drinkStockToolStripMenuItem
+            // 
+            drinkStockToolStripMenuItem.Name = "drinkStockToolStripMenuItem";
+            drinkStockToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            drinkStockToolStripMenuItem.Text = "Drink Stock";
+            drinkStockToolStripMenuItem.Click += drinkStockToolStripMenuItem_Click;
+            // 
+            // cashRegisterToolStripMenuItem
+            // 
+            cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
+            cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            cashRegisterToolStripMenuItem.Text = "Cash Register";
+            // 
+            // revenueReportToolStripMenuItem
+            // 
+            revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
+            revenueReportToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            revenueReportToolStripMenuItem.Text = "Revenue Report";
+            // 
+            // vATCalculationToolStripMenuItem
+            // 
+            vATCalculationToolStripMenuItem.Name = "vATCalculationToolStripMenuItem";
+            vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            vATCalculationToolStripMenuItem.Text = "VAT calculation";
+            vATCalculationToolStripMenuItem.Click += vATCalculationToolStripMenuItem_Click;
+            // 
             // pnlDashboard
             // 
             pnlDashboard.Controls.Add(dashboardPictureBox);
@@ -264,6 +341,65 @@ namespace SomerenUI
             listViewstudent1.TabIndex = 0;
             listViewstudent1.UseCompatibleStateImageBehavior = false;
             listViewstudent1.SelectedIndexChanged += ListView_SelectedIndexChanged;
+            // btnRemove
+            // 
+            btnRemove.Location = new System.Drawing.Point(626, 136);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new System.Drawing.Size(83, 25);
+            btnRemove.TabIndex = 6;
+            btnRemove.Text = "Remove drink";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += BtnRemove_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new System.Drawing.Point(661, 283);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(83, 25);
+            btnAdd.TabIndex = 3;
+            btnAdd.Text = "Add drink";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += BtnAdd_Click;
+            // 
+            // txtStock
+            // 
+            txtStock.Location = new System.Drawing.Point(416, 284);
+            txtStock.Name = "txtStock";
+            txtStock.PlaceholderText = "50";
+            txtStock.Size = new System.Drawing.Size(110, 25);
+            txtStock.TabIndex = 4;
+            // 
+            // txtPriceOfDrink
+            // 
+            txtPriceOfDrink.Location = new System.Drawing.Point(545, 284);
+            txtPriceOfDrink.Name = "txtPriceOfDrink";
+            txtPriceOfDrink.PlaceholderText = "2.50";
+            txtPriceOfDrink.Size = new System.Drawing.Size(110, 25);
+            txtPriceOfDrink.TabIndex = 5;
+            // 
+            // txtIsAlcoholic
+            // 
+            txtIsAlcoholic.Location = new System.Drawing.Point(285, 284);
+            txtIsAlcoholic.Name = "txtIsAlcoholic";
+            txtIsAlcoholic.PlaceholderText = "yes/no";
+            txtIsAlcoholic.Size = new System.Drawing.Size(110, 25);
+            txtIsAlcoholic.TabIndex = 6;
+            // 
+            // txtDrinkName
+            // 
+            txtDrinkName.Location = new System.Drawing.Point(153, 284);
+            txtDrinkName.Name = "txtDrinkName";
+            txtDrinkName.PlaceholderText = "Beer";
+            txtDrinkName.Size = new System.Drawing.Size(110, 25);
+            txtDrinkName.TabIndex = 3;
+            // 
+            // txtDrinkId
+            // 
+            txtDrinkId.Location = new System.Drawing.Point(18, 284);
+            txtDrinkId.Name = "txtDrinkId";
+            txtDrinkId.PlaceholderText = "15";
+            txtDrinkId.Size = new System.Drawing.Size(110, 25);
+            txtDrinkId.TabIndex = 7;
             // 
             // studentsPictureBox
             // 
@@ -457,16 +593,164 @@ namespace SomerenUI
             // 
             panelContainer.Controls.Add(cashpanel);
             panelContainer.Controls.Add(pnlDashboard);
+            panelContainer.Controls.Add(vatPanel);
             panelContainer.Controls.Add(roomsPanel);
             panelContainer.Controls.Add(pnlActivity);
             panelContainer.Controls.Add(teacherpanel);
             panelContainer.Controls.Add(pnlStudents);
+            panelContainer.Controls.Add(panelDrinks);
             panelContainer.Dock = DockStyle.Fill;
             panelContainer.Location = new System.Drawing.Point(0, 27);
             panelContainer.Margin = new Padding(1);
             panelContainer.Name = "panelContainer";
             panelContainer.Size = new System.Drawing.Size(753, 466);
             panelContainer.TabIndex = 2;
+            // 
+            // vatPanel
+            // 
+            vatPanel.Controls.Add(btnCalculateVAT);
+            vatPanel.Controls.Add(lblTotalVAT);
+            vatPanel.Controls.Add(lblHighTariffTotal);
+            vatPanel.Controls.Add(lblLowTariffTotal);
+            vatPanel.Controls.Add(lblQuarterDates);
+            vatPanel.Controls.Add(label2);
+            vatPanel.Controls.Add(label1);
+            vatPanel.Controls.Add(cmbQuarter);
+            vatPanel.Controls.Add(cmbYear);
+            vatPanel.Controls.Add(pictureBox);
+            vatPanel.Dock = DockStyle.Fill;
+            vatPanel.Location = new System.Drawing.Point(0, 0);
+            vatPanel.Name = "vatPanel";
+            vatPanel.Size = new System.Drawing.Size(753, 466);
+            vatPanel.TabIndex = 3;
+            // 
+            // btnCalculateVAT
+            // 
+            btnCalculateVAT.Location = new System.Drawing.Point(340, 366);
+            btnCalculateVAT.Name = "btnCalculateVAT";
+            btnCalculateVAT.Size = new System.Drawing.Size(83, 25);
+            btnCalculateVAT.TabIndex = 11;
+            btnCalculateVAT.Text = "Calculate VAT";
+            btnCalculateVAT.UseVisualStyleBackColor = true;
+            btnCalculateVAT.Click += btnCalculateVAT_Click;
+            // 
+            // lblTotalVAT
+            // 
+            lblTotalVAT.AutoSize = true;
+            lblTotalVAT.Location = new System.Drawing.Point(33, 374);
+            lblTotalVAT.Name = "lblTotalVAT";
+            lblTotalVAT.Size = new System.Drawing.Size(270, 17);
+            lblTotalVAT.TabIndex = 10;
+            lblTotalVAT.Text = "Total VAT amount payable: ____________________ ";
+            // 
+            // lblHighTariffTotal
+            // 
+            lblHighTariffTotal.AutoSize = true;
+            lblHighTariffTotal.Location = new System.Drawing.Point(28, 218);
+            lblHighTariffTotal.Name = "lblHighTariffTotal";
+            lblHighTariffTotal.Size = new System.Drawing.Size(366, 17);
+            lblHighTariffTotal.TabIndex = 9;
+            lblHighTariffTotal.Text = "Total VAT (high tariff, 21%) amount payable: ____________________";
+            // 
+            // lblLowTariffTotal
+            // 
+            lblLowTariffTotal.AutoSize = true;
+            lblLowTariffTotal.Location = new System.Drawing.Point(28, 172);
+            lblLowTariffTotal.Name = "lblLowTariffTotal";
+            lblLowTariffTotal.Size = new System.Drawing.Size(354, 17);
+            lblLowTariffTotal.TabIndex = 8;
+            lblLowTariffTotal.Text = "Total VAT (low tariff, 6%) amount payable: ____________________";
+            // 
+            // lblQuarterDates
+            // 
+            lblQuarterDates.AutoSize = true;
+            lblQuarterDates.Location = new System.Drawing.Point(28, 127);
+            lblQuarterDates.Name = "lblQuarterDates";
+            lblQuarterDates.Size = new System.Drawing.Size(275, 17);
+            lblQuarterDates.TabIndex = 7;
+            lblQuarterDates.Text = "Quarter runs from: _____________ to:______________";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(28, 82);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(92, 17);
+            label2.TabIndex = 6;
+            label2.Text = "Select quarter:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(28, 39);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(74, 17);
+            label1.TabIndex = 5;
+            label1.Text = "Select year:";
+            // 
+            // cmbQuarter
+            // 
+            cmbQuarter.FormattingEnabled = true;
+            cmbQuarter.Location = new System.Drawing.Point(153, 79);
+            cmbQuarter.Name = "cmbQuarter";
+            cmbQuarter.Size = new System.Drawing.Size(134, 25);
+            cmbQuarter.TabIndex = 4;
+            // 
+            // cmbYear
+            // 
+            cmbYear.FormattingEnabled = true;
+            cmbYear.Location = new System.Drawing.Point(153, 36);
+            cmbYear.Name = "cmbYear";
+            cmbYear.Size = new System.Drawing.Size(134, 25);
+            cmbYear.TabIndex = 3;
+            // 
+            // pictureBox
+            // 
+            pictureBox.Image = Resources.someren;
+            pictureBox.Location = new System.Drawing.Point(626, 0);
+            pictureBox.Margin = new Padding(2, 3, 2, 3);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new System.Drawing.Size(127, 116);
+            pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox.TabIndex = 2;
+            pictureBox.TabStop = false;
+            // 
+            // panelDrinks
+            // 
+            panelDrinks.Controls.Add(txtDrinkId);
+            panelDrinks.Controls.Add(txtDrinkName);
+            panelDrinks.Controls.Add(txtIsAlcoholic);
+            panelDrinks.Controls.Add(txtStock);
+            panelDrinks.Controls.Add(txtPriceOfDrink);
+            panelDrinks.Controls.Add(btnAdd);
+            panelDrinks.Controls.Add(btnRemove);
+            panelDrinks.Controls.Add(listViewDrinks);
+            panelDrinks.Controls.Add(labelDrinks);
+            panelDrinks.Location = new System.Drawing.Point(0, 27);
+            panelDrinks.Name = "panelDrinks";
+            panelDrinks.Size = new System.Drawing.Size(753, 466);
+            panelDrinks.TabIndex = 3;
+            // 
+            // listViewDrinks
+            // 
+            listViewDrinks.FullRowSelect = true;
+            listViewDrinks.GridLines = true;
+            listViewDrinks.Location = new System.Drawing.Point(11, 32);
+            listViewDrinks.Name = "listViewDrinks";
+            listViewDrinks.Size = new System.Drawing.Size(526, 239);
+            listViewDrinks.TabIndex = 5;
+            listViewDrinks.UseCompatibleStateImageBehavior = false;
+            listViewDrinks.SelectedIndexChanged += listViewDrinks_SelectedIndexChanged;
+            listViewDrinks.MouseClick += listViewDrinks_MouseClick;
+            // 
+            // labelDrinks
+            // 
+            labelDrinks.AutoSize = true;
+            labelDrinks.Location = new System.Drawing.Point(28, 246);
+            labelDrinks.Name = "labelDrinks";
+            labelDrinks.Size = new System.Drawing.Size(44, 17);
+            labelDrinks.TabIndex = 4;
+            labelDrinks.Text = "Drinks";
             // 
             // pnlRevenueReport
             // 
@@ -483,6 +767,8 @@ namespace SomerenUI
             // 
             // lvRevenueReport
             // 
+            lvRevenueReport.FullRowSelect = true;
+            lvRevenueReport.GridLines = true;
             lvRevenueReport.Location = new System.Drawing.Point(32, 332);
             lvRevenueReport.Name = "lvRevenueReport";
             lvRevenueReport.Size = new System.Drawing.Size(623, 204);
@@ -597,11 +883,19 @@ namespace SomerenUI
             pnlRevenueReport.ResumeLayout(false);
             pnlRevenueReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            vatPanel.ResumeLayout(false);
+            vatPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
+            panelDrinks.ResumeLayout(false);
+            panelDrinks.PerformLayout();
+            pnlRevenueReport.ResumeLayout(false);
+            pnlRevenueReport.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
@@ -630,6 +924,7 @@ namespace SomerenUI
         private System.Windows.Forms.ColumnHeader Date;
 
         private System.Windows.Forms.Panel roomsPanel;
+        private System.Windows.Forms.Panel panelDrinks;
         private System.Windows.Forms.ListView listViewRooms;
         private System.Windows.Forms.Label roomsLabel;
         private System.Windows.Forms.Label lecturersLabel;
@@ -642,12 +937,13 @@ namespace SomerenUI
         private Label lblRevenueDateRange;
         private Label lblChooseEndDate;
         private Label lblChooseStartDate;
+        private ListView listViewDrinks;
+        private Label labelDrinks;
         private MonthCalendar monthCalendarEndDate;
         private ToolStripMenuItem drinksToolStripMenuItem;
         private ToolStripMenuItem drinkStockToolStripMenuItem;
         private ToolStripMenuItem cashRegisterToolStripMenuItem;
         private ToolStripMenuItem revenueReportToolStripMenuItem;
-        private ToolStripMenuItem vATCalculationToolStripMenuItem;
         private Panel cashpanel;
         private ListView listViewdrinks;
         private ListView listViewstudent1;
@@ -655,5 +951,26 @@ namespace SomerenUI
         private Label lblTotalPrice;
         private Label lblCashRegister;
         private PictureBox pictureBox1;
+        private ToolStripMenuItem drinksReportToolStripMenuItem;
+        private ToolStripMenuItem vATCalculationToolStripMenuItem;
+        private Button btnAdd;
+        private Button btnRemove;
+        private System.Windows.Forms.TextBox txtInlineEditor;
+        private TextBox txtDrinkName;
+        private TextBox txtStock;
+        private TextBox txtPriceOfDrink;
+        private TextBox txtIsAlcoholic;
+        private TextBox txtDrinkId;
+        private Panel vatPanel;
+        private ComboBox cmbYear;
+        private PictureBox pictureBox;
+        private Label lblLowTariffTotal;
+        private Label lblQuarterDates;
+        private Label label2;
+        private Label label1;
+        private ComboBox cmbQuarter;
+        private Label lblTotalVAT;
+        private Label lblHighTariffTotal;
+        private Button btnCalculateVAT;
     }
 }
