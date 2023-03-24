@@ -453,13 +453,13 @@ namespace SomerenUI
 
         private void ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
+            if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewDrinksCashRegister.SelectedItems.Count == 0)
             {
                 lblTotalPrice.Text = "Total Price: --";
                 return;
             }
 
-            var selectedDrink = (CashRegister)listViewdrinks.SelectedItems[0].Tag;
+            var selectedDrink = (CashRegister)listViewDrinksCashRegister.SelectedItems[0].Tag;
             double amountPaid = selectedDrink.Price;
 
             // Update the lblTotalPrice with the total price of the selected items
@@ -472,11 +472,11 @@ namespace SomerenUI
         }
 
 
-        private void listViewDrinks_MouseClick(object sender, MouseEventArgs e)
+        private void listViewdrinks_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listViewDrinks.SelectedItems.Count > 0)
+            if (listViewdrinks.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listViewDrinks.SelectedItems[0];
+                ListViewItem selectedItem = listViewdrinks.SelectedItems[0];
                 Drink selectedDrink = selectedItem.Tag as Drink;
 
                 txtDrinkId.Text = selectedDrink.drinkId.ToString();
@@ -491,9 +491,9 @@ namespace SomerenUI
                 btnAdd.Click += BtnUpdate_Click; // Add the Update event handler
             }
         }
-        private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
+        private void listViewdrinks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewDrinks.SelectedItems.Count == 0)
+            if (listViewdrinks.SelectedItems.Count == 0)
             {
                 // Clear input fields
                 txtDrinkId.Clear();
@@ -554,9 +554,9 @@ namespace SomerenUI
         private void BtnRemove_Click(object sender, EventArgs e)
         {
             DrinkService drinkService = new DrinkService();
-            if (listViewDrinks.SelectedItems.Count > 0)
+            if (listViewdrinks.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listViewDrinks.SelectedItems[0];
+                ListViewItem selectedItem = listViewdrinks.SelectedItems[0];
                 Drink selectedDrink = selectedItem.Tag as Drink;
 
                 // Check if the drink has been sold
