@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using SomerenLogic;
 using SomerenModel;
@@ -312,6 +313,85 @@ namespace SomerenUI
             Application.Exit();
         }
 
+        private void listViewDrinks_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listViewDrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewDrinks.SelectedItems[0];
+                Drink selectedDrink = selectedItem.Tag as Drink;
+
+                txtDrinkId.Text = selectedDrink.drinkId.ToString();
+                txtDrinkName.Text = selectedDrink.drinkName;
+                txtPriceOfDrink.Text = selectedDrink.drinkPrice.ToString();
+                txtIsAlcoholic.Text = selectedDrink.isAlcoholic;
+                txtStock.Text = selectedDrink.Stock.ToString();
+
+                // Change the Add button to Update
+                btnAdd.Text = "Update";
+                btnAdd.Click -= BtnAdd_Click; // Remove the Add event handler
+                btnAdd.Click += BtnUpdate_Click; // Add the Update event handler
+            }
+        }
+        private void listViewDrinks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewDrinks.SelectedItems.Count == 0)
+            {
+                // Clear input fields
+                txtDrinkId.Clear();
+                txtDrinkName.Clear();
+                txtStock.Clear();
+                txtPriceOfDrink.Clear();
+                txtIsAlcoholic.Clear();
+
+                // Change the Update button back to Add if it's not already "Add"
+                if (btnAdd.Text != "Add")
+                {
+                    btnAdd.Text = "Add";
+                    btnAdd.Click -= BtnUpdate_Click; // Remove the Update event handler
+                    btnAdd.Click += BtnAdd_Click; // Add the Add event handler
+                }
+            }
+        }
+
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            DrinkService drinkService = new DrinkService();
+
+            // Get the input values and create a new Drink object
+            int DrinkId = int.Parse(txtDrinkId.Text);
+            string DrinkName = txtDrinkName.Text;
+            double PriceOfDrink = double.Parse(txtPriceOfDrink.Text);
+            string isAlcoholic = txtIsAlcoholic.Text;
+            int Stock = int.Parse(txtStock.Text);
+
+            Drink updatedDrink = new Drink()
+            {
+                drinkId = DrinkId,
+                drinkName = DrinkName,
+                drinkPrice = PriceOfDrink,
+                isAlcoholic = isAlcoholic,
+                Stock = Stock
+            };
+
+            drinkService.UpdateDrink(updatedDrink);
+            DisplayDrinks(drinkService.GetDrinks());
+
+            // Clear input fields after updating the drink
+            txtDrinkId.Clear();
+            txtDrinkName.Clear();
+            txtStock.Clear();
+            txtPriceOfDrink.Clear();
+            txtIsAlcoholic.Clear();
+
+            // Change the Update button back to Add
+            btnAdd.Text = "Add";
+            btnAdd.Click -= BtnUpdate_Click; // Remove the Update event handler
+            btnAdd.Click += BtnAdd_Click; // Add the Add event handler
+        }
+
+
+
         private void BtnRemove_Click(object sender, EventArgs e)
         {
             DrinkService drinkService = new DrinkService();
@@ -339,18 +419,33 @@ namespace SomerenUI
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            /*
-            // Show a form to input drink details and retrieve a new Drink object (implement the AddDrinkForm separately)
-            using (AddDrinkForm addDrinkForm = new AddDrinkForm())
+            DrinkService drinkService = new DrinkService();
+
+            // Get the input values and create a new Drink object
+            int DrinkId = int.Parse(txtDrinkId.Text);
+            string DrinkName = txtDrinkName.Text;
+            double PriceOfDrink = double.Parse(txtPriceOfDrink.Text);
+            string isAlcoholic = txtIsAlcoholic.Text;
+            int Stock = int.Parse(txtStock.Text);
+
+            Drink newDrink = new Drink()
             {
-                if (addDrinkForm.ShowDialog() == DialogResult.OK)
-                {
-                    Drink newDrink = addDrinkForm.NewDrink;
-                    drinkService.AddDrink(newDrink);
-                    DisplayDrinks(drinkService.GetDrinksWithSales());
-                }
-            }
-            */
+                drinkId = DrinkId,
+                drinkName = DrinkName,
+                drinkPrice = PriceOfDrink,
+                isAlcoholic = isAlcoholic,
+                Stock = Stock
+            };
+
+            drinkService.AddDrink(newDrink);
+            DisplayDrinks(drinkService.GetDrinks());
+
+            // Clear input fields after adding a new drink
+            txtDrinkId.Clear();
+            txtDrinkName.Clear();
+            txtStock.Clear();
+            txtPriceOfDrink.Clear();
+            txtIsAlcoholic.Clear();
         }
     }
 }

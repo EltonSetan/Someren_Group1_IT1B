@@ -1,5 +1,6 @@
 ﻿using SomerenModel;
 using SomerenUI.Properties;
+using System;
 using System.Resources;
 using System.Windows.Forms;
 
@@ -49,7 +50,14 @@ namespace SomerenUI
             vATCalculationToolStripMenuItem = new ToolStripMenuItem();
             pnlDashboard = new Panel();
             dashboardPictureBox = new PictureBox();
+            btnRemove = new Button();
+            btnAdd = new Button();
+            txtStock = new TextBox();
+            txtPriceOfDrink = new TextBox();
+            txtIsAlcoholic = new TextBox();
             lblDashboard = new Label();
+            txtDrinkName = new TextBox();
+            txtDrinkId = new TextBox();
             studentsPictureBox = new PictureBox();
             lecturersPictureBox = new PictureBox();
             activitiesPictureBox = new PictureBox();
@@ -80,8 +88,6 @@ namespace SomerenUI
             lblChooseStartDate = new Label();
             monthCalendarEndDate = new MonthCalendar();
             monthCalendarStartDate = new MonthCalendar();
-            btnAdd = new Button();
-            btnRemove = new Button();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).BeginInit();
@@ -211,6 +217,50 @@ namespace SomerenUI
             dashboardPictureBox.TabIndex = 2;
             dashboardPictureBox.TabStop = false;
             // 
+            // btnRemove
+            // 
+            btnRemove.Location = new System.Drawing.Point(626, 136);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new System.Drawing.Size(83, 25);
+            btnRemove.TabIndex = 6;
+            btnRemove.Text = "Remove drink";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += BtnRemove_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new System.Drawing.Point(661, 283);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(83, 25);
+            btnAdd.TabIndex = 3;
+            btnAdd.Text = "Add drink";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += BtnAdd_Click;
+            // 
+            // txtStock
+            // 
+            txtStock.Location = new System.Drawing.Point(416, 284);
+            txtStock.Name = "txtStock";
+            txtStock.PlaceholderText = "50";
+            txtStock.Size = new System.Drawing.Size(110, 25);
+            txtStock.TabIndex = 4;
+            // 
+            // txtPriceOfDrink
+            // 
+            txtPriceOfDrink.Location = new System.Drawing.Point(545, 284);
+            txtPriceOfDrink.Name = "txtPriceOfDrink";
+            txtPriceOfDrink.PlaceholderText = "2.50";
+            txtPriceOfDrink.Size = new System.Drawing.Size(110, 25);
+            txtPriceOfDrink.TabIndex = 5;
+            // 
+            // txtIsAlcoholic
+            // 
+            txtIsAlcoholic.Location = new System.Drawing.Point(285, 284);
+            txtIsAlcoholic.Name = "txtIsAlcoholic";
+            txtIsAlcoholic.PlaceholderText = "yes/no";
+            txtIsAlcoholic.Size = new System.Drawing.Size(110, 25);
+            txtIsAlcoholic.TabIndex = 6;
+            // 
             // lblDashboard
             // 
             lblDashboard.AutoSize = true;
@@ -219,6 +269,22 @@ namespace SomerenUI
             lblDashboard.Size = new System.Drawing.Size(228, 17);
             lblDashboard.TabIndex = 0;
             lblDashboard.Text = "Welcome to the Someren Application!";
+            // 
+            // txtDrinkName
+            // 
+            txtDrinkName.Location = new System.Drawing.Point(153, 284);
+            txtDrinkName.Name = "txtDrinkName";
+            txtDrinkName.PlaceholderText = "Beer";
+            txtDrinkName.Size = new System.Drawing.Size(110, 25);
+            txtDrinkName.TabIndex = 3;
+            // 
+            // txtDrinkId
+            // 
+            txtDrinkId.Location = new System.Drawing.Point(18, 284);
+            txtDrinkId.Name = "txtDrinkId";
+            txtDrinkId.PlaceholderText = "15";
+            txtDrinkId.Size = new System.Drawing.Size(110, 25);
+            txtDrinkId.TabIndex = 7;
             // 
             // studentsPictureBox
             // 
@@ -425,6 +491,11 @@ namespace SomerenUI
             // 
             // panelDrinks
             // 
+            panelDrinks.Controls.Add(txtDrinkId);
+            panelDrinks.Controls.Add(txtDrinkName);
+            panelDrinks.Controls.Add(txtIsAlcoholic);
+            panelDrinks.Controls.Add(txtStock);
+            panelDrinks.Controls.Add(txtPriceOfDrink);
             panelDrinks.Controls.Add(btnAdd);
             panelDrinks.Controls.Add(btnRemove);
             panelDrinks.Controls.Add(listViewDrinks);
@@ -443,6 +514,10 @@ namespace SomerenUI
             listViewDrinks.Size = new System.Drawing.Size(526, 239);
             listViewDrinks.TabIndex = 5;
             listViewDrinks.UseCompatibleStateImageBehavior = false;
+            listViewDrinks.MouseClick += new MouseEventHandler(listViewDrinks_MouseClick);
+            listViewDrinks.SelectedIndexChanged += new EventHandler(listViewDrinks_SelectedIndexChanged);
+
+
             // 
             // labelDrinks
             // 
@@ -520,26 +595,6 @@ namespace SomerenUI
             monthCalendarStartDate.ShowTodayCircle = false;
             monthCalendarStartDate.TabIndex = 0;
             // 
-            // btnAdd
-            // 
-            btnAdd.Location = new System.Drawing.Point(515, 208);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(83, 25);
-            btnAdd.TabIndex = 3;
-            btnAdd.Text = "button1";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += BtnAdd_Click;
-            // 
-            // btnRemove
-            // 
-            btnRemove.Location = new System.Drawing.Point(335, 221);
-            btnRemove.Name = "btnRemove";
-            btnRemove.Size = new System.Drawing.Size(83, 25);
-            btnRemove.TabIndex = 6;
-            btnRemove.Text = "button1";
-            btnRemove.UseVisualStyleBackColor = true;
-            btnRemove.Click += BtnRemove_Click;
-            // 
             // SomerenUI
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -575,6 +630,7 @@ namespace SomerenUI
             pnlRevenueReport.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
+
         }
 
         #endregion
@@ -631,5 +687,12 @@ namespace SomerenUI
         private ToolStripMenuItem vATCalculationToolStripMenuItem;
         private Button btnAdd;
         private Button btnRemove;
+        private System.Windows.Forms.TextBox txtInlineEditor;
+        private TextBox txtDrinkName;
+        private TextBox txtStock;
+        private TextBox txtPriceOfDrink;
+        private TextBox txtIsAlcoholic;
+        private TextBox txtDrinkId;
+
     }
 }

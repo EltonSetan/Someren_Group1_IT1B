@@ -41,10 +41,11 @@ namespace SomerenDAL
 
         public void AddDrink(Drink drink)
         {
-            string query = @"INSERT INTO dbo.Drink (DrinkName, PriceOfDrink, isAlcoholic, Stock)
-                     VALUES (@DrinkName, @PriceOfDrink, @isAlcoholic, @Stock)";
+            string query = @"INSERT INTO dbo.Drink (DrinkId, DrinkName, PriceOfDrink, isAlcoholic, Stock)
+                 VALUES (@DrinkId, @DrinkName, @PriceOfDrink, @isAlcoholic, @Stock)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
+        new SqlParameter("@DrinkId", drink.drinkId),
         new SqlParameter("@DrinkName", drink.drinkName),
         new SqlParameter("@PriceOfDrink", drink.drinkPrice),
         new SqlParameter("@isAlcoholic", drink.isAlcoholic),
@@ -52,6 +53,7 @@ namespace SomerenDAL
             };
             ExecuteEditQuery(query, sqlParameters);
         }
+
 
         public void RemoveDrink(int drinkId)
         {
