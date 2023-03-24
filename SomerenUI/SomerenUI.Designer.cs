@@ -332,7 +332,7 @@ namespace SomerenUI
             lblCashRegister.Name = "lblCashRegister";
             lblCashRegister.Size = new System.Drawing.Size(123, 37);
             lblCashRegister.TabIndex = 3;
-            lblCashRegister.Text = "Activities";
+            lblCashRegister.Text = "Cash Register";
             // 
             // pictureBox1
             // 

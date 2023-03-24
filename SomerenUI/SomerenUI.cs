@@ -365,18 +365,18 @@ namespace SomerenUI
         }
         private void btnCheckout_Click(object sender, EventArgs e)
         {
-            if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
+            if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewDrinksCashRegister.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select a student and a drink.");
                 return;
             }
 
             var selectedStudent = (Student)listViewStudetnsCashRegister.SelectedItems[0].Tag;
-            var selectedDrink = (CashRegister)listViewdrinks.SelectedItems[0].Tag;
+            var selectedDrink = (Drink)listViewDrinksCashRegister.SelectedItems[0].Tag;
 
             try
             {
-                new CashRegisterService().AddSale(selectedStudent.Id, selectedDrink.Id);
+                new CashRegisterService().AddSale(selectedStudent.Id, selectedDrink.drinkId);
                 MessageBox.Show("Checkout successful!");
             }
             catch (Exception ex)
