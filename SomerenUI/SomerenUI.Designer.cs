@@ -50,6 +50,7 @@ namespace SomerenUI
             dashboardPictureBox = new PictureBox();
             lblDashboard = new Label();
             cashpanel = new Panel();
+            btnCheckout = new Button();
             listViewdrinks = new ListView();
             listViewstudent1 = new ListView();
             studentsPictureBox = new PictureBox();
@@ -79,7 +80,9 @@ namespace SomerenUI
             lblChooseStartDate = new Label();
             monthCalendarEndDate = new MonthCalendar();
             monthCalendarStartDate = new MonthCalendar();
-            btnCheckout = new Button();
+            lblTotalPrice = new Label();
+            pictureBox1 = new PictureBox();
+            lblCashRegister = new Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).BeginInit();
@@ -94,6 +97,7 @@ namespace SomerenUI
             teacherpanel.SuspendLayout();
             panelContainer.SuspendLayout();
             pnlRevenueReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -218,33 +222,48 @@ namespace SomerenUI
             cashpanel.Controls.Add(btnCheckout);
             cashpanel.Controls.Add(listViewdrinks);
             cashpanel.Controls.Add(listViewstudent1);
+            cashpanel.Controls.Add(lblTotalPrice);
+            cashpanel.Controls.Add(lblCashRegister);
+            cashpanel.Controls.Add(pictureBox1);
             cashpanel.Location = new System.Drawing.Point(0, 0);
-            cashpanel.Margin = new Padding(2, 2, 2, 2);
+            cashpanel.Margin = new Padding(2);
             cashpanel.Name = "cashpanel";
             cashpanel.Size = new System.Drawing.Size(745, 462);
             cashpanel.TabIndex = 3;
+            // 
+            // btnCheckout
+            // 
+            btnCheckout.Location = new System.Drawing.Point(440, 270);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new System.Drawing.Size(83, 25);
+            btnCheckout.TabIndex = 2;
+            btnCheckout.Text = "Buy";
+            btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += btnCheckout_Click;
             // 
             // listViewdrinks
             // 
             listViewdrinks.FullRowSelect = true;
             listViewdrinks.GridLines = true;
-            listViewdrinks.Location = new System.Drawing.Point(25, 137);
-            listViewdrinks.Margin = new Padding(2, 2, 2, 2);
+            listViewdrinks.Location = new System.Drawing.Point(25, 159);
+            listViewdrinks.Margin = new Padding(2);
             listViewdrinks.Name = "listViewdrinks";
             listViewdrinks.Size = new System.Drawing.Size(498, 101);
             listViewdrinks.TabIndex = 1;
             listViewdrinks.UseCompatibleStateImageBehavior = false;
+            listViewdrinks.SelectedIndexChanged += ListView_SelectedIndexChanged;
             // 
             // listViewstudent1
             // 
             listViewstudent1.FullRowSelect = true;
             listViewstudent1.GridLines = true;
-            listViewstudent1.Location = new System.Drawing.Point(25, 16);
-            listViewstudent1.Margin = new Padding(2, 2, 2, 2);
+            listViewstudent1.Location = new System.Drawing.Point(25, 38);
+            listViewstudent1.Margin = new Padding(2);
             listViewstudent1.Name = "listViewstudent1";
             listViewstudent1.Size = new System.Drawing.Size(498, 101);
             listViewstudent1.TabIndex = 0;
             listViewstudent1.UseCompatibleStateImageBehavior = false;
+            listViewstudent1.SelectedIndexChanged += ListView_SelectedIndexChanged;
             // 
             // studentsPictureBox
             // 
@@ -514,15 +533,35 @@ namespace SomerenUI
             monthCalendarStartDate.ShowTodayCircle = false;
             monthCalendarStartDate.TabIndex = 0;
             // 
-            // btnCheckout
+            // lblTotalPrice
             // 
-            btnCheckout.Location = new System.Drawing.Point(440, 270);
-            btnCheckout.Name = "btnCheckout";
-            btnCheckout.Size = new System.Drawing.Size(83, 25);
-            btnCheckout.TabIndex = 2;
-            btnCheckout.Text = "Buy";
-            btnCheckout.UseVisualStyleBackColor = true;
-            btnCheckout.Click += btnCheckout_Click;
+            lblTotalPrice.AutoSize = true;
+            lblTotalPrice.Location = new System.Drawing.Point(36, 274);
+            lblTotalPrice.Name = "lblTotalPrice";
+            lblTotalPrice.Size = new System.Drawing.Size(72, 17);
+            lblTotalPrice.TabIndex = 3;
+            lblTotalPrice.Text = "Total price:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Resources.someren;
+            pictureBox1.Location = new System.Drawing.Point(626, 0);
+            pictureBox1.Margin = new Padding(1, 3, 1, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(127, 116);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
+            // lblCashRegister
+            // 
+            lblCashRegister.AutoSize = true;
+            lblCashRegister.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblCashRegister.Location = new System.Drawing.Point(10, 4);
+            lblCashRegister.Name = "lblCashRegister";
+            lblCashRegister.Size = new System.Drawing.Size(123, 37);
+            lblCashRegister.TabIndex = 3;
+            lblCashRegister.Text = "Activities";
             // 
             // SomerenUI
             // 
@@ -541,6 +580,7 @@ namespace SomerenUI
             pnlDashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).EndInit();
             cashpanel.ResumeLayout(false);
+            cashpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)studentsPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)lecturersPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).EndInit();
@@ -556,6 +596,7 @@ namespace SomerenUI
             panelContainer.ResumeLayout(false);
             pnlRevenueReport.ResumeLayout(false);
             pnlRevenueReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -611,5 +652,8 @@ namespace SomerenUI
         private ListView listViewdrinks;
         private ListView listViewstudent1;
         private Button btnCheckout;
+        private Label lblTotalPrice;
+        private Label lblCashRegister;
+        private PictureBox pictureBox1;
     }
 }

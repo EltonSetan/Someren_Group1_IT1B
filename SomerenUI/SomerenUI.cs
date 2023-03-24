@@ -364,5 +364,21 @@ namespace SomerenUI
             // Refresh the students and drinks lists
             Showcashpanel();
         }
+
+        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewstudent1.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
+            {
+                lblTotalPrice.Text = "Total Price: --";
+                return;
+            }
+
+            var selectedDrink = (CashRegister)listViewdrinks.SelectedItems[0].Tag;
+            double amountPaid = selectedDrink.Price;
+
+            // Update the lblTotalPrice with the total price of the selected items
+            lblTotalPrice.Text = $"Total Price: {amountPaid.ToString("C2")}";
+        }
+
     }
 }
