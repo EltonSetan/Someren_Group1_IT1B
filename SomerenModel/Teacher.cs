@@ -12,7 +12,7 @@
         public int TelephoneNumber { get; set; }
 
         public int RoomId { get; set; }
-        public int DrinkId { get; set; }
+        //public int DrinkId { get; set; }
         public string isSupervisor { get; set; }
     }
 }
