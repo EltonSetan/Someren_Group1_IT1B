@@ -10,7 +10,24 @@ namespace SomerenLogic
 
         public List<Drink> GetDrinks()
         {
-            return drinkDao.GetAllDrinks();
+            return drinkDao.GetAllDrinksWithSales();
+        }
+
+        public void AddDrink(Drink drink)
+        {
+            drinkDao.AddDrink(drink);
+        }
+
+        public void RemoveDrink(int drinkId)
+        {
+            drinkDao.RemoveDrink(drinkId);
+        }
+
+        public void UpdateDrink(Drink drink)
+        {
+            drinkDao.UpdateDrink(drink);
         }
     }
+
 }
+

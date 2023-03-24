@@ -1,12 +1,12 @@
 ﻿namespace SomerenModel
 {
-    // Drink.cs
     public class Drink
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public bool IsAlcoholic { get; set; }
+        public int drinkId { get; set; }
+        public string drinkName { get; set; }
+        public double drinkPrice { get; set; }
+        public string isAlcoholic { get; set; }
+        public int Stock { get; set; }
+        public int TimesSold { get; set; }
     }
-
 }

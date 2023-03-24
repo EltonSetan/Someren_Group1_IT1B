@@ -7,14 +7,19 @@ namespace SomerenDAL
 {
     public class DrinkDao : BaseDao
     {
-        public List<Drink> GetAllDrinks()
+        public List<Drink> GetAllDrinksWithSales()
         {
-            string query = "SELECT id, name, price, is_alcoholic FROM dbo.drinks";
+            string query = @"SELECT d.DrinkId, d.DrinkName, d.PriceOfDrink, d.isAlcoholic, d.Stock, COUNT(cr.StudentId) as times_sold
+                     FROM dbo.Drink d
+                     LEFT JOIN dbo.CashRegister cr ON d.DrinkId = cr.DrinkId
+                     GROUP BY d.DrinkId, d.DrinkName, d.PriceOfDrink, d.isAlcoholic, d.Stock
+                     ORDER BY d.DrinkName";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            return ReadDrinks(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Drink> ReadTables(DataTable dataTable)
+
+        private List<Drink> ReadDrinks(DataTable dataTable)
         {
             List<Drink> drinks = new List<Drink>();
 
@@ -22,14 +27,56 @@ namespace SomerenDAL
             {
                 Drink drink = new Drink()
                 {
-                    Id = (int)dr["id"],
-                    Name = (string)dr["name"],
-                    Price = (decimal)dr["price"],
-                    IsAlcoholic = (bool)dr["is_alcoholic"]
+                    drinkId = (int)dr["drinkId"],
+                    drinkName = (string)dr["DrinkName"],
+                    drinkPrice = (double)dr["PriceOfDrink"],
+                    isAlcoholic = (string)dr["isAlcoholic"],
+                    Stock = (int)dr["Stock"],
+                    TimesSold = (int)dr["times_sold"]
                 };
                 drinks.Add(drink);
             }
             return drinks;
+        }
+
+        public void AddDrink(Drink drink)
+        {
+            string query = @"INSERT INTO dbo.Drink (DrinkName, PriceOfDrink, isAlcoholic, Stock)
+                     VALUES (@DrinkName, @PriceOfDrink, @isAlcoholic, @Stock)";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+        new SqlParameter("@DrinkName", drink.drinkName),
+        new SqlParameter("@PriceOfDrink", drink.drinkPrice),
+        new SqlParameter("@isAlcoholic", drink.isAlcoholic),
+        new SqlParameter("@Stock", drink.Stock)
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void RemoveDrink(int drinkId)
+        {
+            string query = @"DELETE FROM dbo.Drink WHERE DrinkId = @DrinkId";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+        new SqlParameter("@DrinkId", drinkId)
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
+        public void UpdateDrink(Drink drink)
+        {
+            string query = @"UPDATE dbo.Drink
+                     SET DrinkName = @DrinkName, PriceOfDrink = @PriceOfDrink, isAlcoholic = @isAlcoholic, Stock = @Stock
+                     WHERE DrinkId = @DrinkId";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+        new SqlParameter("@DrinkId", drink.drinkId),
+        new SqlParameter("@DrinkName", drink.drinkName),
+        new SqlParameter("@PriceOfDrink", drink.drinkPrice),
+        new SqlParameter("@isAlcoholic", drink.isAlcoholic),
+        new SqlParameter("@Stock", drink.Stock)
+            };
+            ExecuteEditQuery(query, sqlParameters);
         }
     }
 }
