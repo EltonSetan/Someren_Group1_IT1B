@@ -23,9 +23,9 @@ namespace SomerenService
             return cashregister;
         }
 
-        public void AddSale(int studentId, int drinkId, DateTime dateOfSale)
+        public void AddSale(int studentId, int drinkId)
         {
-            drinkdb.AddSale(studentId, drinkId, dateOfSale);
+            drinkdb.AddSale(studentId, drinkId);
         }
     }
 }

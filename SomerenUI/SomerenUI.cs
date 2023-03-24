@@ -354,7 +354,7 @@ namespace SomerenUI
 
             try
             {
-                new CashRegisterService().AddSale(selectedStudent.Id, selectedDrink.Id, DateTime.Now);
+                new CashRegisterService().AddSale(selectedStudent.Id, selectedDrink.Id);
                 MessageBox.Show("Checkout successful!");
             }
             catch (Exception ex)
@@ -365,6 +365,7 @@ namespace SomerenUI
             // Refresh the students and drinks lists
             Showcashpanel();
         }
+
 
 
     }

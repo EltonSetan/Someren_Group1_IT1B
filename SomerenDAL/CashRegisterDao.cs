@@ -49,19 +49,19 @@ namespace SomerenDAL
 
             ExecuteEditQuery(query, sqlParameters);
         }
-        public void AddSale(int studentId, int drinkId)
-        {
-            string query = "INSERT INTO CashRegister (StudentId, DrinkId, DateOfSale) VALUES (@studentId, @drinkId, @dateOfSale)";
+public void AddSale(int studentId, int drinkId)
+{
+    string query = "INSERT INTO CashRegister (StudentId, DrinkId, DateOfSale) VALUES (@studentId, @drinkId, @dateOfSale)";
 
-            SqlParameter[] sqlParameters = new SqlParameter[]
-            {
+    SqlParameter[] sqlParameters = new SqlParameter[]
+    {
         new SqlParameter("@studentId", SqlDbType.Int) { Value = studentId },
         new SqlParameter("@drinkId", SqlDbType.Int) { Value = drinkId },
-        new SqlParameter("@dateOfSale", SqlDbType.DateTime) { Value = DateTime.Now }
-            };
+        new SqlParameter("@dateOfSale", SqlDbType.DateTime) { Value = DateTime.Now } // use DateTime.Now to include both date and time
+    };
 
-            ExecuteEditQuery(query, sqlParameters);
-        }
+    ExecuteEditQuery(query, sqlParameters);
+}
 
     }
 }
