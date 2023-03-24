@@ -248,17 +248,17 @@ namespace SomerenUI
 
         private int GetSales(DateTime startDate, DateTime endDate)
         {
-            return new CashRegisterService().GetSales(startDate, endDate);
+            return new RevenueReportService().GetSales(startDate, endDate);
         }
 
         private double GetTurnover(DateTime startDate, DateTime endDate)
         {
-            return new CashRegisterService().GetTurnover(startDate, endDate);
+            return new RevenueReportService().GetTurnover(startDate, endDate);
         }
 
         private int GetTotalCustomers(DateTime startDate, DateTime endDate)
         {
-            return new CashRegisterService().GetTotalCustomers(startDate, endDate);
+            return new RevenueReportService().GetTotalCustomers(startDate, endDate);
         }
 
         private void DisplayReport(int sales, double turnover, int nrOfCustomers)

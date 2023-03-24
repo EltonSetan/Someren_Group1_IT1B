@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SomerenModel
 {
-    public class CashRegister
+    public class RevenueReport
     {
         public int StudentId { get; set; }
         public int DrinkId { get; set; }

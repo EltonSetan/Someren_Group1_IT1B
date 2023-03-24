@@ -8,30 +8,30 @@ using SomerenModel;
 
 namespace SomerenService
 {
-    public class CashRegisterService
+    public class RevenueReportService
     {
-        private CashRegisterDao cashRegisterdb;
+        private RevenueReportDao revenueReportdb;
 
-        public CashRegisterService()
+        public RevenueReportService()
         {
-            cashRegisterdb = new CashRegisterDao();
+            revenueReportdb = new RevenueReportDao();
         }
 
         public int GetSales(DateTime startDate, DateTime endDate)
         {
-            int sales = cashRegisterdb.GetSales(startDate,endDate);
+            int sales = revenueReportdb.GetSales(startDate,endDate);
             return sales;
         }
 
         public double GetTurnover(DateTime startDate, DateTime endDate)
         {
-            double turnover = cashRegisterdb.GetTurnover(startDate,endDate); ;
+            double turnover = revenueReportdb.GetTurnover(startDate,endDate); ;
             return turnover;
         }
 
         public int GetTotalCustomers(DateTime startDate, DateTime endDate)
         {
-            int nrOfCustomers = cashRegisterdb.GetTotalCustomers(startDate,endDate);
+            int nrOfCustomers = revenueReportdb.GetTotalCustomers(startDate,endDate);
             return nrOfCustomers;
         }
     }

@@ -9,7 +9,7 @@ using SomerenModel;
 
 namespace SomerenDAL
 {
-    public class CashRegisterDao : BaseDao
+    public class RevenueReportDao : BaseDao
     {
         public void CheckDateRange(DateTime startDate, DateTime endDate)
         {
