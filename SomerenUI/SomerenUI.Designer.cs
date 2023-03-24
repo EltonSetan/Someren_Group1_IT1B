@@ -70,8 +70,12 @@ namespace SomerenUI
             lblDashboard = new Label();
             cashpanel = new Panel();
             btnCheckout = new Button();
+            listViewStudetnsCashRegister = new ListView();
+            listViewDrinksCashRegister = new ListView();
+            lblTotalPrice = new Label();
+            lblCashRegister = new Label();
+            pictureBox1 = new PictureBox();
             listViewdrinks = new ListView();
-            listViewstudent1 = new ListView();
             btnRemove = new Button();
             btnAdd = new Button();
             txtStock = new TextBox();
@@ -99,6 +103,8 @@ namespace SomerenUI
             teacherpanel = new Panel();
             listViewteachers = new ListView();
             panelContainer = new Panel();
+            panelDrinks = new Panel();
+            drinksStockLabel = new Label();
             vatPanel = new Panel();
             btnCalculateVAT = new Button();
             lblTotalVAT = new Label();
@@ -110,9 +116,6 @@ namespace SomerenUI
             cmbQuarter = new ComboBox();
             cmbYear = new ComboBox();
             pictureBox = new PictureBox();
-            panelDrinks = new Panel();
-            listViewDrinks = new ListView();
-            labelDrinks = new Label();
             pnlRevenueReport = new Panel();
             lvRevenueReport = new ListView();
             lblRevenueDateRange = new Label();
@@ -120,13 +123,11 @@ namespace SomerenUI
             lblChooseStartDate = new Label();
             monthCalendarEndDate = new MonthCalendar();
             monthCalendarStartDate = new MonthCalendar();
-            lblTotalPrice = new Label();
-            pictureBox1 = new PictureBox();
-            lblCashRegister = new Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).BeginInit();
             cashpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)studentsPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lecturersPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).BeginInit();
@@ -136,11 +137,9 @@ namespace SomerenUI
             pnlActivity.SuspendLayout();
             teacherpanel.SuspendLayout();
             panelContainer.SuspendLayout();
-            pnlRevenueReport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelDrinks.SuspendLayout();
             vatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
-            panelDrinks.SuspendLayout();
             pnlRevenueReport.SuspendLayout();
             SuspendLayout();
             // 
@@ -167,68 +166,42 @@ namespace SomerenUI
             dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
             dashboardToolStripMenuItem1.Size = new System.Drawing.Size(147, 24);
             dashboardToolStripMenuItem1.Text = "Dashboard";
+            dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // studentsToolStripMenuItem
             // 
             studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             studentsToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
             studentsToolStripMenuItem.Text = "Students";
+            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
             lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
             lecturersToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
             lecturersToolStripMenuItem.Text = "Lecturers";
+            lecturersToolStripMenuItem.Click += lecturersToolStripMenuItem_Click;
             // 
             // activitiesToolStripMenuItem
             // 
             activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             activitiesToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
             activitiesToolStripMenuItem.Text = "Activities";
+            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
             // 
             // roomsToolStripMenuItem
             // 
             roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             roomsToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             roomsToolStripMenuItem.Text = "Rooms";
-            // 
-            // drinksToolStripMenuItem
-            // 
-            drinksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drinkStockToolStripMenuItem, cashRegisterToolStripMenuItem, revenueReportToolStripMenuItem, vATCalculationToolStripMenuItem });
-            drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
-            drinksToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
-            drinksToolStripMenuItem.Text = "Drinks";
-            // 
-            // drinkStockToolStripMenuItem
-            // 
-            drinkStockToolStripMenuItem.Name = "drinkStockToolStripMenuItem";
-            drinkStockToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            drinkStockToolStripMenuItem.Text = "Drink Stock";
-            // 
-            // cashRegisterToolStripMenuItem
-            // 
-            cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
-            cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            cashRegisterToolStripMenuItem.Text = "Cash Register";
-            cashRegisterToolStripMenuItem.Click += cashRegisterToolStripMenuItem_Click;
-            // 
-            // revenueReportToolStripMenuItem
-            // 
-            revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
-            revenueReportToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            revenueReportToolStripMenuItem.Text = "Revenue Report";
-            // 
-            // vATCalculationToolStripMenuItem
-            // 
-            vATCalculationToolStripMenuItem.Name = "vATCalculationToolStripMenuItem";
-            vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            vATCalculationToolStripMenuItem.Text = "VAT calculation";
+            roomsToolStripMenuItem.Click += roomsToolStripMenuItem_Click;
             // 
             // drinksToolStripMenuItem
             // 
@@ -249,6 +222,7 @@ namespace SomerenUI
             cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
             cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             cashRegisterToolStripMenuItem.Text = "Cash Register";
+            cashRegisterToolStripMenuItem.Click += cashRegisterToolStripMenuItem_Click;
             // 
             // revenueReportToolStripMenuItem
             // 
@@ -297,8 +271,8 @@ namespace SomerenUI
             // cashpanel
             // 
             cashpanel.Controls.Add(btnCheckout);
-            cashpanel.Controls.Add(listViewdrinks);
-            cashpanel.Controls.Add(listViewstudent1);
+            cashpanel.Controls.Add(listViewStudetnsCashRegister);
+            cashpanel.Controls.Add(listViewDrinksCashRegister);
             cashpanel.Controls.Add(lblTotalPrice);
             cashpanel.Controls.Add(lblCashRegister);
             cashpanel.Controls.Add(pictureBox1);
@@ -318,11 +292,64 @@ namespace SomerenUI
             btnCheckout.UseVisualStyleBackColor = true;
             btnCheckout.Click += btnCheckout_Click;
             // 
+            // listViewStudetnsCashRegister
+            // 
+            listViewStudetnsCashRegister.FullRowSelect = true;
+            listViewStudetnsCashRegister.GridLines = true;
+            listViewStudetnsCashRegister.Location = new System.Drawing.Point(25, 38);
+            listViewStudetnsCashRegister.Margin = new Padding(2);
+            listViewStudetnsCashRegister.Name = "listViewStudetnsCashRegister";
+            listViewStudetnsCashRegister.Size = new System.Drawing.Size(498, 101);
+            listViewStudetnsCashRegister.TabIndex = 0;
+            listViewStudetnsCashRegister.UseCompatibleStateImageBehavior = false;
+            listViewStudetnsCashRegister.SelectedIndexChanged += ListView_SelectedIndexChanged;
+            // 
+            // listViewDrinksCashRegister
+            // 
+            listViewDrinksCashRegister.FullRowSelect = true;
+            listViewDrinksCashRegister.GridLines = true;
+            listViewDrinksCashRegister.Location = new System.Drawing.Point(25, 146);
+            listViewDrinksCashRegister.Margin = new Padding(2);
+            listViewDrinksCashRegister.Name = "listViewDrinksCashRegister";
+            listViewDrinksCashRegister.Size = new System.Drawing.Size(498, 101);
+            listViewDrinksCashRegister.TabIndex = 4;
+            listViewDrinksCashRegister.UseCompatibleStateImageBehavior = false;
+            // 
+            // lblTotalPrice
+            // 
+            lblTotalPrice.AutoSize = true;
+            lblTotalPrice.Location = new System.Drawing.Point(36, 274);
+            lblTotalPrice.Name = "lblTotalPrice";
+            lblTotalPrice.Size = new System.Drawing.Size(72, 17);
+            lblTotalPrice.TabIndex = 3;
+            lblTotalPrice.Text = "Total price:";
+            // 
+            // lblCashRegister
+            // 
+            lblCashRegister.AutoSize = true;
+            lblCashRegister.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblCashRegister.Location = new System.Drawing.Point(10, 4);
+            lblCashRegister.Name = "lblCashRegister";
+            lblCashRegister.Size = new System.Drawing.Size(123, 37);
+            lblCashRegister.TabIndex = 3;
+            lblCashRegister.Text = "Activities";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Resources.someren;
+            pictureBox1.Location = new System.Drawing.Point(626, 0);
+            pictureBox1.Margin = new Padding(1, 3, 1, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(127, 116);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
             // listViewdrinks
             // 
             listViewdrinks.FullRowSelect = true;
             listViewdrinks.GridLines = true;
-            listViewdrinks.Location = new System.Drawing.Point(25, 159);
+            listViewdrinks.Location = new System.Drawing.Point(25, 41);
             listViewdrinks.Margin = new Padding(2);
             listViewdrinks.Name = "listViewdrinks";
             listViewdrinks.Size = new System.Drawing.Size(498, 101);
@@ -330,20 +357,9 @@ namespace SomerenUI
             listViewdrinks.UseCompatibleStateImageBehavior = false;
             listViewdrinks.SelectedIndexChanged += ListView_SelectedIndexChanged;
             // 
-            // listViewstudent1
-            // 
-            listViewstudent1.FullRowSelect = true;
-            listViewstudent1.GridLines = true;
-            listViewstudent1.Location = new System.Drawing.Point(25, 38);
-            listViewstudent1.Margin = new Padding(2);
-            listViewstudent1.Name = "listViewstudent1";
-            listViewstudent1.Size = new System.Drawing.Size(498, 101);
-            listViewstudent1.TabIndex = 0;
-            listViewstudent1.UseCompatibleStateImageBehavior = false;
-            listViewstudent1.SelectedIndexChanged += ListView_SelectedIndexChanged;
             // btnRemove
             // 
-            btnRemove.Location = new System.Drawing.Point(626, 136);
+            btnRemove.Location = new System.Drawing.Point(662, 210);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new System.Drawing.Size(83, 25);
             btnRemove.TabIndex = 6;
@@ -353,7 +369,7 @@ namespace SomerenUI
             // 
             // btnAdd
             // 
-            btnAdd.Location = new System.Drawing.Point(661, 283);
+            btnAdd.Location = new System.Drawing.Point(662, 172);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new System.Drawing.Size(83, 25);
             btnAdd.TabIndex = 3;
@@ -363,7 +379,7 @@ namespace SomerenUI
             // 
             // txtStock
             // 
-            txtStock.Location = new System.Drawing.Point(416, 284);
+            txtStock.Location = new System.Drawing.Point(416, 172);
             txtStock.Name = "txtStock";
             txtStock.PlaceholderText = "50";
             txtStock.Size = new System.Drawing.Size(110, 25);
@@ -371,7 +387,7 @@ namespace SomerenUI
             // 
             // txtPriceOfDrink
             // 
-            txtPriceOfDrink.Location = new System.Drawing.Point(545, 284);
+            txtPriceOfDrink.Location = new System.Drawing.Point(545, 172);
             txtPriceOfDrink.Name = "txtPriceOfDrink";
             txtPriceOfDrink.PlaceholderText = "2.50";
             txtPriceOfDrink.Size = new System.Drawing.Size(110, 25);
@@ -379,7 +395,7 @@ namespace SomerenUI
             // 
             // txtIsAlcoholic
             // 
-            txtIsAlcoholic.Location = new System.Drawing.Point(285, 284);
+            txtIsAlcoholic.Location = new System.Drawing.Point(285, 172);
             txtIsAlcoholic.Name = "txtIsAlcoholic";
             txtIsAlcoholic.PlaceholderText = "yes/no";
             txtIsAlcoholic.Size = new System.Drawing.Size(110, 25);
@@ -387,7 +403,7 @@ namespace SomerenUI
             // 
             // txtDrinkName
             // 
-            txtDrinkName.Location = new System.Drawing.Point(153, 284);
+            txtDrinkName.Location = new System.Drawing.Point(153, 172);
             txtDrinkName.Name = "txtDrinkName";
             txtDrinkName.PlaceholderText = "Beer";
             txtDrinkName.Size = new System.Drawing.Size(110, 25);
@@ -395,7 +411,7 @@ namespace SomerenUI
             // 
             // txtDrinkId
             // 
-            txtDrinkId.Location = new System.Drawing.Point(18, 284);
+            txtDrinkId.Location = new System.Drawing.Point(18, 172);
             txtDrinkId.Name = "txtDrinkId";
             txtDrinkId.PlaceholderText = "15";
             txtDrinkId.Size = new System.Drawing.Size(110, 25);
@@ -591,20 +607,46 @@ namespace SomerenUI
             // 
             // panelContainer
             // 
-            panelContainer.Controls.Add(cashpanel);
+            panelContainer.Controls.Add(panelDrinks);
             panelContainer.Controls.Add(pnlDashboard);
+            panelContainer.Controls.Add(pnlStudents);
+            panelContainer.Controls.Add(cashpanel);
             panelContainer.Controls.Add(vatPanel);
             panelContainer.Controls.Add(roomsPanel);
             panelContainer.Controls.Add(pnlActivity);
             panelContainer.Controls.Add(teacherpanel);
-            panelContainer.Controls.Add(pnlStudents);
-            panelContainer.Controls.Add(panelDrinks);
             panelContainer.Dock = DockStyle.Fill;
             panelContainer.Location = new System.Drawing.Point(0, 27);
             panelContainer.Margin = new Padding(1);
             panelContainer.Name = "panelContainer";
             panelContainer.Size = new System.Drawing.Size(753, 466);
             panelContainer.TabIndex = 2;
+            // 
+            // panelDrinks
+            // 
+            panelDrinks.Controls.Add(drinksStockLabel);
+            panelDrinks.Controls.Add(txtDrinkId);
+            panelDrinks.Controls.Add(txtDrinkName);
+            panelDrinks.Controls.Add(txtIsAlcoholic);
+            panelDrinks.Controls.Add(txtStock);
+            panelDrinks.Controls.Add(txtPriceOfDrink);
+            panelDrinks.Controls.Add(btnAdd);
+            panelDrinks.Controls.Add(btnRemove);
+            panelDrinks.Controls.Add(listViewdrinks);
+            panelDrinks.Location = new System.Drawing.Point(0, 0);
+            panelDrinks.Name = "panelDrinks";
+            panelDrinks.Size = new System.Drawing.Size(753, 493);
+            panelDrinks.TabIndex = 3;
+            // 
+            // drinksStockLabel
+            // 
+            drinksStockLabel.AutoSize = true;
+            drinksStockLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            drinksStockLabel.Location = new System.Drawing.Point(0, 0);
+            drinksStockLabel.Name = "drinksStockLabel";
+            drinksStockLabel.Size = new System.Drawing.Size(91, 37);
+            drinksStockLabel.TabIndex = 3;
+            drinksStockLabel.Text = "Drinks";
             // 
             // vatPanel
             // 
@@ -715,43 +757,6 @@ namespace SomerenUI
             pictureBox.TabIndex = 2;
             pictureBox.TabStop = false;
             // 
-            // panelDrinks
-            // 
-            panelDrinks.Controls.Add(txtDrinkId);
-            panelDrinks.Controls.Add(txtDrinkName);
-            panelDrinks.Controls.Add(txtIsAlcoholic);
-            panelDrinks.Controls.Add(txtStock);
-            panelDrinks.Controls.Add(txtPriceOfDrink);
-            panelDrinks.Controls.Add(btnAdd);
-            panelDrinks.Controls.Add(btnRemove);
-            panelDrinks.Controls.Add(listViewDrinks);
-            panelDrinks.Controls.Add(labelDrinks);
-            panelDrinks.Location = new System.Drawing.Point(0, 27);
-            panelDrinks.Name = "panelDrinks";
-            panelDrinks.Size = new System.Drawing.Size(753, 466);
-            panelDrinks.TabIndex = 3;
-            // 
-            // listViewDrinks
-            // 
-            listViewDrinks.FullRowSelect = true;
-            listViewDrinks.GridLines = true;
-            listViewDrinks.Location = new System.Drawing.Point(11, 32);
-            listViewDrinks.Name = "listViewDrinks";
-            listViewDrinks.Size = new System.Drawing.Size(526, 239);
-            listViewDrinks.TabIndex = 5;
-            listViewDrinks.UseCompatibleStateImageBehavior = false;
-            listViewDrinks.SelectedIndexChanged += listViewDrinks_SelectedIndexChanged;
-            listViewDrinks.MouseClick += listViewDrinks_MouseClick;
-            // 
-            // labelDrinks
-            // 
-            labelDrinks.AutoSize = true;
-            labelDrinks.Location = new System.Drawing.Point(28, 246);
-            labelDrinks.Name = "labelDrinks";
-            labelDrinks.Size = new System.Drawing.Size(44, 17);
-            labelDrinks.TabIndex = 4;
-            labelDrinks.Text = "Drinks";
-            // 
             // pnlRevenueReport
             // 
             pnlRevenueReport.Controls.Add(lvRevenueReport);
@@ -813,41 +818,11 @@ namespace SomerenUI
             // monthCalendarStartDate
             // 
             monthCalendarStartDate.Location = new System.Drawing.Point(32, 36);
-            monthCalendarStartDate.MaxDate = new System.DateTime(2023, 3, 22, 0, 0, 0, 0);
+            monthCalendarStartDate.MaxDate = new DateTime(2023, 3, 22, 0, 0, 0, 0);
             monthCalendarStartDate.Name = "monthCalendarStartDate";
             monthCalendarStartDate.ShowToday = false;
             monthCalendarStartDate.ShowTodayCircle = false;
             monthCalendarStartDate.TabIndex = 0;
-            // 
-            // lblTotalPrice
-            // 
-            lblTotalPrice.AutoSize = true;
-            lblTotalPrice.Location = new System.Drawing.Point(36, 274);
-            lblTotalPrice.Name = "lblTotalPrice";
-            lblTotalPrice.Size = new System.Drawing.Size(72, 17);
-            lblTotalPrice.TabIndex = 3;
-            lblTotalPrice.Text = "Total price:";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Resources.someren;
-            pictureBox1.Location = new System.Drawing.Point(626, 0);
-            pictureBox1.Margin = new Padding(1, 3, 1, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(127, 116);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // lblCashRegister
-            // 
-            lblCashRegister.AutoSize = true;
-            lblCashRegister.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblCashRegister.Location = new System.Drawing.Point(10, 4);
-            lblCashRegister.Name = "lblCashRegister";
-            lblCashRegister.Size = new System.Drawing.Size(123, 37);
-            lblCashRegister.TabIndex = 3;
-            lblCashRegister.Text = "Activities";
             // 
             // SomerenUI
             // 
@@ -867,6 +842,7 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).EndInit();
             cashpanel.ResumeLayout(false);
             cashpanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)studentsPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)lecturersPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).EndInit();
@@ -880,14 +856,11 @@ namespace SomerenUI
             teacherpanel.ResumeLayout(false);
             teacherpanel.PerformLayout();
             panelContainer.ResumeLayout(false);
-            pnlRevenueReport.ResumeLayout(false);
-            pnlRevenueReport.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelDrinks.ResumeLayout(false);
+            panelDrinks.PerformLayout();
             vatPanel.ResumeLayout(false);
             vatPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
-            panelDrinks.ResumeLayout(false);
-            panelDrinks.PerformLayout();
             pnlRevenueReport.ResumeLayout(false);
             pnlRevenueReport.PerformLayout();
             ResumeLayout(false);
@@ -938,7 +911,6 @@ namespace SomerenUI
         private Label lblChooseEndDate;
         private Label lblChooseStartDate;
         private ListView listViewDrinks;
-        private Label labelDrinks;
         private MonthCalendar monthCalendarEndDate;
         private ToolStripMenuItem drinksToolStripMenuItem;
         private ToolStripMenuItem drinkStockToolStripMenuItem;
@@ -946,7 +918,7 @@ namespace SomerenUI
         private ToolStripMenuItem revenueReportToolStripMenuItem;
         private Panel cashpanel;
         private ListView listViewdrinks;
-        private ListView listViewstudent1;
+        private ListView listViewStudetnsCashRegister;
         private Button btnCheckout;
         private Label lblTotalPrice;
         private Label lblCashRegister;
@@ -972,5 +944,7 @@ namespace SomerenUI
         private Label lblTotalVAT;
         private Label lblHighTariffTotal;
         private Button btnCalculateVAT;
+        private ListView listViewDrinksCashRegister;
+        private Label drinksStockLabel;
     }
 }

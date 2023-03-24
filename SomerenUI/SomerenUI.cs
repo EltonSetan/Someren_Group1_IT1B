@@ -88,39 +88,25 @@ namespace SomerenUI
         }
         private void Showcashpanel()
         {
-
             ShowPanel(cashpanel);
 
             try
             {
-                // get and display all students
                 List<Student> Student1 = GetStudents();
                 DisplayStudent1(Student1);
-                List<CashRegister> cash = GetCashRegisters();
-                DisplayDrinks(cash);
+                List<Drink> drinks = GetDrinks();
+                DisplayDrinks(drinks, listViewDrinksCashRegister); // Replace with the name of the ListView for the Cash Register panel
             }
             catch (Exception e)
             {
-                MessageBox.Show("Something went wrong while loading the students: " + e.Message);
+                MessageBox.Show("Something went wrong while loading the cash panel: " + e.Message);
             }
-        }
-        private List<CashRegister> GetCashRegisters()
-        {
-            CashRegisterService cashregisterService = new CashRegisterService();
-            List<CashRegister> cash = cashregisterService.GetCashRegister();
-            return cash;
-        }
-        private List<Student> GetStudent1()
-        {
-            StudentService studentService = new StudentService();
-            List<Student> Student1 = studentService.GetStudents();
-            return Student1;
         }
         private void DisplayStudent1(List<Student> Student1)
         {
-            listViewstudent1.Clear();
-            listViewstudent1.View = View.Details;
-            listViewstudent1.Columns.AddRange(new[] {
+            listViewStudetnsCashRegister.Clear();
+            listViewStudetnsCashRegister.View = View.Details;
+            listViewStudetnsCashRegister.Columns.AddRange(new[] {
         new ColumnHeader { Text = "Student ID" },
         new ColumnHeader { Text = "First Name" },
        // new ColumnHeader { Text = "Last Name" },
@@ -136,38 +122,11 @@ namespace SomerenUI
                     //student.TelephoneNumber.ToString(),
         });
                 item.Tag = student;
-                listViewstudent1.Items.Add(item);
+                listViewStudetnsCashRegister.Items.Add(item);
             }
 
-            listViewstudent1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listViewStudetnsCashRegister.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-        }
-        private void DisplayDrinks(List<CashRegister> cash)
-        {
-            listViewdrinks.Clear();
-            listViewdrinks.View = View.Details;
-            listViewdrinks.Columns.AddRange(new[] {
-        new ColumnHeader { Text = "Drink ID" },
-        new ColumnHeader { Text = "Drink Name" },
-        new ColumnHeader { Text = "Stock" },
-        new ColumnHeader { Text = "Alcoholic" },
-        new ColumnHeader { Text = "Price" },
-    });
-
-            foreach (CashRegister cashregister in cash)
-            {
-                var item = new ListViewItem(cashregister.Id.ToString());
-                item.SubItems.AddRange(new[] {
-            cashregister.Name,
-            cashregister.Stock.ToString(),
-            cashregister.Alcoholic.ToString(),
-            cashregister.Price.ToString(),
-        });
-                item.Tag = cashregister;
-                listViewdrinks.Items.Add(item);
-            }
-
-            listViewdrinks.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         private void ShowTeachersPanel()
         {
@@ -271,16 +230,16 @@ namespace SomerenUI
             listViewRooms.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void DisplayDrinks(List<Drink> drinks)
+        private void DisplayDrinks(List<Drink> drinks, ListView targetListView)
         {
-            listViewDrinks.Clear();
-            listViewDrinks.View = View.Details;
-            listViewDrinks.Columns.AddRange(new[] {
+            targetListView.Clear();
+            targetListView.View = View.Details;
+            targetListView.Columns.AddRange(new[] {
         new ColumnHeader { Text = "Drink ID" },
         new ColumnHeader { Text = "Drink Name" },
-        new ColumnHeader { Text = "Is Alcoholic" },
         new ColumnHeader { Text = "Stock" },
-        new ColumnHeader { Text = "Price of Drink" },
+        new ColumnHeader { Text = "Alcoholic" },
+        new ColumnHeader { Text = "Price" },
     });
 
             foreach (Drink drink in drinks)
@@ -288,18 +247,16 @@ namespace SomerenUI
                 var item = new ListViewItem(drink.drinkId.ToString());
                 item.SubItems.AddRange(new[] {
             drink.drinkName,
-            drink.isAlcoholic.ToString(),
             drink.Stock.ToString(),
-            drink.drinkPrice.ToString("F2"), // Display price with two decimal places
+            drink.isAlcoholic.ToString(),
+            drink.drinkPrice.ToString("F2"),
         });
                 item.Tag = drink;
-                listViewDrinks.Items.Add(item);
+                targetListView.Items.Add(item);
             }
 
-            listViewDrinks.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            targetListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-
-
 
         private void ShowActivitiesPanel()
         {
@@ -323,13 +280,14 @@ namespace SomerenUI
             try
             {
                 List<Drink> drinks = GetDrinks();
-                DisplayDrinks(drinks);
+                DisplayDrinks(drinks, listViewdrinks); // Replace with the name of the ListView for the Drinks panel
             }
             catch (Exception e)
             {
                 MessageBox.Show($"Something went wrong while loading the drinks: {e.Message}");
             }
         }
+
 
         private void ShowVATPanel()
         {
@@ -407,13 +365,13 @@ namespace SomerenUI
         }
         private void btnCheckout_Click(object sender, EventArgs e)
         {
-            if (listViewstudent1.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
+            if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select a student and a drink.");
                 return;
             }
 
-            var selectedStudent = (Student)listViewstudent1.SelectedItems[0].Tag;
+            var selectedStudent = (Student)listViewStudetnsCashRegister.SelectedItems[0].Tag;
             var selectedDrink = (CashRegister)listViewdrinks.SelectedItems[0].Tag;
 
             try
@@ -432,7 +390,7 @@ namespace SomerenUI
 
         private void ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewstudent1.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
+            if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
             {
                 lblTotalPrice.Text = "Total Price: --";
                 return;
@@ -513,7 +471,7 @@ namespace SomerenUI
             };
 
             drinkService.UpdateDrink(updatedDrink);
-            DisplayDrinks(drinkService.GetDrinks());
+            DisplayDrinks(drinkService.GetDrinks(), listViewdrinks);
 
             // Clear input fields after updating the drink
             txtDrinkId.Clear();
@@ -542,7 +500,7 @@ namespace SomerenUI
                 if (selectedDrink.TimesSold == 0)
                 {
                     drinkService.RemoveDrink(selectedDrink.drinkId);
-                    DisplayDrinks(drinkService.GetDrinks());
+                    DisplayDrinks(drinkService.GetDrinks(), listViewdrinks);
                 }
                 else
                 {
@@ -579,7 +537,7 @@ namespace SomerenUI
             };
 
             drinkService.AddDrink(newDrink);
-            DisplayDrinks(drinkService.GetDrinks());
+            DisplayDrinks(drinkService.GetDrinks(), listViewdrinks);
 
             // Clear input fields after adding a new drink
             txtDrinkId.Clear();
