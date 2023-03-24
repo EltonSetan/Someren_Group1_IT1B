@@ -173,6 +173,7 @@ namespace SomerenUI
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
             this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
+            this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -186,24 +187,28 @@ namespace SomerenUI
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.studentsToolStripMenuItem.Text = "Students";
+            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
             this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.lecturersToolStripMenuItem.Text = "Lecturers";
+            this.lecturersToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // activitiesToolStripMenuItem
             // 
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.activitiesToolStripMenuItem.Text = "Activities";
+            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.roomsToolStripMenuItem.Text = "Rooms";
+            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // drinksToolStripMenuItem
             // 
@@ -435,6 +440,7 @@ namespace SomerenUI
             listViewDrinksCashRegister.Size = new System.Drawing.Size(498, 101);
             listViewDrinksCashRegister.TabIndex = 4;
             listViewDrinksCashRegister.UseCompatibleStateImageBehavior = false;
+            listViewdrinks.SelectedIndexChanged += ListView_SelectedIndexChanged;
             // 
             // lblTotalPrice
             // 
@@ -476,7 +482,7 @@ namespace SomerenUI
             listViewdrinks.Size = new System.Drawing.Size(498, 101);
             listViewdrinks.TabIndex = 1;
             listViewdrinks.UseCompatibleStateImageBehavior = false;
-            listViewdrinks.SelectedIndexChanged += ListView_SelectedIndexChanged;
+            
             // 
             // btnRemove
             // 
