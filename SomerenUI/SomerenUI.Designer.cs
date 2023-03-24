@@ -88,6 +88,7 @@ namespace SomerenUI
             activitiesPictureBox = new PictureBox();
             roomsPictureBox = new PictureBox();
 			revenuePictureBox = new PictureBox();
+            stockPictureBox = new PictureBox();
             pnlStudents = new Panel();
             listViewStudents = new ListView();
             studentsLabel = new Label();
@@ -114,6 +115,7 @@ namespace SomerenUI
             lblQuarterDates = new Label();
             label2 = new Label();
             label1 = new Label();
+            lblVATReportHeader= new Label();
             cmbQuarter = new ComboBox();
             cmbYear = new ComboBox();
             pictureBox = new PictureBox();
@@ -134,6 +136,7 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)lecturersPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)roomsPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)stockPictureBox).BeginInit();
             pnlStudents.SuspendLayout();
             roomsPanel.SuspendLayout();
             pnlActivity.SuspendLayout();
@@ -316,13 +319,14 @@ namespace SomerenUI
             this.pnlRevenueReport.Controls.Add(this.revenuePictureBox);
             this.revenuePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pnlRevenueReport.Name = "pnlRevenueReport";
-            this.pnlRevenueReport.Size = new System.Drawing.Size(861, 548);
+            this.pnlRevenueReport.Size = new System.Drawing.Size(745, 462);
             this.pnlRevenueReport.TabIndex = 3;
             // 
             // lblRevenueReportHeader
             // 
             this.lblRevenueReportHeader.AutoSize = true;
-            this.lblRevenueReportHeader.Location = new System.Drawing.Point(11, 5);
+            lblRevenueReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRevenueReportHeader.Location = new System.Drawing.Point(10, 5);
             this.lblRevenueReportHeader.Name = "lblRevenueReportHeader";
             this.lblRevenueReportHeader.Size = new System.Drawing.Size(114, 20);
             this.lblRevenueReportHeader.TabIndex = 6;
@@ -331,18 +335,18 @@ namespace SomerenUI
             // lvRevenueReport
             // 
             this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lvRevenueReport.Location = new System.Drawing.Point(15, 341);
+            this.lvRevenueReport.Location = new System.Drawing.Point(15, 300);
             this.lvRevenueReport.Margin = new System.Windows.Forms.Padding(1);
             this.lvRevenueReport.MultiSelect = false;
             this.lvRevenueReport.Name = "lvRevenueReport";
-            this.lvRevenueReport.Size = new System.Drawing.Size(623, 204);
+            this.lvRevenueReport.Size = new System.Drawing.Size(580, 150);
             this.lvRevenueReport.TabIndex = 5;
             this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
             // 
             // lblRevenueDateRange
             // 
             this.lblRevenueDateRange.AutoSize = true;
-            this.lblRevenueDateRange.Location = new System.Drawing.Point(15, 300);
+            this.lblRevenueDateRange.Location = new System.Drawing.Point(15, 280);
             this.lblRevenueDateRange.Name = "lblRevenueDateRange";
             this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
             this.lblRevenueDateRange.TabIndex = 4;
@@ -581,13 +585,24 @@ namespace SomerenUI
             // revenuePictureBox
             // 
             this.revenuePictureBox.Image = global::SomerenUI.Properties.Resources.someren;
-            this.revenuePictureBox.Location = new System.Drawing.Point(715, 0);
-            this.revenuePictureBox.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.revenuePictureBox.Location = new System.Drawing.Point(626, 0);
+            this.revenuePictureBox.Margin = new System.Windows.Forms.Padding(1,3,1,3);
             this.revenuePictureBox.Name = "revenuePictureBox";
-            this.revenuePictureBox.Size = new System.Drawing.Size(145, 136);
+            this.revenuePictureBox.Size = new System.Drawing.Size(127, 116);
             this.revenuePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.revenuePictureBox.TabIndex = 2;
             this.revenuePictureBox.TabStop = false;
+            // 
+            // stockPictureBox
+            // 
+            stockPictureBox.Image = Resources.someren;
+            stockPictureBox.Location = new System.Drawing.Point(626, 0);
+            stockPictureBox.Margin = new Padding(1, 3, 1, 3);
+            stockPictureBox.Name = "pictureBox1";
+            stockPictureBox.Size = new System.Drawing.Size(127, 116);
+            stockPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            stockPictureBox.TabIndex = 3;
+            stockPictureBox.TabStop = false;
             // 
             // pnlStudents
             // 
@@ -767,6 +782,7 @@ namespace SomerenUI
             panelDrinks.Controls.Add(btnAdd);
             panelDrinks.Controls.Add(btnRemove);
             panelDrinks.Controls.Add(listViewdrinks);
+            panelDrinks.Controls.Add(stockPictureBox);
             panelDrinks.Location = new System.Drawing.Point(0, 0);
             panelDrinks.Name = "panelDrinks";
             panelDrinks.Size = new System.Drawing.Size(753, 493);
@@ -776,7 +792,7 @@ namespace SomerenUI
             // 
             drinksStockLabel.AutoSize = true;
             drinksStockLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            drinksStockLabel.Location = new System.Drawing.Point(0, 0);
+            drinksStockLabel.Location = new System.Drawing.Point(10, 5);
             drinksStockLabel.Name = "drinksStockLabel";
             drinksStockLabel.Size = new System.Drawing.Size(91, 37);
             drinksStockLabel.TabIndex = 3;
@@ -794,6 +810,7 @@ namespace SomerenUI
             vatPanel.Controls.Add(cmbQuarter);
             vatPanel.Controls.Add(cmbYear);
             vatPanel.Controls.Add(pictureBox);
+            vatPanel.Controls.Add(lblVATReportHeader);
             vatPanel.Dock = DockStyle.Fill;
             vatPanel.Location = new System.Drawing.Point(0, 0);
             vatPanel.Name = "vatPanel";
@@ -802,7 +819,7 @@ namespace SomerenUI
             // 
             // btnCalculateVAT
             // 
-            btnCalculateVAT.Location = new System.Drawing.Point(340, 366);
+            btnCalculateVAT.Location = new System.Drawing.Point(340, 376);
             btnCalculateVAT.Name = "btnCalculateVAT";
             btnCalculateVAT.Size = new System.Drawing.Size(83, 25);
             btnCalculateVAT.TabIndex = 11;
@@ -813,7 +830,7 @@ namespace SomerenUI
             // lblTotalVAT
             // 
             lblTotalVAT.AutoSize = true;
-            lblTotalVAT.Location = new System.Drawing.Point(33, 374);
+            lblTotalVAT.Location = new System.Drawing.Point(33, 384);
             lblTotalVAT.Name = "lblTotalVAT";
             lblTotalVAT.Size = new System.Drawing.Size(270, 17);
             lblTotalVAT.TabIndex = 10;
@@ -822,7 +839,7 @@ namespace SomerenUI
             // lblHighTariffTotal
             // 
             lblHighTariffTotal.AutoSize = true;
-            lblHighTariffTotal.Location = new System.Drawing.Point(28, 218);
+            lblHighTariffTotal.Location = new System.Drawing.Point(28, 228);
             lblHighTariffTotal.Name = "lblHighTariffTotal";
             lblHighTariffTotal.Size = new System.Drawing.Size(366, 17);
             lblHighTariffTotal.TabIndex = 9;
@@ -831,7 +848,7 @@ namespace SomerenUI
             // lblLowTariffTotal
             // 
             lblLowTariffTotal.AutoSize = true;
-            lblLowTariffTotal.Location = new System.Drawing.Point(28, 172);
+            lblLowTariffTotal.Location = new System.Drawing.Point(28, 182);
             lblLowTariffTotal.Name = "lblLowTariffTotal";
             lblLowTariffTotal.Size = new System.Drawing.Size(354, 17);
             lblLowTariffTotal.TabIndex = 8;
@@ -840,7 +857,7 @@ namespace SomerenUI
             // lblQuarterDates
             // 
             lblQuarterDates.AutoSize = true;
-            lblQuarterDates.Location = new System.Drawing.Point(28, 127);
+            lblQuarterDates.Location = new System.Drawing.Point(28, 137);
             lblQuarterDates.Name = "lblQuarterDates";
             lblQuarterDates.Size = new System.Drawing.Size(275, 17);
             lblQuarterDates.TabIndex = 7;
@@ -849,7 +866,7 @@ namespace SomerenUI
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(28, 82);
+            label2.Location = new System.Drawing.Point(28, 92);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(92, 17);
             label2.TabIndex = 6;
@@ -858,16 +875,26 @@ namespace SomerenUI
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(28, 39);
+            label1.Location = new System.Drawing.Point(28, 49);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(74, 17);
             label1.TabIndex = 5;
             label1.Text = "Select year:";
+            //
+            // lblVATReportHeader
+            //
+            lblVATReportHeader.AutoSize = true;
+            lblVATReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblVATReportHeader.Location = new System.Drawing.Point(10, 5);
+            lblVATReportHeader.Name = "lblVATReportHeader";
+            lblVATReportHeader.Size = new System.Drawing.Size(114, 20);
+            lblVATReportHeader.TabIndex = 7;
+            lblVATReportHeader.Text = "VAT Report";
             // 
             // cmbQuarter
             // 
             cmbQuarter.FormattingEnabled = true;
-            cmbQuarter.Location = new System.Drawing.Point(153, 79);
+            cmbQuarter.Location = new System.Drawing.Point(153, 89);
             cmbQuarter.Name = "cmbQuarter";
             cmbQuarter.Size = new System.Drawing.Size(134, 25);
             cmbQuarter.TabIndex = 4;
@@ -875,7 +902,7 @@ namespace SomerenUI
             // cmbYear
             // 
             cmbYear.FormattingEnabled = true;
-            cmbYear.Location = new System.Drawing.Point(153, 36);
+            cmbYear.Location = new System.Drawing.Point(153, 46);
             cmbYear.Name = "cmbYear";
             cmbYear.Size = new System.Drawing.Size(134, 25);
             cmbYear.TabIndex = 3;
@@ -890,73 +917,6 @@ namespace SomerenUI
             pictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox.TabIndex = 2;
             pictureBox.TabStop = false;
-            // 
-            // pnlRevenueReport
-            // 
-            pnlRevenueReport.Controls.Add(lvRevenueReport);
-            pnlRevenueReport.Controls.Add(lblRevenueDateRange);
-            pnlRevenueReport.Controls.Add(lblChooseEndDate);
-            pnlRevenueReport.Controls.Add(lblChooseStartDate);
-            pnlRevenueReport.Controls.Add(monthCalendarEndDate);
-            pnlRevenueReport.Controls.Add(monthCalendarStartDate);
-            pnlRevenueReport.Location = new System.Drawing.Point(0, 32);
-            pnlRevenueReport.Name = "pnlRevenueReport";
-            pnlRevenueReport.Size = new System.Drawing.Size(861, 548);
-            pnlRevenueReport.TabIndex = 3;
-            // 
-            // lvRevenueReport
-            // 
-            lvRevenueReport.FullRowSelect = true;
-            lvRevenueReport.GridLines = true;
-            lvRevenueReport.Location = new System.Drawing.Point(32, 332);
-            lvRevenueReport.Name = "lvRevenueReport";
-            lvRevenueReport.Size = new System.Drawing.Size(623, 204);
-            lvRevenueReport.TabIndex = 5;
-            lvRevenueReport.UseCompatibleStateImageBehavior = false;
-            // 
-            // lblRevenueDateRange
-            // 
-            lblRevenueDateRange.AutoSize = true;
-            lblRevenueDateRange.Location = new System.Drawing.Point(32, 289);
-            lblRevenueDateRange.Name = "lblRevenueDateRange";
-            lblRevenueDateRange.Size = new System.Drawing.Size(101, 17);
-            lblRevenueDateRange.TabIndex = 4;
-            lblRevenueDateRange.Text = "Revenue Report";
-            // 
-            // lblChooseEndDate
-            // 
-            lblChooseEndDate.AutoSize = true;
-            lblChooseEndDate.Location = new System.Drawing.Point(393, 7);
-            lblChooseEndDate.Name = "lblChooseEndDate";
-            lblChooseEndDate.Size = new System.Drawing.Size(126, 17);
-            lblChooseEndDate.TabIndex = 3;
-            lblChooseEndDate.Text = "Choose an end date";
-            // 
-            // lblChooseStartDate
-            // 
-            lblChooseStartDate.AutoSize = true;
-            lblChooseStartDate.Location = new System.Drawing.Point(32, 7);
-            lblChooseStartDate.Name = "lblChooseStartDate";
-            lblChooseStartDate.Size = new System.Drawing.Size(123, 17);
-            lblChooseStartDate.TabIndex = 2;
-            lblChooseStartDate.Text = "Choose a start date";
-            // 
-            // monthCalendarEndDate
-            // 
-            monthCalendarEndDate.Location = new System.Drawing.Point(393, 36);
-            monthCalendarEndDate.Name = "monthCalendarEndDate";
-            monthCalendarEndDate.ShowToday = false;
-            monthCalendarEndDate.ShowTodayCircle = false;
-            monthCalendarEndDate.TabIndex = 1;
-            // 
-            // monthCalendarStartDate
-            // 
-            monthCalendarStartDate.Location = new System.Drawing.Point(32, 36);
-            monthCalendarStartDate.MaxDate = new DateTime(2023, 3, 22, 0, 0, 0, 0);
-            monthCalendarStartDate.Name = "monthCalendarStartDate";
-            monthCalendarStartDate.ShowToday = false;
-            monthCalendarStartDate.ShowTodayCircle = false;
-            monthCalendarStartDate.TabIndex = 0;
             // 
             // SomerenUI
             // 
@@ -982,6 +942,7 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)roomsPictureBox).EndInit();
 			((System.ComponentModel.ISupportInitialize)(revenuePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(stockPictureBox)).EndInit();
             pnlStudents.ResumeLayout(false);
             pnlStudents.PerformLayout();
             roomsPanel.ResumeLayout(false);
@@ -1022,6 +983,8 @@ namespace SomerenUI
         private System.Windows.Forms.PictureBox activitiesPictureBox;
         private System.Windows.Forms.PictureBox roomsPictureBox;
         private System.Windows.Forms.PictureBox revenuePictureBox;
+        private System.Windows.Forms.PictureBox stockPictureBox;
+
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.Panel teacherpanel;
         private System.Windows.Forms.ListView listViewteachers;
@@ -1083,5 +1046,6 @@ namespace SomerenUI
         private ListView listViewDrinksCashRegister;
         private Label drinksStockLabel;
 		private Label lblRevenueReportHeader;
+        private Label lblVATReportHeader;
     }
 }
