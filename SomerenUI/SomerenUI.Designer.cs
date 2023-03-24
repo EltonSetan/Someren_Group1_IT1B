@@ -68,6 +68,10 @@ namespace SomerenUI
             pnlDashboard = new Panel();
             dashboardPictureBox = new PictureBox();
             lblDashboard = new Label();
+            cashpanel = new Panel();
+            btnCheckout = new Button();
+            listViewdrinks = new ListView();
+            listViewstudent1 = new ListView();
             btnRemove = new Button();
             btnAdd = new Button();
             txtStock = new TextBox();
@@ -116,9 +120,13 @@ namespace SomerenUI
             lblChooseStartDate = new Label();
             monthCalendarEndDate = new MonthCalendar();
             monthCalendarStartDate = new MonthCalendar();
+            lblTotalPrice = new Label();
+            pictureBox1 = new PictureBox();
+            lblCashRegister = new Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).BeginInit();
+            cashpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentsPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lecturersPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).BeginInit();
@@ -128,6 +136,8 @@ namespace SomerenUI
             pnlActivity.SuspendLayout();
             teacherpanel.SuspendLayout();
             panelContainer.SuspendLayout();
+            pnlRevenueReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             vatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             panelDrinks.SuspendLayout();
@@ -140,7 +150,7 @@ namespace SomerenUI
             menuStrip1.Items.AddRange(new ToolStripItem[] { dashboardToolStripMenuItem, studentsToolStripMenuItem, lecturersToolStripMenuItem, activitiesToolStripMenuItem, roomsToolStripMenuItem, drinksToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(9, 3, 0, 3);
+            menuStrip1.Padding = new Padding(8, 3, 0, 3);
             menuStrip1.Size = new System.Drawing.Size(753, 27);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
@@ -157,7 +167,6 @@ namespace SomerenUI
             dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
             dashboardToolStripMenuItem1.Size = new System.Drawing.Size(147, 24);
             dashboardToolStripMenuItem1.Text = "Dashboard";
-            dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -170,28 +179,56 @@ namespace SomerenUI
             studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             studentsToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
             studentsToolStripMenuItem.Text = "Students";
-            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
             lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
             lecturersToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
             lecturersToolStripMenuItem.Text = "Lecturers";
-            lecturersToolStripMenuItem.Click += lecturersToolStripMenuItem_Click;
             // 
             // activitiesToolStripMenuItem
             // 
             activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             activitiesToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
             activitiesToolStripMenuItem.Text = "Activities";
-            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
             // 
             // roomsToolStripMenuItem
             // 
             roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             roomsToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             roomsToolStripMenuItem.Text = "Rooms";
-            roomsToolStripMenuItem.Click += roomsToolStripMenuItem_Click;
+            // 
+            // drinksToolStripMenuItem
+            // 
+            drinksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drinkStockToolStripMenuItem, cashRegisterToolStripMenuItem, revenueReportToolStripMenuItem, vATCalculationToolStripMenuItem });
+            drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
+            drinksToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            drinksToolStripMenuItem.Text = "Drinks";
+            // 
+            // drinkStockToolStripMenuItem
+            // 
+            drinkStockToolStripMenuItem.Name = "drinkStockToolStripMenuItem";
+            drinkStockToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            drinkStockToolStripMenuItem.Text = "Drink Stock";
+            // 
+            // cashRegisterToolStripMenuItem
+            // 
+            cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
+            cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            cashRegisterToolStripMenuItem.Text = "Cash Register";
+            cashRegisterToolStripMenuItem.Click += cashRegisterToolStripMenuItem_Click;
+            // 
+            // revenueReportToolStripMenuItem
+            // 
+            revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
+            revenueReportToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            revenueReportToolStripMenuItem.Text = "Revenue Report";
+            // 
+            // vATCalculationToolStripMenuItem
+            // 
+            vATCalculationToolStripMenuItem.Name = "vATCalculationToolStripMenuItem";
+            vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            vATCalculationToolStripMenuItem.Text = "VAT calculation";
             // 
             // drinksToolStripMenuItem
             // 
@@ -241,7 +278,7 @@ namespace SomerenUI
             // 
             dashboardPictureBox.Image = Resources.someren;
             dashboardPictureBox.Location = new System.Drawing.Point(626, 0);
-            dashboardPictureBox.Margin = new Padding(2, 3, 2, 3);
+            dashboardPictureBox.Margin = new Padding(1, 3, 1, 3);
             dashboardPictureBox.Name = "dashboardPictureBox";
             dashboardPictureBox.Size = new System.Drawing.Size(127, 116);
             dashboardPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -257,6 +294,53 @@ namespace SomerenUI
             lblDashboard.TabIndex = 0;
             lblDashboard.Text = "Welcome to the Someren Application!";
             // 
+            // cashpanel
+            // 
+            cashpanel.Controls.Add(btnCheckout);
+            cashpanel.Controls.Add(listViewdrinks);
+            cashpanel.Controls.Add(listViewstudent1);
+            cashpanel.Controls.Add(lblTotalPrice);
+            cashpanel.Controls.Add(lblCashRegister);
+            cashpanel.Controls.Add(pictureBox1);
+            cashpanel.Location = new System.Drawing.Point(0, 0);
+            cashpanel.Margin = new Padding(2);
+            cashpanel.Name = "cashpanel";
+            cashpanel.Size = new System.Drawing.Size(745, 462);
+            cashpanel.TabIndex = 3;
+            // 
+            // btnCheckout
+            // 
+            btnCheckout.Location = new System.Drawing.Point(440, 270);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new System.Drawing.Size(83, 25);
+            btnCheckout.TabIndex = 2;
+            btnCheckout.Text = "Buy";
+            btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += btnCheckout_Click;
+            // 
+            // listViewdrinks
+            // 
+            listViewdrinks.FullRowSelect = true;
+            listViewdrinks.GridLines = true;
+            listViewdrinks.Location = new System.Drawing.Point(25, 159);
+            listViewdrinks.Margin = new Padding(2);
+            listViewdrinks.Name = "listViewdrinks";
+            listViewdrinks.Size = new System.Drawing.Size(498, 101);
+            listViewdrinks.TabIndex = 1;
+            listViewdrinks.UseCompatibleStateImageBehavior = false;
+            listViewdrinks.SelectedIndexChanged += ListView_SelectedIndexChanged;
+            // 
+            // listViewstudent1
+            // 
+            listViewstudent1.FullRowSelect = true;
+            listViewstudent1.GridLines = true;
+            listViewstudent1.Location = new System.Drawing.Point(25, 38);
+            listViewstudent1.Margin = new Padding(2);
+            listViewstudent1.Name = "listViewstudent1";
+            listViewstudent1.Size = new System.Drawing.Size(498, 101);
+            listViewstudent1.TabIndex = 0;
+            listViewstudent1.UseCompatibleStateImageBehavior = false;
+            listViewstudent1.SelectedIndexChanged += ListView_SelectedIndexChanged;
             // btnRemove
             // 
             btnRemove.Location = new System.Drawing.Point(626, 136);
@@ -321,7 +405,7 @@ namespace SomerenUI
             // 
             studentsPictureBox.Image = Resources.someren;
             studentsPictureBox.Location = new System.Drawing.Point(626, 0);
-            studentsPictureBox.Margin = new Padding(2, 3, 2, 3);
+            studentsPictureBox.Margin = new Padding(1, 3, 1, 3);
             studentsPictureBox.Name = "studentsPictureBox";
             studentsPictureBox.Size = new System.Drawing.Size(127, 116);
             studentsPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -332,7 +416,7 @@ namespace SomerenUI
             // 
             lecturersPictureBox.Image = Resources.someren;
             lecturersPictureBox.Location = new System.Drawing.Point(626, 0);
-            lecturersPictureBox.Margin = new Padding(2, 3, 2, 3);
+            lecturersPictureBox.Margin = new Padding(1, 3, 1, 3);
             lecturersPictureBox.Name = "lecturersPictureBox";
             lecturersPictureBox.Size = new System.Drawing.Size(127, 116);
             lecturersPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -343,7 +427,7 @@ namespace SomerenUI
             // 
             activitiesPictureBox.Image = Resources.someren;
             activitiesPictureBox.Location = new System.Drawing.Point(626, 0);
-            activitiesPictureBox.Margin = new Padding(2, 3, 2, 3);
+            activitiesPictureBox.Margin = new Padding(1, 3, 1, 3);
             activitiesPictureBox.Name = "activitiesPictureBox";
             activitiesPictureBox.Size = new System.Drawing.Size(127, 116);
             activitiesPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -354,7 +438,7 @@ namespace SomerenUI
             // 
             roomsPictureBox.Image = Resources.someren;
             roomsPictureBox.Location = new System.Drawing.Point(626, 0);
-            roomsPictureBox.Margin = new Padding(2, 3, 2, 3);
+            roomsPictureBox.Margin = new Padding(1, 3, 1, 3);
             roomsPictureBox.Name = "roomsPictureBox";
             roomsPictureBox.Size = new System.Drawing.Size(127, 116);
             roomsPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -375,7 +459,7 @@ namespace SomerenUI
             // listViewStudents
             // 
             listViewStudents.Location = new System.Drawing.Point(13, 38);
-            listViewStudents.Margin = new Padding(2, 3, 2, 3);
+            listViewStudents.Margin = new Padding(1, 3, 1, 3);
             listViewStudents.Name = "listViewStudents";
             listViewStudents.Size = new System.Drawing.Size(600, 280);
             listViewStudents.TabIndex = 1;
@@ -507,6 +591,7 @@ namespace SomerenUI
             // 
             // panelContainer
             // 
+            panelContainer.Controls.Add(cashpanel);
             panelContainer.Controls.Add(pnlDashboard);
             panelContainer.Controls.Add(vatPanel);
             panelContainer.Controls.Add(roomsPanel);
@@ -728,11 +813,41 @@ namespace SomerenUI
             // monthCalendarStartDate
             // 
             monthCalendarStartDate.Location = new System.Drawing.Point(32, 36);
-            monthCalendarStartDate.MaxDate = new DateTime(2023, 3, 22, 0, 0, 0, 0);
+            monthCalendarStartDate.MaxDate = new System.DateTime(2023, 3, 22, 0, 0, 0, 0);
             monthCalendarStartDate.Name = "monthCalendarStartDate";
             monthCalendarStartDate.ShowToday = false;
             monthCalendarStartDate.ShowTodayCircle = false;
             monthCalendarStartDate.TabIndex = 0;
+            // 
+            // lblTotalPrice
+            // 
+            lblTotalPrice.AutoSize = true;
+            lblTotalPrice.Location = new System.Drawing.Point(36, 274);
+            lblTotalPrice.Name = "lblTotalPrice";
+            lblTotalPrice.Size = new System.Drawing.Size(72, 17);
+            lblTotalPrice.TabIndex = 3;
+            lblTotalPrice.Text = "Total price:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Resources.someren;
+            pictureBox1.Location = new System.Drawing.Point(626, 0);
+            pictureBox1.Margin = new Padding(1, 3, 1, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(127, 116);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
+            // lblCashRegister
+            // 
+            lblCashRegister.AutoSize = true;
+            lblCashRegister.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblCashRegister.Location = new System.Drawing.Point(10, 4);
+            lblCashRegister.Name = "lblCashRegister";
+            lblCashRegister.Size = new System.Drawing.Size(123, 37);
+            lblCashRegister.TabIndex = 3;
+            lblCashRegister.Text = "Activities";
             // 
             // SomerenUI
             // 
@@ -750,6 +865,8 @@ namespace SomerenUI
             pnlDashboard.ResumeLayout(false);
             pnlDashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).EndInit();
+            cashpanel.ResumeLayout(false);
+            cashpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)studentsPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)lecturersPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)activitiesPictureBox).EndInit();
@@ -763,6 +880,9 @@ namespace SomerenUI
             teacherpanel.ResumeLayout(false);
             teacherpanel.PerformLayout();
             panelContainer.ResumeLayout(false);
+            pnlRevenueReport.ResumeLayout(false);
+            pnlRevenueReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             vatPanel.ResumeLayout(false);
             vatPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
@@ -814,16 +934,23 @@ namespace SomerenUI
         private Panel pnlRevenueReport;
         private MonthCalendar monthCalendarStartDate;
         private ListView lvRevenueReport;
-        private ListView listViewDrinks;
         private Label lblRevenueDateRange;
         private Label lblChooseEndDate;
         private Label lblChooseStartDate;
+        private ListView listViewDrinks;
         private Label labelDrinks;
         private MonthCalendar monthCalendarEndDate;
         private ToolStripMenuItem drinksToolStripMenuItem;
         private ToolStripMenuItem drinkStockToolStripMenuItem;
         private ToolStripMenuItem cashRegisterToolStripMenuItem;
         private ToolStripMenuItem revenueReportToolStripMenuItem;
+        private Panel cashpanel;
+        private ListView listViewdrinks;
+        private ListView listViewstudent1;
+        private Button btnCheckout;
+        private Label lblTotalPrice;
+        private Label lblCashRegister;
+        private PictureBox pictureBox1;
         private ToolStripMenuItem drinksReportToolStripMenuItem;
         private ToolStripMenuItem vATCalculationToolStripMenuItem;
         private Button btnAdd;
