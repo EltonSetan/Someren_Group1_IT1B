@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
+using SomerenDAL;
 using SomerenLogic;
 using SomerenModel;
 using SomerenService;
@@ -13,12 +15,13 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
+            InitializeComboBoxes();
             ShowDashboardPanel();
         }
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks })
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel })
             {
                 panel.Visible = false;
             }
@@ -248,6 +251,11 @@ namespace SomerenUI
             }
         }
 
+        private void ShowVATPanel()
+        {
+            ShowPanel(vatPanel);
+        }
+
 
         private List<Activity> GetActivities()
         {
@@ -312,6 +320,12 @@ namespace SomerenUI
         {
             Application.Exit();
         }
+
+        private void vATCalculationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowVATPanel();
+        }
+
 
         private void listViewDrinks_MouseClick(object sender, MouseEventArgs e)
         {
@@ -446,6 +460,29 @@ namespace SomerenUI
             txtStock.Clear();
             txtPriceOfDrink.Clear();
             txtIsAlcoholic.Clear();
+        }
+
+        private void btnCalculateVAT_Click(object sender, EventArgs e)
+        {
+            int year = int.Parse(cmbYear.SelectedItem.ToString());
+            int quarter = cmbQuarter.SelectedIndex + 1;
+
+            DateTime startDate = new DateTime(year, 3 * quarter - 2, 1);
+            DateTime endDate = startDate.AddMonths(3).AddDays(-1);
+
+            VATDao vatDao = new VATDao();
+            (decimal lowTariffTotal, decimal highTariffTotal) = vatDao.GetVATTotals(startDate, endDate);
+
+            DisplayResults(startDate, endDate, lowTariffTotal, highTariffTotal);
+        }
+
+
+        private void DisplayResults(DateTime startDate, DateTime endDate, decimal lowTariffTotal, decimal highTariffTotal)
+        {
+            lblQuarterDates.Text = $"Quarter runs from: {startDate.ToString("dd-MM-yyyy")} to: {endDate.ToString("dd-MM-yyyy")}";
+            lblLowTariffTotal.Text = $"Total VAT (low tariff, 6%) amount payable: {lowTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
+            lblHighTariffTotal.Text = $"Total VAT (high tariff, 21%) amount payable: {highTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
+            lblTotalVAT.Text = $"Total VAT amount payable: {(lowTariffTotal + highTariffTotal).ToString("C", CultureInfo.CurrentCulture)}";
         }
     }
 }
