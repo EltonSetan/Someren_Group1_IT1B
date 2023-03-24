@@ -251,7 +251,7 @@ namespace SomerenUI
             drink.drinkName,
             drink.Stock.ToString(),
             drink.isAlcoholic.ToString(),
-            drink.drinkPrice.ToString("F2"),
+            drink.drinkPrice.ToString("C", CultureInfo.CurrentCulture),
         });
                 item.Tag = drink;
                 targetListView.Items.Add(item);
@@ -379,7 +379,7 @@ namespace SomerenUI
 
             var item = new ListViewItem(sales.ToString());
             item.SubItems.AddRange(new[] {
-                  turnover.ToString("0.00€"),
+                  turnover.ToString("C", CultureInfo.CurrentCulture),
                   nrOfCustomers.ToString()
             });
             item.Tag = report;
@@ -450,8 +450,12 @@ namespace SomerenUI
             // Refresh the students and drinks lists
             Showcashpanel();
         }
+        private void ListViewStudetnsCashRegister_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblTotalPrice.Text = "Total Price: --";
+        }
 
-        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListViewDrinksCashRegister_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewDrinksCashRegister.SelectedItems.Count == 0)
             {
@@ -459,11 +463,11 @@ namespace SomerenUI
                 return;
             }
 
-            var selectedDrink = (CashRegister)listViewDrinksCashRegister.SelectedItems[0].Tag;
-            double amountPaid = selectedDrink.Price;
+            var selectedDrink = (Drink)listViewDrinksCashRegister.SelectedItems[0].Tag;
+            double amountPaid = selectedDrink.drinkPrice;
 
             // Update the lblTotalPrice with the total price of the selected items
-            lblTotalPrice.Text = $"Total Price: {amountPaid.ToString("C2")}";
+            lblTotalPrice.Text = $"Total Price: {amountPaid.ToString("C", CultureInfo.CurrentCulture)}";
         }
 
         private void vATCalculationToolStripMenuItem_Click(object sender, EventArgs e)

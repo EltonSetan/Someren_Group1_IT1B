@@ -410,7 +410,7 @@ namespace SomerenUI
             // 
             // btnCheckout
             // 
-            btnCheckout.Location = new System.Drawing.Point(440, 270);
+            btnCheckout.Location = new System.Drawing.Point(440, 400);
             btnCheckout.Name = "btnCheckout";
             btnCheckout.Size = new System.Drawing.Size(83, 25);
             btnCheckout.TabIndex = 2;
@@ -425,27 +425,27 @@ namespace SomerenUI
             listViewStudetnsCashRegister.Location = new System.Drawing.Point(25, 38);
             listViewStudetnsCashRegister.Margin = new Padding(2);
             listViewStudetnsCashRegister.Name = "listViewStudetnsCashRegister";
-            listViewStudetnsCashRegister.Size = new System.Drawing.Size(498, 101);
+            listViewStudetnsCashRegister.Size = new System.Drawing.Size(498, 150);
             listViewStudetnsCashRegister.TabIndex = 0;
             listViewStudetnsCashRegister.UseCompatibleStateImageBehavior = false;
-            listViewStudetnsCashRegister.SelectedIndexChanged += ListView_SelectedIndexChanged;
+            listViewStudetnsCashRegister.SelectedIndexChanged += ListViewStudetnsCashRegister_SelectedIndexChanged;
             // 
             // listViewDrinksCashRegister
             // 
             listViewDrinksCashRegister.FullRowSelect = true;
             listViewDrinksCashRegister.GridLines = true;
-            listViewDrinksCashRegister.Location = new System.Drawing.Point(25, 146);
+            listViewDrinksCashRegister.Location = new System.Drawing.Point(25, 200);
             listViewDrinksCashRegister.Margin = new Padding(2);
             listViewDrinksCashRegister.Name = "listViewDrinksCashRegister";
-            listViewDrinksCashRegister.Size = new System.Drawing.Size(498, 101);
+            listViewDrinksCashRegister.Size = new System.Drawing.Size(498, 150);
             listViewDrinksCashRegister.TabIndex = 4;
             listViewDrinksCashRegister.UseCompatibleStateImageBehavior = false;
-            listViewdrinks.SelectedIndexChanged += ListView_SelectedIndexChanged;
+            listViewDrinksCashRegister.SelectedIndexChanged += ListViewDrinksCashRegister_SelectedIndexChanged;
             // 
             // lblTotalPrice
             // 
             lblTotalPrice.AutoSize = true;
-            lblTotalPrice.Location = new System.Drawing.Point(36, 274);
+            lblTotalPrice.Location = new System.Drawing.Point(36, 400);
             lblTotalPrice.Name = "lblTotalPrice";
             lblTotalPrice.Size = new System.Drawing.Size(72, 17);
             lblTotalPrice.TabIndex = 3;
