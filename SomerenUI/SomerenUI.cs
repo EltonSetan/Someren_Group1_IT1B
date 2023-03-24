@@ -21,7 +21,9 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel })
+
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel, pnlRevenueReport })
+
             {
                 panel.Visible = false;
             }
@@ -324,7 +326,68 @@ namespace SomerenUI
             lvActivities.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        private void ShowRevenuePanel()
+        {
+            ShowPanel(pnlRevenueReport);
 
+            try
+            {
+                DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
+                DateTime endDate = monthCalendarEndDate.SelectionRange.End;
+
+                int sales = GetSales(startDate,endDate);
+                double turnover = GetTurnover(startDate, endDate);
+                int nrOfCustomers = GetTotalCustomers(startDate,endDate);
+
+                DisplayReport(sales, turnover, nrOfCustomers);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the revenue report: {e.Message}");
+            }
+        }
+
+
+        private int GetSales(DateTime startDate, DateTime endDate)
+        {
+            return new RevenueReportService().GetSales(startDate, endDate);
+        }
+
+        private double GetTurnover(DateTime startDate, DateTime endDate)
+        {
+            return new RevenueReportService().GetTurnover(startDate, endDate);
+        }
+
+        private int GetTotalCustomers(DateTime startDate, DateTime endDate)
+        {
+            return new RevenueReportService().GetTotalCustomers(startDate, endDate);
+        }
+
+        private void DisplayReport(int sales, double turnover, int nrOfCustomers)
+        {
+            lvRevenueReport.Clear();
+            lvRevenueReport.View = View.Details;
+            lvRevenueReport.Columns.AddRange(new[] {
+            new ColumnHeader { Text = "Sales" },
+            new ColumnHeader { Text = "Turnover" },
+            new ColumnHeader { Text = "Number of Customers"}
+        });
+            List<double> report = new List<double>();
+            report.Add(sales);
+            report.Add(turnover);
+            report.Add(nrOfCustomers);
+
+            var item = new ListViewItem(sales.ToString());
+            item.SubItems.AddRange(new[] {
+                  turnover.ToString("0.00€"),
+                  nrOfCustomers.ToString()
+            });
+            item.Tag = report;
+            lvRevenueReport.Items.Add(item);
+
+            lvRevenueReport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+        
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -568,6 +631,25 @@ namespace SomerenUI
             lblLowTariffTotal.Text = $"Total VAT (low tariff, 6%) amount payable: {lowTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
             lblHighTariffTotal.Text = $"Total VAT (high tariff, 21%) amount payable: {highTariffTotal.ToString("C", CultureInfo.CurrentCulture)}";
             lblTotalVAT.Text = $"Total VAT amount payable: {(lowTariffTotal + highTariffTotal).ToString("C", CultureInfo.CurrentCulture)}";
+
+
+        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRevenuePanel();
+        }
+
+        private void monthCalendarStartDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
+            lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {monthCalendarEndDate.SelectionRange.Start.ToString("dd/MM/yyyy")}";
+            ShowRevenuePanel();
+        }
+
+        private void monthCalendarEndDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            DateTime endDate = monthCalendarEndDate.SelectionRange.Start;
+            lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {endDate.ToString("dd/MM/yyyy")}";
+            ShowRevenuePanel();
         }
     }
 }
