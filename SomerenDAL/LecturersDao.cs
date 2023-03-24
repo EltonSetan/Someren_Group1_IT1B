@@ -39,7 +39,6 @@ namespace SomerenDAL
                 teachers.Add(teacher);
             }
             return teachers;
-            return teachers;
         }
     }
 }
