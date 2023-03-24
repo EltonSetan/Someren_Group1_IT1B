@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SomerenModel;
 using SomerenService;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomerenUI
 {
@@ -75,8 +76,89 @@ namespace SomerenUI
 
             listViewStudents.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+        private void Showcashpanel()
+        {
+           
+            ShowPanel(cashpanel);
 
+            try
+            {
+                // get and display all students
+                List<Student> Student1 = GetStudents();
+                DisplayStudent1(Student1);
+                List<CashRegister> cash = GetCashRegisters();
+                DisplayDrinks(cash);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the students: " + e.Message);
+            }
+        }
+        private List<CashRegister> GetCashRegisters()
+        {
+            CashRegisterService cashregisterService = new CashRegisterService();
+            List<CashRegister> cash = cashregisterService.GetCashRegister();
+            return cash;
+        }
+        private List<Student> GetStudent1()
+        {
+            StudentService studentService = new StudentService();
+            List<Student> Student1 = studentService.GetStudents();
+            return Student1;
+        }
+        private void DisplayStudent1(List<Student> Student1)
+        {
+            listViewstudent1.Clear();
+            listViewstudent1.View = View.Details;
+            listViewstudent1.Columns.AddRange(new[] {
+        new ColumnHeader { Text = "Student ID" },
+        new ColumnHeader { Text = "First Name" },
+       // new ColumnHeader { Text = "Last Name" },
+        //new ColumnHeader { Text = "Phone Number" },
+        });
 
+            foreach (Student student in Student1)
+            {
+                var item = new ListViewItem(student.Id.ToString());
+                item.SubItems.AddRange(new[] {
+                student.FirstName,
+                    //student.LastName,
+                    //student.TelephoneNumber.ToString(),
+        });
+                item.Tag = student;
+                listViewstudent1.Items.Add(item);
+            }
+
+            listViewstudent1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+        }
+        private void DisplayDrinks(List<CashRegister> cash)
+        {
+            listViewdrinks.Clear();
+            listViewdrinks.View = View.Details;
+            listViewdrinks.Columns.AddRange(new[] {
+        new ColumnHeader { Text = "Drink ID" },
+        new ColumnHeader { Text = "Drink Name" },
+        new ColumnHeader { Text = "Stock" },
+        new ColumnHeader { Text = "Alcoholic" },
+        new ColumnHeader { Text = "Price" },
+    });
+
+            foreach (CashRegister cashregister in cash)
+            {
+                var item = new ListViewItem(cashregister.Id.ToString());
+                item.SubItems.AddRange(new[] {
+            cashregister.Name,
+            cashregister.Stock.ToString(),
+            cashregister.Alcoholic.ToString(),
+            cashregister.Price.ToString(),
+        });
+                item.Tag = cashregister;
+                listViewdrinks.Items.Add(item);
+            }
+
+            listViewdrinks.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
         private void ShowTeachersPanel()
         {
             ShowPanel(teacherpanel);
@@ -121,7 +203,7 @@ namespace SomerenUI
                     teacher.TelephoneNumber.ToString(),
                     teacher.RoomId.ToString(),
                     teacher.isSupervisor,
-                    teacher.DrinkId.ToString(),
+                   // teacher.DrinkId.ToString(),
                 });
                 item.Tag = teacher;
                 listViewteachers.Items.Add(item);
@@ -253,6 +335,11 @@ namespace SomerenUI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Showcashpanel();
         }
     }
 }
