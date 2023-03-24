@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SomerenDAL
 {
@@ -13,7 +10,7 @@ namespace SomerenDAL
     {
         public List<CashRegister> GetAllCashRegister()
         {
-            string query = "SELECT DrinkId, DrinkName, isAlcoholic, Stock, PriceOfDrink  FROM [Drink]";
+            string query = "SELECT DrinkId, DrinkName, isAlcoholic, Stock, PriceOfDrink FROM [Drink]";
 
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
@@ -37,5 +34,34 @@ namespace SomerenDAL
             }
             return cashRegister;
         }
+
+        public void InsertSale(int studentId, int drinkId, double amountPaid)
+        {
+            string query = "INSERT INTO [CashRegister] (StudentId, DrinkId, DateOfSale, PriceOfDrink) VALUES (@studentId, @drinkId, @date, @amountPaid)";
+
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+        new SqlParameter("@studentId", studentId),
+        new SqlParameter("@drinkId", drinkId),
+        new SqlParameter("@date", DateTime.Now),
+        new SqlParameter("@amountPaid", amountPaid)
+            };
+
+            ExecuteEditQuery(query, sqlParameters);
+        }
+        public void AddSale(int studentId, int drinkId, DateTime dateOfSale)
+        {
+            string query = "INSERT INTO CashRegister (StudentId, DrinkId, DateOfSale) VALUES (@studentId, @drinkId, @dateOfSale)";
+
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+        new SqlParameter("@studentId", SqlDbType.Int) { Value = studentId },
+        new SqlParameter("@drinkId", SqlDbType.Int) { Value = drinkId },
+        new SqlParameter("@dateOfSale", SqlDbType.DateTime) { Value = dateOfSale }
+            };
+
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
     }
 }

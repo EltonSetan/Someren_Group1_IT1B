@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SomerenModel;
 using SomerenService;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomerenUI
 {
@@ -78,7 +77,7 @@ namespace SomerenUI
         }
         private void Showcashpanel()
         {
-           
+
             ShowPanel(cashpanel);
 
             try
@@ -341,5 +340,32 @@ namespace SomerenUI
         {
             Showcashpanel();
         }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            if (listViewstudent1.SelectedItems.Count == 0 || listViewdrinks.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a student and a drink.");
+                return;
+            }
+
+            var selectedStudent = (Student)listViewstudent1.SelectedItems[0].Tag;
+            var selectedDrink = (CashRegister)listViewdrinks.SelectedItems[0].Tag;
+
+            try
+            {
+                new CashRegisterService().AddSale(selectedStudent.Id, selectedDrink.Id, DateTime.Now);
+                MessageBox.Show("Checkout successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing the sale: {ex.Message}");
+            }
+
+            // Refresh the students and drinks lists
+            Showcashpanel();
+        }
+
+
     }
 }

@@ -22,6 +22,10 @@ namespace SomerenService
             List<CashRegister> cashregister = drinkdb.GetAllCashRegister();
             return cashregister;
         }
+
+        public void AddSale(int studentId, int drinkId, DateTime dateOfSale)
+        {
+            drinkdb.AddSale(studentId, drinkId, dateOfSale);
+        }
     }
 }
-
