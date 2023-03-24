@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
+using System;
 
 namespace SomerenDAL
 {
@@ -80,5 +81,18 @@ namespace SomerenDAL
             };
             ExecuteEditQuery(query, sqlParameters);
         }
+        public int GetNextDrinkId()
+        {
+            int maxDrinkId = 0;
+            string query = "SELECT MAX(DrinkId) FROM Drink";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            DataTable dataTable = ExecuteSelectQuery(query, sqlParameters);
+            if (dataTable.Rows.Count > 0 && dataTable.Rows[0][0] != DBNull.Value)
+            {
+                maxDrinkId = Convert.ToInt32(dataTable.Rows[0][0]);
+            }
+            return maxDrinkId + 1;
+        }
+
     }
 }

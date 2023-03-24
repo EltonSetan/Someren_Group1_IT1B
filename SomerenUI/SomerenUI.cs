@@ -435,8 +435,11 @@ namespace SomerenUI
         {
             DrinkService drinkService = new DrinkService();
 
+            // Automatically generate the next available drinkId
+            int DrinkId = drinkService.GetNextDrinkId();
+            txtDrinkId.Text = DrinkId.ToString();
+
             // Get the input values and create a new Drink object
-            int DrinkId = int.Parse(txtDrinkId.Text);
             string DrinkName = txtDrinkName.Text;
             double PriceOfDrink = double.Parse(txtPriceOfDrink.Text);
             string isAlcoholic = txtIsAlcoholic.Text;

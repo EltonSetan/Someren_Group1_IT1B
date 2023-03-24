@@ -27,6 +27,12 @@ namespace SomerenLogic
         {
             drinkDao.UpdateDrink(drink);
         }
+
+        public int GetNextDrinkId()
+        {
+            DrinkDao drinkDao = new DrinkDao();
+            return drinkDao.GetNextDrinkId();
+        }
     }
 
 }
