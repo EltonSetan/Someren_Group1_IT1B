@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SomerenService
 {
-    internal class Class1
+    internal class SupervisorService
     {
     }
 }

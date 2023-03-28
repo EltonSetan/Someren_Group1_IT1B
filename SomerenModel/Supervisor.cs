@@ -6,23 +6,7 @@ using System.Threading.Tasks;
 
 namespace SomerenModel
 {
-    public class ActivitySupervisorService
+    internal class Supervisor
     {
-        ActivitySupervisorDao activitySupervisorDao;
-
-        public ActivitySupervisorService()
-        {
-            activitySupervisorDao = new ActivitySupervisorDao();
-        }
-
-        public void AddSupervisor(int lecturerId, int activityId)
-        {
-            activitySupervisorDao.AddSupervisor(lecturerId, activityId);
-        }
-
-        public void RemoveSupervisor(int lecturerId, int activityId)
-        {
-            activitySupervisorDao.RemoveSupervisor(lecturerId, activityId);
-        }
     }
 }
