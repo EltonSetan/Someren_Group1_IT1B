@@ -71,6 +71,12 @@ namespace SomerenUI
             pnlDashboard = new Panel();
             dashboardPictureBox = new PictureBox();
             lblDashboard = new Label();
+            panelSupervisors = new Panel();
+            removeSupervisorButton = new Button();
+            addSupervisorButton = new Button();
+            listViewSupervisors = new ListView();
+            label3 = new Label();
+            pictureBox2 = new PictureBox();
             cashpanel = new Panel();
             btnCheckout = new Button();
             listViewStudetnsCashRegister = new ListView();
@@ -130,9 +136,15 @@ namespace SomerenUI
             lblChooseStartDate = new Label();
             monthCalendarEndDate = new MonthCalendar();
             monthCalendarStartDate = new MonthCalendar();
+            listViewNonSupervisors = new ListView();
+            listViewActivitiesInSupervisors = new ListView();
+            label4 = new Label();
+            label5 = new Label();
             menuStrip1.SuspendLayout();
             pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).BeginInit();
+            panelSupervisors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             cashpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)studentsPictureBox).BeginInit();
@@ -295,6 +307,75 @@ namespace SomerenUI
             lblDashboard.Size = new System.Drawing.Size(228, 17);
             lblDashboard.TabIndex = 0;
             lblDashboard.Text = "Welcome to the Someren Application!";
+            // 
+            // panelSupervisors
+            // 
+            panelSupervisors.Controls.Add(label5);
+            panelSupervisors.Controls.Add(label4);
+            panelSupervisors.Controls.Add(listViewActivitiesInSupervisors);
+            panelSupervisors.Controls.Add(listViewNonSupervisors);
+            panelSupervisors.Controls.Add(removeSupervisorButton);
+            panelSupervisors.Controls.Add(addSupervisorButton);
+            panelSupervisors.Controls.Add(listViewSupervisors);
+            panelSupervisors.Controls.Add(label3);
+            panelSupervisors.Controls.Add(pictureBox2);
+            panelSupervisors.Dock = DockStyle.Fill;
+            panelSupervisors.Location = new System.Drawing.Point(0, 0);
+            panelSupervisors.Margin = new Padding(3, 4, 3, 4);
+            panelSupervisors.Name = "panelSupervisors";
+            panelSupervisors.Size = new System.Drawing.Size(753, 466);
+            panelSupervisors.TabIndex = 3;
+            // 
+            // removeSupervisorButton
+            // 
+            removeSupervisorButton.Location = new System.Drawing.Point(611, 369);
+            removeSupervisorButton.Name = "removeSupervisorButton";
+            removeSupervisorButton.Size = new System.Drawing.Size(130, 25);
+            removeSupervisorButton.TabIndex = 4;
+            removeSupervisorButton.Text = "Remove supervisor";
+            removeSupervisorButton.UseVisualStyleBackColor = true;
+            removeSupervisorButton.Click += removeSupervisorButton_Click;
+            // 
+            // addSupervisorButton
+            // 
+            addSupervisorButton.Location = new System.Drawing.Point(373, 369);
+            addSupervisorButton.Name = "addSupervisorButton";
+            addSupervisorButton.Size = new System.Drawing.Size(130, 25);
+            addSupervisorButton.TabIndex = 3;
+            addSupervisorButton.Text = "Add supervisor";
+            addSupervisorButton.UseVisualStyleBackColor = true;
+            addSupervisorButton.Click += addSupervisorButton_Click;
+            // 
+            // listViewSupervisors
+            // 
+            listViewSupervisors.Location = new System.Drawing.Point(10, 49);
+            listViewSupervisors.Margin = new Padding(1, 3, 1, 3);
+            listViewSupervisors.Name = "listViewSupervisors";
+            listViewSupervisors.Size = new System.Drawing.Size(327, 116);
+            listViewSupervisors.TabIndex = 1;
+            listViewSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewSupervisors.View = View.Details;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.Location = new System.Drawing.Point(10, 4);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(152, 37);
+            label3.TabIndex = 0;
+            label3.Text = "Supervisors";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Resources.someren;
+            pictureBox2.Location = new System.Drawing.Point(626, 0);
+            pictureBox2.Margin = new Padding(1, 3, 1, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(127, 116);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.TabIndex = 2;
+            pictureBox2.TabStop = false;
             // 
             // cashpanel
             // 
@@ -659,6 +740,7 @@ namespace SomerenUI
             // 
             // panelContainer
             // 
+            panelContainer.Controls.Add(panelSupervisors);
             panelContainer.Controls.Add(pnlDashboard);
             panelContainer.Controls.Add(panelDrinks);
             panelContainer.Controls.Add(pnlStudents);
@@ -904,6 +986,46 @@ namespace SomerenUI
             monthCalendarStartDate.TabIndex = 0;
             monthCalendarStartDate.DateChanged += monthCalendarStartDate_DateChanged;
             // 
+            // listViewNonSupervisors
+            // 
+            listViewNonSupervisors.Location = new System.Drawing.Point(10, 234);
+            listViewNonSupervisors.Margin = new Padding(1, 3, 1, 3);
+            listViewNonSupervisors.Name = "listViewNonSupervisors";
+            listViewNonSupervisors.Size = new System.Drawing.Size(327, 116);
+            listViewNonSupervisors.TabIndex = 5;
+            listViewNonSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewNonSupervisors.View = View.Details;
+            // 
+            // listViewActivitiesInSupervisors
+            // 
+            listViewActivitiesInSupervisors.Location = new System.Drawing.Point(370, 129);
+            listViewActivitiesInSupervisors.Margin = new Padding(1, 3, 1, 3);
+            listViewActivitiesInSupervisors.Name = "listViewActivitiesInSupervisors";
+            listViewActivitiesInSupervisors.Size = new System.Drawing.Size(373, 221);
+            listViewActivitiesInSupervisors.TabIndex = 6;
+            listViewActivitiesInSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewActivitiesInSupervisors.View = View.Details;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(17, 190);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(214, 37);
+            label4.TabIndex = 7;
+            label4.Text = "Non-Supervisors";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.Location = new System.Drawing.Point(370, 79);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(123, 37);
+            label5.TabIndex = 8;
+            label5.Text = "Activities";
+            // 
             // SomerenUI
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -920,6 +1042,9 @@ namespace SomerenUI
             pnlDashboard.ResumeLayout(false);
             pnlDashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dashboardPictureBox).EndInit();
+            panelSupervisors.ResumeLayout(false);
+            panelSupervisors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             cashpanel.ResumeLayout(false);
             cashpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -1036,5 +1161,15 @@ namespace SomerenUI
         private ToolStripMenuItem supervisorsToolStripMenuItem;
         private ToolStripMenuItem participantsToolStripMenuItem;
         private ToolStripMenuItem timetableToolStripMenuItem;
+        private Panel panelSupervisors;
+        private ListView listViewSupervisors;
+        private Label label3;
+        private PictureBox pictureBox2;
+        private Button removeSupervisorButton;
+        private Button addSupervisorButton;
+        private Label label5;
+        private Label label4;
+        private ListView listViewActivitiesInSupervisors;
+        private ListView listViewNonSupervisors;
     }
 }

@@ -655,5 +655,77 @@ namespace SomerenUI
             lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {endDate.ToString("dd/MM/yyyy")}";
             ShowRevenuePanel();
         }
+
+        private void addSupervisorButton_Click(object sender, EventArgs e)
+        {
+            if (listViewNonSupervisors.SelectedItems.Count > 0 && listViewActivitiesInSupervisors.SelectedItems.Count > 0)
+            {
+                int lecturerId = int.Parse(listViewNonSupervisors.SelectedItems[0].Text);
+                int activityId = int.Parse(listViewActivitiesInSupervisors.SelectedItems[0].Text);
+
+                ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                activitySupervisorService.AddSupervisor(lecturerId, activityId);
+
+                // Refresh the listViewSupervisors and listViewNonSupervisors
+            }
+        }
+
+        private void removeSupervisorButton_Click(object sender, EventArgs e)
+        {
+            if (listViewSupervisors.SelectedItems.Count > 0 && listViewActivitiesInSupervisors.SelectedItems.Count > 0)
+            {
+                int lecturerId = int.Parse(listViewSupervisors.SelectedItems[0].Text);
+                int activityId = int.Parse(listViewActivitiesInSupervisors.SelectedItems[0].Text);
+
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this supervisor?", "Remove Supervisor", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    ActivitySupervisorService activitySupervisorService = new ActivitySupervisorService();
+                    activitySupervisorService.RemoveSupervisor(lecturerId, activityId);
+
+        // Refresh the listViewSupervisors and listViewNonSupervisors
+                 }
+            }
+        }
+
+        private void listViewSupervisors_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listViewdrinks.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewdrinks.SelectedItems[0];
+                Drink selectedDrink = selectedItem.Tag as Drink;
+
+                txtDrinkId.Text = selectedDrink.drinkId.ToString();
+                txtDrinkName.Text = selectedDrink.drinkName;
+                txtPriceOfDrink.Text = selectedDrink.drinkPrice.ToString();
+                txtIsAlcoholic.Text = selectedDrink.isAlcoholic;
+                txtStock.Text = selectedDrink.Stock.ToString();
+
+                // Change the Add button to Update
+                btnAdd.Text = "Update";
+                btnAdd.Click -= BtnAdd_Click; // Remove the Add event handler
+                btnAdd.Click += BtnUpdate_Click; // Add the Update event handler
+            }
+        }
+        private void listSupervisorsdrinks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewdrinks.SelectedItems.Count == 0)
+            {
+                // Clear input fields
+                txtDrinkId.Clear();
+                txtDrinkName.Clear();
+                txtStock.Clear();
+                txtPriceOfDrink.Clear();
+                txtIsAlcoholic.Clear();
+
+                // Change the Update button back to Add if it's not already "Add"
+                if (btnAdd.Text != "Add")
+                {
+                    btnAdd.Text = "Add";
+                    btnAdd.Click -= BtnUpdate_Click; // Remove the Update event handler
+                    btnAdd.Click += BtnAdd_Click; // Add the Add event handler
+                }
+            }
+        }
     }
 }
