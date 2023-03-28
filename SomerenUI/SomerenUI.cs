@@ -335,9 +335,9 @@ namespace SomerenUI
                 DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
                 DateTime endDate = monthCalendarEndDate.SelectionRange.End;
 
-                int sales = GetSales(startDate,endDate);
+                int sales = GetSales(startDate, endDate);
                 double turnover = GetTurnover(startDate, endDate);
-                int nrOfCustomers = GetTotalCustomers(startDate,endDate);
+                int nrOfCustomers = GetTotalCustomers(startDate, endDate);
 
                 DisplayReport(sales, turnover, nrOfCustomers);
             }
@@ -387,7 +387,7 @@ namespace SomerenUI
 
             lvRevenueReport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-        
+
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
