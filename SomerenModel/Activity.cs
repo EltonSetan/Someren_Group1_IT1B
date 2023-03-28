@@ -9,7 +9,7 @@ namespace SomerenModel
     public class Activity
     {
         public int Id { get; set; }     // database id
-        public string Name { get; set; }
+        public string ActivityName { get; set; }
         public string Date { get; set; }
     }
 }
