@@ -7,6 +7,7 @@ using SomerenDAL;
 using SomerenLogic;
 using SomerenModel;
 using SomerenService;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace SomerenUI
 {
@@ -22,7 +23,7 @@ namespace SomerenUI
         private void ShowPanel(Panel panelToShow)
         {
 
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel, pnlRevenueReport })
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel, pnlRevenueReport, pnlTimetable })
 
             {
                 panel.Visible = false;
@@ -335,9 +336,9 @@ namespace SomerenUI
                 DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
                 DateTime endDate = monthCalendarEndDate.SelectionRange.End;
 
-                int sales = GetSales(startDate,endDate);
+                int sales = GetSales(startDate, endDate);
                 double turnover = GetTurnover(startDate, endDate);
-                int nrOfCustomers = GetTotalCustomers(startDate,endDate);
+                int nrOfCustomers = GetTotalCustomers(startDate, endDate);
 
                 DisplayReport(sales, turnover, nrOfCustomers);
             }
@@ -387,7 +388,7 @@ namespace SomerenUI
 
             lvRevenueReport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-        
+
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -654,6 +655,75 @@ namespace SomerenUI
             DateTime endDate = monthCalendarEndDate.SelectionRange.Start;
             lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {endDate.ToString("dd/MM/yyyy")}";
             ShowRevenuePanel();
+        }
+
+        private void timetableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowTimetablePanel();
+        }
+
+        private void ShowTimetablePanel()
+        {
+            ShowPanel(pnlTimetable);
+
+            DateTime monday = new GregorianCalendar().AddDays(datePickerTimetable.Value,-(int)datePickerTimetable.Value.DayOfWeek + 1);
+            DateTime tuesday = monday.AddDays(1);
+            DateTime wednesday = tuesday.AddDays(1);
+            DateTime thursday = wednesday.AddDays(1);
+            DateTime friday = thursday.AddDays(1);
+
+            List<DateTime> weekdays = new List<DateTime>(); 
+            weekdays.Add(monday);
+            weekdays.Add(tuesday);
+            weekdays.Add(wednesday);
+            weekdays.Add(thursday);
+            weekdays.Add(friday);
+
+            List<Panel> weekPanels = new List<Panel>();
+            weekPanels.Add(pnlMonday);
+            weekPanels.Add(pnlTuesday);
+            weekPanels.Add(pnlWednesday);
+            weekPanels.Add(pnlThursday);
+            weekPanels.Add(pnlFriday);
+
+            int counter = 0;
+
+            
+            foreach (DateTime day in weekdays)
+            {   
+                List<TimetableActivity> activities = GetTimetableActivities(day);
+                
+                foreach (TimetableActivity activity in activities)
+                {
+                    activity.TimeOfActivity = activity.TimeOfActivity;
+                    activity.NameOfActivity = activity.NameOfActivity;
+                    activity.Supervisors = GetSupervisors(activity.activityId);
+                 
+                    ucActivity activityControl = new ucActivity(activity.NameOfActivity,activity.Supervisors, activity.TimeOfActivity);
+                    weekPanels[counter].Controls.Add(activityControl);
+                }
+                counter++;
+            }
+        }
+
+        private List<Teacher> GetSupervisors(int activityId)
+        {
+            return new TimetableService().GetSupervisors(activityId);
+        }
+
+        private List<TimetableActivity> GetTimetableActivities(DateTime date)
+        {
+            return new TimetableService().GetTimetableActivities(date);
+        }
+
+        private void datePickerTimetable_ValueChanged(object sender, EventArgs e)
+        {
+            pnlMonday.Controls.Clear();  
+            pnlTuesday.Controls.Clear();
+            pnlWednesday.Controls.Clear();
+            pnlThursday.Controls.Clear();
+            pnlFriday.Controls.Clear();
+            ShowTimetablePanel();
         }
     }
 }
