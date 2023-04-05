@@ -264,6 +264,7 @@ namespace SomerenUI
             supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
             supervisorsToolStripMenuItem.Size = new System.Drawing.Size(88, 21);
             supervisorsToolStripMenuItem.Text = "Supervisors";
+            supervisorsToolStripMenuItem.Click += supervisorsToolStripMenuItem_Click;
             // 
             // participantsToolStripMenuItem
             // 
@@ -355,6 +356,13 @@ namespace SomerenUI
             listViewSupervisors.TabIndex = 1;
             listViewSupervisors.UseCompatibleStateImageBehavior = false;
             listViewSupervisors.View = View.Details;
+            listViewSupervisors.SelectedIndexChanged += listViewSupervisors_SelectedIndexChanged;
+            listViewSupervisors.Enabled = true;
+            listViewNonSupervisors.Enabled = true;
+            listViewActivitiesInSupervisors.Enabled = true;
+            listViewSupervisors.FullRowSelect = true;
+            listViewNonSupervisors.FullRowSelect = true;
+            listViewActivitiesInSupervisors.FullRowSelect = true;
             // 
             // label3
             // 
@@ -995,6 +1003,7 @@ namespace SomerenUI
             listViewNonSupervisors.TabIndex = 5;
             listViewNonSupervisors.UseCompatibleStateImageBehavior = false;
             listViewNonSupervisors.View = View.Details;
+            listViewNonSupervisors.SelectedIndexChanged += listViewNonSupervisors_SelectedIndexChanged;
             // 
             // listViewActivitiesInSupervisors
             // 
@@ -1005,6 +1014,7 @@ namespace SomerenUI
             listViewActivitiesInSupervisors.TabIndex = 6;
             listViewActivitiesInSupervisors.UseCompatibleStateImageBehavior = false;
             listViewActivitiesInSupervisors.View = View.Details;
+            listViewActivitiesInSupervisors.SelectedIndexChanged += listViewActivitiesInSupervisors_SelectedIndexChanged;
             // 
             // label4
             // 

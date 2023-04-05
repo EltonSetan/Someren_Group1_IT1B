@@ -1,12 +1,41 @@
-﻿using System;
+﻿using SomerenDAL;
+using SomerenModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SomerenService
 {
-    internal class SupervisorService
+    public class SupervisorService
     {
+        private SupervisorDao supervisordb;
+
+        public SupervisorService()
+        {
+            supervisordb = new SupervisorDao();
+        }
+        public List<Teacher> GetAllSupervisors()
+        {
+            return supervisordb.GetAllSupervisors();
+        }
+
+
+        public List<Teacher> GetSupervisorsForActivity(int activityId)
+        {
+            return supervisordb.GetSupervisorsForActivity(activityId);
+        }
+
+        public List<Teacher> GetNonSupervisorsForActivity(int activityId)
+        {
+            return supervisordb.GetNonSupervisorsForActivity(activityId);
+        }
+
+        public void AddSupervisorToActivity(int activityId, int lecturerId)
+        {
+            supervisordb.AddSupervisorToActivity(activityId, lecturerId);
+        }
+
+        public void RemoveSupervisorFromActivity(int activityId, int lecturerId)
+        {
+            supervisordb.RemoveSupervisorFromActivity(activityId, lecturerId);
+        }
     }
 }

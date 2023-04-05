@@ -2,17 +2,18 @@
 using System.Data.SqlClient;
 using System.Data;
 using SomerenModel;
+using System;
 
 namespace SomerenDAL
 {
-    internal class SupervisorDao : BaseDao
+    public class SupervisorDao : BaseDao
     {
-        public List<Lecturer> GetSupervisorsForActivity(int activityId)
+        public List<Teacher> GetSupervisorsForActivity(int activityId)
         {
             string query = @"SELECT l.LecturerId, l.FirstName, l.LastName
-                             FROM dbo.ActivitySupervisor s
+                             FROM dbo.Supervise s
                              INNER JOIN dbo.Lecturer l ON s.LecturerId = l.LecturerId
-                             WHERE s.ActivityId = @ActivityId";
+                             WHERE s.ActivityId = @ActivityId AND l.isSupervisor = 'Yes'";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("@ActivityId", activityId)
@@ -20,53 +21,81 @@ namespace SomerenDAL
             return ReadLecturers(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        public List<Lecturer> GetNonSupervisorsForActivity(int activityId)
+        public List<Teacher> GetNonSupervisorsForActivity(int activityId)
         {
             string query = @"SELECT l.LecturerId, l.FirstName, l.LastName
-                             FROM dbo.Lecturer l
-                             WHERE l.LecturerId NOT IN
-                             (SELECT s.LecturerId FROM dbo.ActivitySupervisor s WHERE s.ActivityId = @ActivityId)";
+                     FROM dbo.Lecturer l
+                     WHERE l.LecturerId NOT IN (SELECT s.LecturerId FROM dbo.Supervise s WHERE s.ActivityId = @ActivityId)";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@ActivityId", activityId)
+        new SqlParameter("@ActivityId", activityId)
             };
             return ReadLecturers(ExecuteSelectQuery(query, sqlParameters));
         }
 
         public void AddSupervisorToActivity(int activityId, int lecturerId)
         {
-            string query = @"INSERT INTO dbo.ActivitySupervisor (ActivityId, LecturerId)
-                             VALUES (@ActivityId, @LecturerId)";
-            SqlParameter[] sqlParameters = new SqlParameter[]
+            // Check if the lecturer exists in the Lecturer table
+            string checkQuery = @"SELECT COUNT(*) FROM dbo.Lecturer WHERE LecturerId = @LecturerId";
+            SqlParameter[] checkParameters = new SqlParameter[]
             {
-                new SqlParameter("@ActivityId", activityId),
-                new SqlParameter("@LecturerId", lecturerId)
+        new SqlParameter("@LecturerId", lecturerId)
             };
-            ExecuteEditQuery(query, sqlParameters);
+            DataTable result = ExecuteSelectQuery(checkQuery, checkParameters);
+            int lecturerCount = Convert.ToInt32(result.Rows[0][0]);
+
+            if (lecturerCount > 0)
+            {
+                // Proceed with the insert operation
+                string query = @"INSERT INTO dbo.Supervise (ActivityId, LecturerId)
+                         VALUES (@ActivityId, @LecturerId)";
+                SqlParameter[] sqlParameters = new SqlParameter[]
+                {
+            new SqlParameter("@ActivityId", activityId),
+            new SqlParameter("@LecturerId", lecturerId)
+                };
+                ExecuteEditQuery(query, sqlParameters);
+            }
+            else
+            {
+                // Handle the case where the lecturer doesn't exist in the Lecturer table
+                // You can throw an exception, display a message, or handle it in another way
+                throw new InvalidOperationException("The lecturer does not exist in the Lecturer table.");
+            }
         }
 
         public void RemoveSupervisorFromActivity(int activityId, int lecturerId)
         {
-            string query = @"DELETE FROM dbo.ActivitySupervisor
-                             WHERE ActivityId = @ActivityId AND LecturerId = @LecturerId";
+            string query = @"DELETE FROM dbo.Supervise
+                     WHERE ActivityId = @ActivityId AND LecturerId = @LecturerId";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-                new SqlParameter("@ActivityId", activityId),
-                new SqlParameter("@LecturerId", lecturerId)
+        new SqlParameter("@ActivityId", activityId),
+        new SqlParameter("@LecturerId", lecturerId)
             };
             ExecuteEditQuery(query, sqlParameters);
         }
 
-        private List<Lecturer> ReadLecturers(DataTable dataTable)
+
+        public List<Teacher> GetAllSupervisors()
         {
-            List<Lecturer> lecturers = new List<Lecturer>();
+            string query = @"SELECT LecturerId, FirstName, LastName
+                             FROM dbo.Lecturer
+                             WHERE isSupervisor = 'Yes'";
+            SqlParameter[] sqlParameters = new SqlParameter[] { };
+            return ReadLecturers(ExecuteSelectQuery(query, sqlParameters));
+        }
+
+        private List<Teacher> ReadLecturers(DataTable dataTable)
+        {
+            List<Teacher> lecturers = new List<Teacher>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Lecturer lecturer = new Lecturer()
+                Teacher lecturer = new Teacher()
                 {
                     Id = (int)dr["LecturerId"],
-                    FirstName = (string)dr["FirstName"],
+                    Name = (string)dr["FirstName"],
                     LastName = (string)dr["LastName"]
                 };
                 lecturers.Add(lecturer);
