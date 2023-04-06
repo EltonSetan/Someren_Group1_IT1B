@@ -751,7 +751,7 @@ namespace SomerenUI
                 int activityId = int.Parse(listViewActivitiesInSupervisors.SelectedItems[0].Text);
 
                 SupervisorService activitySupervisorService = new SupervisorService();
-                activitySupervisorService.AddSupervisorToActivity(lecturerId, activityId);
+                activitySupervisorService.AddSupervisorToActivity(activityId, lecturerId);
 
                 // Refresh the listViewSupervisors and listViewNonSupervisors
                 RefreshSupervisors(activityId);
@@ -769,7 +769,7 @@ namespace SomerenUI
                 if (dialogResult == DialogResult.Yes)
                 {
                     SupervisorService activitySupervisorService = new SupervisorService();
-                    activitySupervisorService.RemoveSupervisorFromActivity(lecturerId, activityId);
+                    activitySupervisorService.RemoveSupervisorFromActivity(activityId, lecturerId);
 
                     // Refresh the listViewSupervisors and listViewNonSupervisors
                     RefreshSupervisors(activityId);
