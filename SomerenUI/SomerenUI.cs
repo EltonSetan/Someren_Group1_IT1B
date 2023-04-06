@@ -214,15 +214,15 @@ namespace SomerenUI
             return new StudentService().GetStudents();
         }
 
-        private List<Participants> GetParticipants(Activity activity)
+        private List<Participants> GetParticipantsById(int ActivityId)
         {
-            return new ParticipantsService().GetParticipantsById(activity);
+            return new ParticipantsService().GetParticipantsById(ActivityId);
         }
 
-        //private List<Participants> GetNonParticipants()
-        //{
-        //    return new ParticipantsService().GetParticipants();
-        //}
+        private List<Participants> GetNonParticipantsById(int ActivityId)
+        {
+            return new ParticipantsService().GetNonParticipantsById(ActivityId);
+        }
 
         private List<Drink> GetDrinks()
         {
@@ -293,7 +293,7 @@ namespace SomerenUI
         //        listviewparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         //    }
 
-        private void DisplayParticipants(List<Participants> participants, Activity activity)
+        private void DisplayParticipants(List<Participants> participants)
         {
             listviewparticipants.Clear();
             listviewparticipants.View = View.Details;
@@ -306,47 +306,44 @@ namespace SomerenUI
 
             foreach (Participants participant in participants)
             {
-                if (participant.StudentId == ((Activity)listviewactivity1.SelectedItems[0].Tag).Id)
-                {
-                    ListViewItem li = new ListViewItem($"{participant.StudentId}");
-
-                   // li.SubItems.Add(participant.StudentId.ToString());
-                    li.SubItems.Add(participant.FirstName);
-                    li.SubItems.Add(participant.LastName);
-                    li.Tag = participant;
-                    listviewparticipants.Items.Add(li);
-                          
-                }
+                var item = new ListViewItem(participant.StudentId.ToString());
+                item.SubItems.AddRange(new[] {
+            participant.FirstName,
+            participant.LastName,
+           // student.TelephoneNumber.ToString(),
+        });
+                item.Tag = participant;
+                listviewparticipants.Items.Add(item);
             }
 
             listviewparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-    //    private void DisplayNonParticipants(List<Participants> nonparticipants)
-    //    {
-    //        listviewnonparticipants.Clear();
-    //        listviewnonparticipants.View = View.Details;
-    //        listviewnonparticipants.Columns.AddRange(new[] {
-    //    new ColumnHeader { Text = "Student ID" },
-    //    new ColumnHeader { Text = "First Name" },
-    //    new ColumnHeader { Text = "Last Name" },
-    //   // new ColumnHeader { Text = "Phone Number" },
-    //});
+        private void DisplayNonParticipants(List<Participants> nonparticipants)
+        {
+            listviewnonparticipants.Clear();
+            listviewnonparticipants.View = View.Details;
+            listviewnonparticipants.Columns.AddRange(new[] {
+        new ColumnHeader { Text = "Student ID" },
+        new ColumnHeader { Text = "First Name" },
+        new ColumnHeader { Text = "Last Name" },
+       // new ColumnHeader { Text = "Phone Number" },
+    });
 
-    //        foreach (Participants participant in nonparticipants)
-    //        {
-    //            var item = new ListViewItem(participant.StudentId.ToString());
-    //            item.SubItems.AddRange(new[] {
-    //        participant.FirstName,
-    //        participant.LastName,
-    //       // student.TelephoneNumber.ToString(),
-    //    });
-    //            item.Tag = participant;
-    //            listviewnonparticipants.Items.Add(item);
-    //        }
+            foreach (Participants participant in nonparticipants)
+            {
+                var item = new ListViewItem(participant.StudentId.ToString());
+                item.SubItems.AddRange(new[] {
+            participant.FirstName,
+            participant.LastName,
+           // student.TelephoneNumber.ToString(),
+        });
+                item.Tag = participant;
+                listviewnonparticipants.Items.Add(item);
+            }
 
-    //        listviewnonparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-    //    }
-       
+            listviewnonparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
         private void DisplayStudent1(List<Student> Student1)
         {
             listViewStudetnsCashRegister.Clear();
@@ -795,25 +792,55 @@ namespace SomerenUI
 
         private void participantsBtn_Click(object sender, EventArgs e)
         {
-            ParticipantsService participantsService = new ParticipantsService();
             // Check if an activity has been selected
             if (listviewactivity1.SelectedItems.Count > 0)
             {
                 // Get the selected activity
-                ListViewItem selectedActivity = listviewactivity1.SelectedItems[0];
-                Activity selectedItem = selectedActivity.Tag as Activity;
+                Activity selectedActivity = (Activity)listviewactivity1.SelectedItems[0].Tag;
+                int selectedItem = selectedActivity.Id;
 
                 // Get the participants for the selected activity
-                List<Participants> participants = GetParticipants(selectedItem);
-
+                List<Participants> participants = new ParticipantsService().GetParticipantsById(selectedItem);
 
                 // Display the participants
-                DisplayParticipants(participants, selectedItem);
+                DisplayParticipants(participants);
             }
             else
             {
                 MessageBox.Show("Please select an activity first.");
             }
-        }     
+        }
+
+        private void nonParticipantsBtn_Click(object sender, EventArgs e)
+        {
+            if (listviewactivity1.SelectedItems.Count > 0)
+            {
+                // Get the selected activity
+                Activity selectedActivity = (Activity)listviewactivity1.SelectedItems[0].Tag;
+                int selectedItem = selectedActivity.Id;
+
+                // Get the nonparticipants for the selected activity
+                List<Participants> participants = new ParticipantsService().GetNonParticipantsById(selectedItem);
+
+                // Display the participants
+                DisplayNonParticipants(participants);
+            }
+            else
+            {
+                MessageBox.Show("Please select an activity first.");
+            }
+        }
+
+        private void addParticipantButton_Click(object sender, EventArgs e)
+        {
+            if (listviewnonparticipants.SelectedItems.Count > 0 && listviewactivity1.SelectedItems.Count > 0)
+            {
+                int studentId = int.Parse(listviewnonparticipants.SelectedItems[0].Text);
+                int activityId = int.Parse(listviewactivity1.SelectedItems[0].Text);
+
+                ParticipantsService participantsService = new ParticipantsService();
+                participantsService.AddParticipants(activityId, studentId);               
+            }
+        }
     }
 }

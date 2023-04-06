@@ -17,10 +17,26 @@ namespace SomerenService
             participantsdb = new ParticipantsDao();
         }
 
-        public List<Participants> GetParticipantsById(Activity activity)
+        public List<Participants> GetParticipantsById(int ActivityId)
         {
-            List<Participants> participants = participantsdb.GetParticipantsById(activity.Id);
-            return participants;
+           
+            return participantsdb.GetParticipantsById(ActivityId);
+        }
+
+        public List<Participants> GetNonParticipantsById(int ActivityId)
+        {
+
+            return participantsdb.GetNonParticipantsById(ActivityId);
+        }
+
+        public void AddParticipants(int activityId, int studentId)
+        {
+            participantsdb.AddParticipants(activityId, studentId);
+        }
+
+        public void RemoveParticipants(int activityId, int studentId)
+        {
+            participantsdb.RemoveParticipants(activityId, studentId);
         }
     }
 }

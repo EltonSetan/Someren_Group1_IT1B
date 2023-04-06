@@ -109,6 +109,8 @@ namespace SomerenUI
             this.listViewteachers = new System.Windows.Forms.ListView();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.participantspanel = new System.Windows.Forms.Panel();
+            this.removeParticipantButton = new System.Windows.Forms.Button();
+            this.addParticipantButton = new System.Windows.Forms.Button();
             this.nonParticipantsBtn = new System.Windows.Forms.Button();
             this.participantsBtn = new System.Windows.Forms.Button();
             this.listviewnonparticipants = new System.Windows.Forms.ListView();
@@ -700,6 +702,8 @@ namespace SomerenUI
             // 
             // participantspanel
             // 
+            this.participantspanel.Controls.Add(this.removeParticipantButton);
+            this.participantspanel.Controls.Add(this.addParticipantButton);
             this.participantspanel.Controls.Add(this.nonParticipantsBtn);
             this.participantspanel.Controls.Add(this.participantsBtn);
             this.participantspanel.Controls.Add(this.listviewnonparticipants);
@@ -710,18 +714,38 @@ namespace SomerenUI
             this.participantspanel.Size = new System.Drawing.Size(1073, 685);
             this.participantspanel.TabIndex = 3;
             // 
+            // removeParticipantButton
+            // 
+            this.removeParticipantButton.Location = new System.Drawing.Point(52, 560);
+            this.removeParticipantButton.Name = "removeParticipantButton";
+            this.removeParticipantButton.Size = new System.Drawing.Size(281, 34);
+            this.removeParticipantButton.TabIndex = 6;
+            this.removeParticipantButton.Text = "Click here to remove Participant!";
+            this.removeParticipantButton.UseVisualStyleBackColor = true;
+            // 
+            // addParticipantButton
+            // 
+            this.addParticipantButton.Location = new System.Drawing.Point(52, 514);
+            this.addParticipantButton.Name = "addParticipantButton";
+            this.addParticipantButton.Size = new System.Drawing.Size(281, 34);
+            this.addParticipantButton.TabIndex = 5;
+            this.addParticipantButton.Text = "Click here to add Participant!";
+            this.addParticipantButton.UseVisualStyleBackColor = true;
+            this.addParticipantButton.Click += new System.EventHandler(this.addParticipantButton_Click);
+            // 
             // nonParticipantsBtn
             // 
-            this.nonParticipantsBtn.Location = new System.Drawing.Point(486, 473);
+            this.nonParticipantsBtn.Location = new System.Drawing.Point(483, 241);
             this.nonParticipantsBtn.Name = "nonParticipantsBtn";
             this.nonParticipantsBtn.Size = new System.Drawing.Size(190, 34);
             this.nonParticipantsBtn.TabIndex = 4;
             this.nonParticipantsBtn.Text = "Non-Participants";
             this.nonParticipantsBtn.UseVisualStyleBackColor = true;
+            this.nonParticipantsBtn.Click += new System.EventHandler(this.nonParticipantsBtn_Click);
             // 
             // participantsBtn
             // 
-            this.participantsBtn.Location = new System.Drawing.Point(52, 479);
+            this.participantsBtn.Location = new System.Drawing.Point(51, 241);
             this.participantsBtn.Name = "participantsBtn";
             this.participantsBtn.Size = new System.Drawing.Size(112, 34);
             this.participantsBtn.TabIndex = 3;
@@ -733,7 +757,7 @@ namespace SomerenUI
             // 
             this.listviewnonparticipants.FullRowSelect = true;
             this.listviewnonparticipants.GridLines = true;
-            this.listviewnonparticipants.Location = new System.Drawing.Point(486, 253);
+            this.listviewnonparticipants.Location = new System.Drawing.Point(483, 281);
             this.listviewnonparticipants.Name = "listviewnonparticipants";
             this.listviewnonparticipants.Size = new System.Drawing.Size(362, 213);
             this.listviewnonparticipants.TabIndex = 2;
@@ -743,7 +767,7 @@ namespace SomerenUI
             // 
             this.listviewparticipants.FullRowSelect = true;
             this.listviewparticipants.GridLines = true;
-            this.listviewparticipants.Location = new System.Drawing.Point(51, 253);
+            this.listviewparticipants.Location = new System.Drawing.Point(51, 281);
             this.listviewparticipants.Name = "listviewparticipants";
             this.listviewparticipants.Size = new System.Drawing.Size(397, 213);
             this.listviewparticipants.TabIndex = 1;
@@ -759,7 +783,6 @@ namespace SomerenUI
             this.listviewactivity1.TabIndex = 0;
             this.listviewactivity1.UseCompatibleStateImageBehavior = false;
             this.listviewactivity1.View = System.Windows.Forms.View.Details;
-           // this.listviewactivity1.SelectedIndexChanged += new System.EventHandler(this.listviewactivity1_Selected);
             // 
             // panelDrinks
             // 
@@ -1147,5 +1170,7 @@ namespace SomerenUI
         private ListView listviewactivity1;
         private Button nonParticipantsBtn;
         private Button participantsBtn;
+        private Button removeParticipantButton;
+        private Button addParticipantButton;
     }
 }
