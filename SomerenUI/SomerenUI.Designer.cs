@@ -445,6 +445,7 @@ namespace SomerenUI
             this.btnCheckout.TabIndex = 2;
             this.btnCheckout.Text = "Buy";
             this.btnCheckout.UseVisualStyleBackColor = true;
+            this.btnCheckout.Click += new EventHandler(btnCheckout_Click);
             // 
             // listViewStudetnsCashRegister
             // 
@@ -456,6 +457,7 @@ namespace SomerenUI
             this.listViewStudetnsCashRegister.Size = new System.Drawing.Size(569, 176);
             this.listViewStudetnsCashRegister.TabIndex = 0;
             this.listViewStudetnsCashRegister.UseCompatibleStateImageBehavior = false;
+            this.listViewStudetnsCashRegister.SelectedIndexChanged += new EventHandler(ListViewStudetnsCashRegister_SelectedIndexChanged);
             // 
             // listViewDrinksCashRegister
             // 
@@ -467,6 +469,7 @@ namespace SomerenUI
             this.listViewDrinksCashRegister.Size = new System.Drawing.Size(569, 176);
             this.listViewDrinksCashRegister.TabIndex = 4;
             this.listViewDrinksCashRegister.UseCompatibleStateImageBehavior = false;
+            this.listViewDrinksCashRegister.SelectedIndexChanged += new EventHandler(ListViewDrinksCashRegister_SelectedIndexChanged);
             // 
             // lblTotalPrice
             // 
@@ -508,6 +511,8 @@ namespace SomerenUI
             this.listViewdrinks.Size = new System.Drawing.Size(569, 118);
             this.listViewdrinks.TabIndex = 1;
             this.listViewdrinks.UseCompatibleStateImageBehavior = false;
+            this.listViewdrinks.SelectedIndexChanged += new EventHandler(listViewdrinks_SelectedIndexChanged);
+            this.listViewdrinks.MouseClick += new MouseEventHandler(listViewdrinks_MouseClick);
             // 
             // btnRemove
             // 
@@ -518,6 +523,7 @@ namespace SomerenUI
             this.btnRemove.TabIndex = 6;
             this.btnRemove.Text = "Remove drink";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new EventHandler(BtnRemove_Click);
             // 
             // btnAdd
             // 
@@ -528,6 +534,7 @@ namespace SomerenUI
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add drink";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new EventHandler(BtnAdd_Click);
             // 
             // txtStock
             // 
@@ -909,6 +916,7 @@ namespace SomerenUI
             this.btnCalculateVAT.TabIndex = 11;
             this.btnCalculateVAT.Text = "Calculate VAT";
             this.btnCalculateVAT.UseVisualStyleBackColor = true;
+            this.btnCalculateVAT.Click += new EventHandler(btnCalculateVAT_Click);
             // 
             // lblTotalVAT
             // 
@@ -1075,6 +1083,7 @@ namespace SomerenUI
             this.monthCalendarEndDate.ShowToday = false;
             this.monthCalendarEndDate.ShowTodayCircle = false;
             this.monthCalendarEndDate.TabIndex = 1;
+            this.monthCalendarEndDate.DateChanged += new DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
             // 
             // monthCalendarStartDate
             // 
@@ -1085,6 +1094,7 @@ namespace SomerenUI
             this.monthCalendarStartDate.ShowToday = false;
             this.monthCalendarStartDate.ShowTodayCircle = false;
             this.monthCalendarStartDate.TabIndex = 0;
+            this.monthCalendarStartDate.DateChanged += new DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
             // 
             // SomerenUI
             // 
