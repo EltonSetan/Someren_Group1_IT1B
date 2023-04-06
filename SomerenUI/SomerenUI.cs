@@ -52,6 +52,136 @@ namespace SomerenUI
                 MessageBox.Show($"Something went wrong while loading the students: {e.Message}");
             }
         }
+
+        private void Showparticipantspanel()
+        {
+            ShowPanel(participantspanel);
+
+            try
+            {
+                List<Activity> activities1 = GetActivities1();
+                DisplayActivities1(activities1);
+                //List<Participants> participants = GetParticipants();
+                //DisplayParticipants(participants);
+                //List<Participants> nonparticipants = GetNonParticipants();
+                //DisplayParticipants(nonparticipants);
+                //foreach (Activity activity in activities1)
+                //{
+                //    List<Participants> participants = GetParticipants(activity);
+                //    DisplayParticipants(participants, activity);
+                //}
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the activity: {e.Message}");
+            }
+        }
+
+        private void Showcashpanel()
+        {
+            ShowPanel(cashpanel);
+
+            try
+            {
+                List<Student> Student1 = GetStudents();
+                DisplayStudent1(Student1);
+                List<Drink> drinks = GetDrinks();
+                DisplayDrinks(drinks, listViewDrinksCashRegister); // Replace with the name of the ListView for the Cash Register panel
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Something went wrong while loading the cash panel: " + e.Message);
+            }
+        }
+
+        private void ShowTeachersPanel()
+        {
+            ShowPanel(teacherpanel);
+
+            try
+            {
+                List<Teacher> teachers = GetTeachers();
+                DisplayTeachers(teachers);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the teachers: {e.Message}");
+            }
+        }
+
+        private void ShowRoomsPanel()
+        {
+            ShowPanel(roomsPanel);
+
+            try
+            {
+                List<Room> rooms = GetRooms();
+                DisplayRooms(rooms);
+            }
+            catch (Exception e)
+
+
+            {
+                MessageBox.Show($"Something went wrong while loading the rooms: {e.Message}");
+            }
+        }
+
+        private void ShowActivitiesPanel()
+        {
+            ShowPanel(pnlActivity);
+
+            try
+            {
+                List<Activity> activities = GetActivities();
+                DisplayActivities(activities);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the activities: {e.Message}");
+            }
+        }
+
+        private void ShowDrinksPanel()
+        {
+            ShowPanel(panelDrinks);
+
+            try
+            {
+                List<Drink> drinks = GetDrinks();
+                DisplayDrinks(drinks, listViewdrinks); // Replace with the name of the ListView for the Drinks panel
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the drinks: {e.Message}");
+            }
+        }
+
+        private void ShowRevenuePanel()
+        {
+            ShowPanel(pnlRevenueReport);
+
+            try
+            {
+                DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
+                DateTime endDate = monthCalendarEndDate.SelectionRange.End;
+
+                int sales = GetSales(startDate, endDate);
+                double turnover = GetTurnover(startDate, endDate);
+                int nrOfCustomers = GetTotalCustomers(startDate, endDate);
+
+                DisplayReport(sales, turnover, nrOfCustomers);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the revenue report: {e.Message}");
+            }
+        }
+
+        private void ShowVATPanel()
+        {
+            ShowPanel(vatPanel);
+        }
+
         private List<Activity> GetActivities1()
         {
             return new ActivityService().GetActivity();
@@ -64,7 +194,6 @@ namespace SomerenUI
             listviewactivity1.Columns.AddRange(new[] {
         new ColumnHeader { Text = "Activity ID" },
         new ColumnHeader { Text = "Activity Name" },
-       // new ColumnHeader { Text = "Date" },
     });
 
             foreach (Activity activity in activities1)
@@ -72,7 +201,6 @@ namespace SomerenUI
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
             activity.ActivityName,
-           // activity.Date,
         });
                 item.Tag = activity;
                 listviewactivity1.Items.Add(item);
@@ -80,46 +208,39 @@ namespace SomerenUI
 
             listviewactivity1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-        private void Showparticipantspanel()
-        {
-            ShowPanel(participantspanel);
-
-            try
-            {
-                List<Activity> activities1 = GetActivities1();
-                DisplayActivities1(activities1);
-                List<Participants> participants = GetParticipants();
-                DisplayParticipants(participants);
-                List<Participants> nonparticipants = GetNonParticipants();
-                DisplayParticipants(nonparticipants);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Something went wrong while loading the activity: {e.Message}");
-            }
-        }
-
+       
         private List<Student> GetStudents()
         {
             return new StudentService().GetStudents();
         }
 
-        private List<Participants> GetParticipants()
+        private List<Participants> GetParticipants(Activity activity)
         {
-            return new ParticipantsService().GetParticipants();
+            return new ParticipantsService().GetParticipantsById(activity);
         }
 
-        private List<Participants> GetNonParticipants()
-        {
-            return new ParticipantsService().GetParticipants();
-        }
+        //private List<Participants> GetNonParticipants()
+        //{
+        //    return new ParticipantsService().GetParticipants();
+        //}
 
         private List<Drink> GetDrinks()
         {
             return new DrinkService().GetDrinks();
         }
+        private List<Room> GetRooms()
+        {
+            return new RoomService().GetRooms();
+        }
+        private List<Activity> GetActivities()
+        {
+            return new ActivityService().GetActivity();
+        }
 
-
+        private List<Teacher> GetTeachers()
+        {
+            return new LecturersService().GetTeachers();
+        }
         private void DisplayStudents(List<Student> students)
         {
             listViewStudents.Clear();
@@ -146,7 +267,33 @@ namespace SomerenUI
             listViewStudents.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void DisplayParticipants(List<Participants> participants)
+        //    private void DisplayParticipants(List<Participants> participants)
+        //    {
+        //        listviewparticipants.Clear();
+        //        listviewparticipants.View = View.Details;
+        //        listviewparticipants.Columns.AddRange(new[] {
+        //    new ColumnHeader { Text = "Student ID" },
+        //    new ColumnHeader { Text = "First Name" },
+        //    new ColumnHeader { Text = "Last Name" },
+        //   // new ColumnHeader { Text = "Phone Number" },
+        //});
+
+        //        foreach (Participants participant in participants)
+        //        {
+        //            var item = new ListViewItem(participant.StudentId.ToString());
+        //            item.SubItems.AddRange(new[] {
+        //        participant.FirstName,
+        //        participant.LastName,
+        //       // student.TelephoneNumber.ToString(),
+        //    });
+        //            item.Tag = participant;
+        //            listviewparticipants.Items.Add(item);
+        //        }
+
+        //        listviewparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        //    }
+
+        private void DisplayParticipants(List<Participants> participants, Activity activity)
         {
             listviewparticipants.Clear();
             listviewparticipants.View = View.Details;
@@ -154,65 +301,52 @@ namespace SomerenUI
         new ColumnHeader { Text = "Student ID" },
         new ColumnHeader { Text = "First Name" },
         new ColumnHeader { Text = "Last Name" },
-       // new ColumnHeader { Text = "Phone Number" },
+      
     });
 
             foreach (Participants participant in participants)
             {
-                var item = new ListViewItem(participant.StudentId.ToString());
-                item.SubItems.AddRange(new[] {
-            participant.FirstName,
-            participant.LastName,
-           // student.TelephoneNumber.ToString(),
-        });
-                item.Tag = participant;
-                listviewparticipants.Items.Add(item);
+                if (participant.StudentId == ((Activity)listviewactivity1.SelectedItems[0].Tag).Id)
+                {
+                    ListViewItem li = new ListViewItem($"{participant.StudentId}");
+
+                   // li.SubItems.Add(participant.StudentId.ToString());
+                    li.SubItems.Add(participant.FirstName);
+                    li.SubItems.Add(participant.LastName);
+                    li.Tag = participant;
+                    listviewparticipants.Items.Add(li);
+                          
+                }
             }
 
             listviewparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+    //    private void DisplayNonParticipants(List<Participants> nonparticipants)
+    //    {
+    //        listviewnonparticipants.Clear();
+    //        listviewnonparticipants.View = View.Details;
+    //        listviewnonparticipants.Columns.AddRange(new[] {
+    //    new ColumnHeader { Text = "Student ID" },
+    //    new ColumnHeader { Text = "First Name" },
+    //    new ColumnHeader { Text = "Last Name" },
+    //   // new ColumnHeader { Text = "Phone Number" },
+    //});
 
-        private void DisplayNonParticipants(List<Participants> nonparticipants)
-        {
-            listviewnonparticipants.Clear();
-            listviewnonparticipants.View = View.Details;
-            listviewnonparticipants.Columns.AddRange(new[] {
-        new ColumnHeader { Text = "Student ID" },
-        new ColumnHeader { Text = "First Name" },
-        new ColumnHeader { Text = "Last Name" },
-       // new ColumnHeader { Text = "Phone Number" },
-    });
+    //        foreach (Participants participant in nonparticipants)
+    //        {
+    //            var item = new ListViewItem(participant.StudentId.ToString());
+    //            item.SubItems.AddRange(new[] {
+    //        participant.FirstName,
+    //        participant.LastName,
+    //       // student.TelephoneNumber.ToString(),
+    //    });
+    //            item.Tag = participant;
+    //            listviewnonparticipants.Items.Add(item);
+    //        }
 
-            foreach (Participants participant in nonparticipants)
-            {
-                var item = new ListViewItem(participant.StudentId.ToString());
-                item.SubItems.AddRange(new[] {
-            participant.FirstName,
-            participant.LastName,
-           // student.TelephoneNumber.ToString(),
-        });
-                item.Tag = participant;
-                listviewnonparticipants.Items.Add(item);
-            }
-
-            listviewnonparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-        }
-        private void Showcashpanel()
-        {
-            ShowPanel(cashpanel);
-
-            try
-            {
-                List<Student> Student1 = GetStudents();
-                DisplayStudent1(Student1);
-                List<Drink> drinks = GetDrinks();
-                DisplayDrinks(drinks, listViewDrinksCashRegister); // Replace with the name of the ListView for the Cash Register panel
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Something went wrong while loading the cash panel: " + e.Message);
-            }
-        }
+    //        listviewnonparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+    //    }
+       
         private void DisplayStudent1(List<Student> Student1)
         {
             listViewStudetnsCashRegister.Clear();
@@ -220,8 +354,7 @@ namespace SomerenUI
             listViewStudetnsCashRegister.Columns.AddRange(new[] {
         new ColumnHeader { Text = "Student ID" },
         new ColumnHeader { Text = "First Name" },
-       // new ColumnHeader { Text = "Last Name" },
-        //new ColumnHeader { Text = "Phone Number" },
+       
         });
 
             foreach (Student student in Student1)
@@ -229,8 +362,7 @@ namespace SomerenUI
                 var item = new ListViewItem(student.Id.ToString());
                 item.SubItems.AddRange(new[] {
                 student.FirstName,
-                    //student.LastName,
-                    //student.TelephoneNumber.ToString(),
+                   
         });
                 item.Tag = student;
                 listViewStudetnsCashRegister.Items.Add(item);
@@ -239,26 +371,8 @@ namespace SomerenUI
             listViewStudetnsCashRegister.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
         }
-        private void ShowTeachersPanel()
-        {
-            ShowPanel(teacherpanel);
-
-            try
-            {
-                List<Teacher> teachers = GetTeachers();
-                DisplayTeachers(teachers);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Something went wrong while loading the teachers: {e.Message}");
-            }
-        }
-
-        private List<Teacher> GetTeachers()
-        {
-            return new LecturersService().GetTeachers();
-        }
-
+       
+       
         private void DisplayTeachers(List<Teacher> teachers)
         {
             listViewteachers.Clear();
@@ -290,29 +404,6 @@ namespace SomerenUI
 
             listViewteachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-
-        private void ShowRoomsPanel()
-        {
-            ShowPanel(roomsPanel);
-
-            try
-            {
-                List<Room> rooms = GetRooms();
-                DisplayRooms(rooms);
-            }
-            catch (Exception e)
-
-
-            {
-                MessageBox.Show($"Something went wrong while loading the rooms: {e.Message}");
-            }
-        }
-
-        private List<Room> GetRooms()
-        {
-            return new RoomService().GetRooms();
-        }
-
         private void DisplayRooms(List<Room> rooms)
         {
             listViewRooms.Clear();
@@ -369,48 +460,6 @@ namespace SomerenUI
             targetListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void ShowActivitiesPanel()
-        {
-            ShowPanel(pnlActivity);
-
-            try
-            {
-                List<Activity> activities = GetActivities();
-                DisplayActivities(activities);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Something went wrong while loading the activities: {e.Message}");
-            }
-        }
-
-        private void ShowDrinksPanel()
-        {
-            ShowPanel(panelDrinks);
-
-            try
-            {
-                List<Drink> drinks = GetDrinks();
-                DisplayDrinks(drinks, listViewdrinks); // Replace with the name of the ListView for the Drinks panel
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Something went wrong while loading the drinks: {e.Message}");
-            }
-        }
-
-
-        private void ShowVATPanel()
-        {
-            ShowPanel(vatPanel);
-        }
-
-
-        private List<Activity> GetActivities()
-        {
-            return new ActivityService().GetActivity();
-        }
-
         private void DisplayActivities(List<Activity> activities)
         {
             lvActivities.Clear();
@@ -434,44 +483,7 @@ namespace SomerenUI
 
             lvActivities.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-
-        private void ShowRevenuePanel()
-        {
-            ShowPanel(pnlRevenueReport);
-
-            try
-            {
-                DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
-                DateTime endDate = monthCalendarEndDate.SelectionRange.End;
-
-                int sales = GetSales(startDate,endDate);
-                double turnover = GetTurnover(startDate, endDate);
-                int nrOfCustomers = GetTotalCustomers(startDate,endDate);
-
-                DisplayReport(sales, turnover, nrOfCustomers);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Something went wrong while loading the revenue report: {e.Message}");
-            }
-        }
-
-
-        private int GetSales(DateTime startDate, DateTime endDate)
-        {
-            return new RevenueReportService().GetSales(startDate, endDate);
-        }
-
-        private double GetTurnover(DateTime startDate, DateTime endDate)
-        {
-            return new RevenueReportService().GetTurnover(startDate, endDate);
-        }
-
-        private int GetTotalCustomers(DateTime startDate, DateTime endDate)
-        {
-            return new RevenueReportService().GetTotalCustomers(startDate, endDate);
-        }
-
+          
         private void DisplayReport(int sales, double turnover, int nrOfCustomers)
         {
             lvRevenueReport.Clear();
@@ -526,6 +538,12 @@ namespace SomerenUI
         {
             ShowDrinksPanel();
         }
+
+        private void vATCalculationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowVATPanel();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -535,6 +553,22 @@ namespace SomerenUI
         {
             Showcashpanel();
         }
+
+        private int GetSales(DateTime startDate, DateTime endDate)
+        {
+            return new RevenueReportService().GetSales(startDate, endDate);
+        }
+
+        private double GetTurnover(DateTime startDate, DateTime endDate)
+        {
+            return new RevenueReportService().GetTurnover(startDate, endDate);
+        }
+
+        private int GetTotalCustomers(DateTime startDate, DateTime endDate)
+        {
+            return new RevenueReportService().GetTotalCustomers(startDate, endDate);
+        }
+
         private void btnCheckout_Click(object sender, EventArgs e)
         {
             if (listViewStudetnsCashRegister.SelectedItems.Count == 0 || listViewDrinksCashRegister.SelectedItems.Count == 0)
@@ -579,12 +613,6 @@ namespace SomerenUI
             lblTotalPrice.Text = $"Total Price: {amountPaid.ToString("C", CultureInfo.CurrentCulture)}";
         }
 
-        private void vATCalculationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowVATPanel();
-        }
-
-
         private void listViewdrinks_MouseClick(object sender, MouseEventArgs e)
         {
             if (listViewdrinks.SelectedItems.Count > 0)
@@ -625,7 +653,6 @@ namespace SomerenUI
             }
         }
 
-
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
             DrinkService drinkService = new DrinkService();
@@ -661,8 +688,6 @@ namespace SomerenUI
             btnAdd.Click -= BtnUpdate_Click; // Remove the Update event handler
             btnAdd.Click += BtnAdd_Click; // Add the Add event handler
         }
-
-
 
         private void BtnRemove_Click(object sender, EventArgs e)
         {
@@ -736,8 +761,6 @@ namespace SomerenUI
 
             DisplayResults(startDate, endDate, lowTariffTotal, highTariffTotal);
         }
-
-
         private void DisplayResults(DateTime startDate, DateTime endDate, decimal lowTariffTotal, decimal highTariffTotal)
         {
             lblQuarterDates.Text = $"Quarter runs from: {startDate.ToString("dd-MM-yyyy")} to: {endDate.ToString("dd-MM-yyyy")}";
@@ -769,5 +792,28 @@ namespace SomerenUI
         {
             Showparticipantspanel();
         }
+
+        private void participantsBtn_Click(object sender, EventArgs e)
+        {
+            ParticipantsService participantsService = new ParticipantsService();
+            // Check if an activity has been selected
+            if (listviewactivity1.SelectedItems.Count > 0)
+            {
+                // Get the selected activity
+                ListViewItem selectedActivity = listviewactivity1.SelectedItems[0];
+                Activity selectedItem = selectedActivity.Tag as Activity;
+
+                // Get the participants for the selected activity
+                List<Participants> participants = GetParticipants(selectedItem);
+
+
+                // Display the participants
+                DisplayParticipants(participants, selectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Please select an activity first.");
+            }
+        }     
     }
 }

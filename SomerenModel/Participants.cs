@@ -14,6 +14,8 @@ namespace SomerenModel
 
         public string LastName;
 
-        public string ActivityName;
+       // public string ActivityName;
+        //public int ParticipantId { get; set; }
+        public int ActivityId { get; set; }
     }
 }
