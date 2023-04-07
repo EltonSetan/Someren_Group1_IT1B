@@ -8,7 +8,6 @@ using SomerenDAL;
 using SomerenLogic;
 using SomerenModel;
 using SomerenService;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using Activities = SomerenModel.Activities;
 
 namespace SomerenUI
