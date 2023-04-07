@@ -9,6 +9,7 @@ using SomerenLogic;
 using SomerenModel;
 using SomerenService;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using Activity = SomerenModel.Activity;
 
 namespace SomerenUI
 {
@@ -23,8 +24,7 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks,cashpanel, vatPanel, pnlRevenueReport, pnlTimetable, pnlParticipants})
-
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks,cashpanel, vatPanel, pnlRevenueReport, pnlTimetable, pnlParticipants, panelSupervisors})
             {
                 panel.Visible = false;
             }
@@ -337,6 +337,87 @@ namespace SomerenUI
                 MessageBox.Show($"Something went wrong while loading the revenue report: {e.Message}");
             }
         }
+		
+        private void ShowSupervisorsPanel()
+        {
+            ShowPanel(panelSupervisors);
+            listViewSupervisors.HideSelection = false;
+            listViewNonSupervisors.HideSelection = false;
+            listViewActivitiesInSupervisors.HideSelection = false;
+            try
+            {
+                List<Teacher> supervisors = GetAllSupervisors();
+                DisplaySupervisors(supervisors);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the supervisors: {e.Message}");
+            }
+            try
+            {
+                List<Activity> activities = GetActivities();
+                ShowActivitiesInSupervisors(activities);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Something went wrong while loading the activities: {e.Message}");
+            }
+        }
+
+        private List<Teacher> GetAllSupervisors()
+        {
+            return new SupervisorService().GetAllSupervisors();
+        }
+
+        private void DisplaySupervisors(List<Teacher> supervisors)
+        {
+            listViewSupervisors.Clear();
+            listViewSupervisors.View = View.Details;
+            listViewSupervisors.Columns.AddRange(new[]
+            {
+        new ColumnHeader { Text = "Lecturer ID" },
+        new ColumnHeader { Text = "First Name" },
+        new ColumnHeader { Text = "Last Name" },
+    });
+
+            foreach (Teacher supervisor in supervisors)
+            {
+                var item = new ListViewItem(supervisor.Id.ToString());
+                item.SubItems.AddRange(new[]
+                {
+            supervisor.Name,
+            supervisor.LastName,
+        });
+                item.Tag = supervisor;
+                listViewSupervisors.Items.Add(item);
+            }
+
+            listViewSupervisors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+        private void ShowActivitiesInSupervisors(List<Activity> activities)
+        {
+            listViewActivitiesInSupervisors.Clear();
+            listViewActivitiesInSupervisors.View = View.Details;
+            listViewActivitiesInSupervisors.Columns.AddRange(new[] {
+        new ColumnHeader { Text = "Activity ID" },
+        new ColumnHeader { Text = "Name" },
+        new ColumnHeader { Text = "Date" },
+    });
+
+            foreach (Activity activity in activities)
+            {
+                var item = new ListViewItem(activity.Id.ToString());
+                item.SubItems.AddRange(new[] {
+            activity.Name,
+            activity.Date,
+        });
+                item.Tag = activity;
+                listViewActivitiesInSupervisors.Items.Add(item);
+            }
+
+            listViewActivitiesInSupervisors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+		
         private int GetSales(DateTime startDate, DateTime endDate)
         {
             return new RevenueReportService().GetSales(startDate, endDate);
@@ -413,6 +494,11 @@ namespace SomerenUI
         private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Showcashpanel();
+        }
+
+        private void supervisorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowSupervisorsPanel();
         }
         private void btnCheckout_Click(object sender, EventArgs e)
         {
@@ -1014,6 +1100,121 @@ namespace SomerenUI
         private void participantsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Showparticipantspanel();
+        }
+        private void addSupervisorButton_Click(object sender, EventArgs e)
+        {
+            if (listViewNonSupervisors.SelectedItems.Count > 0 && listViewActivitiesInSupervisors.SelectedItems.Count > 0)
+            {
+                int lecturerId = int.Parse(listViewNonSupervisors.SelectedItems[0].Text);
+                int activityId = int.Parse(listViewActivitiesInSupervisors.SelectedItems[0].Text);
+
+                SupervisorService activitySupervisorService = new SupervisorService();
+                activitySupervisorService.AddSupervisorToActivity(activityId, lecturerId);
+
+                // Refresh the listViewSupervisors and listViewNonSupervisors
+                RefreshSupervisors(activityId);
+                RefreshNonSupervisors(activityId);
+            }
+        }
+
+        private void removeSupervisorButton_Click(object sender, EventArgs e)
+        {
+            if (listViewSupervisors.SelectedItems.Count > 0 && listViewActivitiesInSupervisors.SelectedItems.Count > 0)
+            {
+                int lecturerId = int.Parse(listViewSupervisors.SelectedItems[0].Text);
+                int activityId = int.Parse(listViewActivitiesInSupervisors.SelectedItems[0].Text);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you wish to remove this supervisor?", "Remove Supervisor", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SupervisorService activitySupervisorService = new SupervisorService();
+                    activitySupervisorService.RemoveSupervisorFromActivity(activityId, lecturerId);
+
+                    // Refresh the listViewSupervisors and listViewNonSupervisors
+                    RefreshSupervisors(activityId);
+                    RefreshNonSupervisors(activityId);
+                }
+            }
+        }
+
+        private void RefreshSupervisors(int activityId)
+        {
+            List<Teacher> supervisors = new SupervisorService().GetSupervisorsForActivity(activityId);
+            DisplaySupervisors(supervisors);
+        }
+
+        private void RefreshNonSupervisors(int activityId)
+        {
+            List<Teacher> nonSupervisors = new SupervisorService().GetNonSupervisorsForActivity(activityId);
+            DisplayNonSupervisors(nonSupervisors);
+        }
+
+        private void listViewSupervisors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Enable the removeSupervisorButton when there's a supervisor selected
+            removeSupervisorButton.Enabled = listViewSupervisors.SelectedItems.Count > 0;
+
+            // Clear the selection of the listViewNonSupervisors to avoid simultaneous selections
+            listViewNonSupervisors.SelectedItems.Clear();
+        }
+
+        private void listViewNonSupervisors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Enable the addSupervisorButton when there's a non-supervisor selected
+            addSupervisorButton.Enabled = listViewNonSupervisors.SelectedItems.Count > 0;
+
+            // Clear the selection of the listViewSupervisors to avoid simultaneous selections
+            listViewSupervisors.SelectedItems.Clear();
+        }
+
+        private void listViewActivitiesInSupervisors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewActivitiesInSupervisors.SelectedItems.Count > 0)
+            {
+                Activity selectedActivity = (Activity)listViewActivitiesInSupervisors.SelectedItems[0].Tag;
+                int activityId = selectedActivity.Id;
+
+                List<Teacher> supervisors = new SupervisorService().GetSupervisorsForActivity(activityId);
+                List<Teacher> nonSupervisors = new SupervisorService().GetNonSupervisorsForActivity(activityId);
+
+                DisplaySupervisors(supervisors);
+                DisplayNonSupervisors(nonSupervisors);
+            }
+        }
+
+
+        // Fetch and display supervisors for the selected activity
+        private void FetchAndDisplaySupervisors(int activityId)
+        {
+            List<Teacher> supervisors = new SupervisorService().GetSupervisorsForActivity(activityId);
+            DisplaySupervisors(supervisors);
+        }
+
+        // Fetch and display non-supervisors for the selected activity
+        private void FetchAndDisplayNonSupervisors(int activityId)
+        {
+            List<Teacher> nonSupervisors = new SupervisorService().GetNonSupervisorsForActivity(activityId);
+            DisplayNonSupervisors(nonSupervisors);
+        }
+
+
+        private void DisplayNonSupervisors(List<Teacher> nonSupervisors)
+        {
+            listViewNonSupervisors.Items.Clear();
+            listViewNonSupervisors.Columns.Clear();
+
+            listViewNonSupervisors.Columns.Add("ID");
+            listViewNonSupervisors.Columns.Add("First Name");
+            listViewNonSupervisors.Columns.Add("Last Name");
+
+            foreach (Teacher teacher in nonSupervisors)
+            {
+                ListViewItem item = new ListViewItem(teacher.Id.ToString());
+                item.SubItems.Add(teacher.Name);
+                item.SubItems.Add(teacher.LastName);
+                listViewNonSupervisors.Items.Add(item);
+            }
+
+            listViewNonSupervisors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
     }
 }

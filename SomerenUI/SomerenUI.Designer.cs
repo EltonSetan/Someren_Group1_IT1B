@@ -206,21 +206,24 @@ namespace SomerenUI
             this.menuStrip1.Size = new System.Drawing.Size(861, 32);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            listViewNonSupervisors = new ListView();
+            listViewActivitiesInSupervisors = new ListView();
+            label4 = new Label();
+            label5 = new Label();
             // 
             // dashboardToolStripMenuItem
             // 
-            this.dashboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dashboardToolStripMenuItem1,
-            this.exitToolStripMenuItem});
-            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
-            this.dashboardToolStripMenuItem.Text = "Application";
+            dashboardToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dashboardToolStripMenuItem1, exitToolStripMenuItem });
+            dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            dashboardToolStripMenuItem.Size = new System.Drawing.Size(85, 21);
+            dashboardToolStripMenuItem.Text = "Application";
             // 
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
             this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
+			this.dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -231,10 +234,10 @@ namespace SomerenUI
             // 
             // studentsToolStripMenuItem
             // 
-            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.studentsToolStripMenuItem.Text = "Students";
-            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
+            studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+            studentsToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
+            studentsToolStripMenuItem.Text = "Students";
+            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
@@ -245,10 +248,10 @@ namespace SomerenUI
             // 
             // activitiesToolStripMenuItem
             // 
-            this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
-            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-            this.activitiesToolStripMenuItem.Text = "Activities";
-            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
+            activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
+            activitiesToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
+            activitiesToolStripMenuItem.Text = "Activities";
+            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
             // 
             // roomsToolStripMenuItem
             // 
@@ -315,6 +318,25 @@ namespace SomerenUI
             this.timetableToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
             this.timetableToolStripMenuItem.Text = "Timetable";
             this.timetableToolStripMenuItem.Click += new System.EventHandler(this.timetableToolStripMenuItem_Click);
+            // 
+            // supervisorsToolStripMenuItem
+            // 
+            supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
+            supervisorsToolStripMenuItem.Size = new System.Drawing.Size(88, 21);
+            supervisorsToolStripMenuItem.Text = "Supervisors";
+            supervisorsToolStripMenuItem.Click += supervisorsToolStripMenuItem_Click;
+            // 
+            // participantsToolStripMenuItem
+            // 
+            participantsToolStripMenuItem.Name = "participantsToolStripMenuItem";
+            participantsToolStripMenuItem.Size = new System.Drawing.Size(87, 21);
+            participantsToolStripMenuItem.Text = "Participants";
+            // 
+            // timetableToolStripMenuItem
+            // 
+            timetableToolStripMenuItem.Name = "timetableToolStripMenuItem";
+            timetableToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
+            timetableToolStripMenuItem.Text = "Timetable";
             // 
             // pnlDashboard
             // 
@@ -1128,8 +1150,36 @@ namespace SomerenUI
             this.pnlRevenueReport.Size = new System.Drawing.Size(1596, 1033);
             this.pnlRevenueReport.TabIndex = 3;
             // 
-            // lblRevenueReportHeader
+            // panelSupervisors
             // 
+            panelSupervisors.Controls.Add(label5);
+            panelSupervisors.Controls.Add(label4);
+            panelSupervisors.Controls.Add(listViewActivitiesInSupervisors);
+            panelSupervisors.Controls.Add(listViewNonSupervisors);
+            panelSupervisors.Controls.Add(removeSupervisorButton);
+            panelSupervisors.Controls.Add(addSupervisorButton);
+            panelSupervisors.Controls.Add(listViewSupervisors);
+            panelSupervisors.Controls.Add(label3);
+            panelSupervisors.Controls.Add(pictureBox2);
+            panelSupervisors.Dock = DockStyle.Fill;
+            panelSupervisors.Location = new System.Drawing.Point(0, 0);
+            panelSupervisors.Margin = new Padding(3, 4, 3, 4);
+            panelSupervisors.Name = "panelSupervisors";
+            panelSupervisors.Size = new System.Drawing.Size(753, 466);
+            panelSupervisors.TabIndex = 3;
+            // 
+            // removeSupervisorButton
+            // 
+			removeSupervisorButton.Location = new System.Drawing.Point(611, 369);
+            removeSupervisorButton.Name = "removeSupervisorButton";
+            removeSupervisorButton.Size = new System.Drawing.Size(130, 25);
+            removeSupervisorButton.TabIndex = 4;
+            removeSupervisorButton.Text = "Remove supervisor";
+            removeSupervisorButton.UseVisualStyleBackColor = true;
+            removeSupervisorButton.Click += removeSupervisorButton_Click;
+			//
+			//lblRevenueReportHeader
+			//
             this.lblRevenueReportHeader.AutoSize = true;
             this.lblRevenueReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblRevenueReportHeader.Location = new System.Drawing.Point(21, 11);
@@ -1138,10 +1188,10 @@ namespace SomerenUI
             this.lblRevenueReportHeader.Size = new System.Drawing.Size(228, 41);
             this.lblRevenueReportHeader.TabIndex = 6;
             this.lblRevenueReportHeader.Text = "Revenue Report";
-            // 
-            // lvRevenueReport
-            // 
-            this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			//
+			//lvRevenueReport
+			//
+			this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lvRevenueReport.Location = new System.Drawing.Point(32, 400);
             this.lvRevenueReport.Margin = new System.Windows.Forms.Padding(2);
             this.lvRevenueReport.MultiSelect = false;
@@ -1150,35 +1200,83 @@ namespace SomerenUI
             this.lvRevenueReport.TabIndex = 5;
             this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
             // 
-            // lblRevenueDateRange
+            // addSupervisorButton
             // 
-            this.lblRevenueDateRange.AutoSize = true;
+            addSupervisorButton.Location = new System.Drawing.Point(373, 369);
+            addSupervisorButton.Name = "addSupervisorButton";
+            addSupervisorButton.Size = new System.Drawing.Size(130, 25);
+            addSupervisorButton.TabIndex = 3;
+            addSupervisorButton.Text = "Add supervisor";
+            addSupervisorButton.UseVisualStyleBackColor = true;
+            addSupervisorButton.Click += addSupervisorButton_Click;
+            //
+			//lblRevenueDateRange
+			//
+			this.lblRevenueDateRange.AutoSize = true;
             this.lblRevenueDateRange.Location = new System.Drawing.Point(32, 380);
             this.lblRevenueDateRange.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRevenueDateRange.Name = "lblRevenueDateRange";
             this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
             this.lblRevenueDateRange.TabIndex = 4;
             this.lblRevenueDateRange.Text = "Revenue Report";
+			// 
+            // listViewSupervisors
             // 
-            // lblChooseEndDate
-            // 
-            this.lblChooseEndDate.AutoSize = true;
+            listViewSupervisors.Location = new System.Drawing.Point(10, 49);
+            listViewSupervisors.Margin = new Padding(1, 3, 1, 3);
+            listViewSupervisors.Name = "listViewSupervisors";
+            listViewSupervisors.Size = new System.Drawing.Size(327, 116);
+            listViewSupervisors.TabIndex = 1;
+            listViewSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewSupervisors.View = View.Details;
+            listViewSupervisors.SelectedIndexChanged += listViewSupervisors_SelectedIndexChanged;
+            listViewSupervisors.Enabled = true;
+            listViewNonSupervisors.Enabled = true;
+            listViewActivitiesInSupervisors.Enabled = true;
+            listViewSupervisors.FullRowSelect = true;
+            listViewNonSupervisors.FullRowSelect = true;
+            listViewActivitiesInSupervisors.FullRowSelect = true;
+            //
+			//lblChooseEndDate
+			//
+			this.lblChooseEndDate.AutoSize = true;
             this.lblChooseEndDate.Location = new System.Drawing.Point(400, 103);
             this.lblChooseEndDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblChooseEndDate.Name = "lblChooseEndDate";
             this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
             this.lblChooseEndDate.TabIndex = 3;
             this.lblChooseEndDate.Text = "Choose an end date";
+			// 
+            // label3
             // 
-            // lblChooseStartDate
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.Location = new System.Drawing.Point(10, 4);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(152, 37);
+            label3.TabIndex = 0;
+            label3.Text = "Supervisors";
             // 
-            this.lblChooseStartDate.AutoSize = true;
+            // pictureBox2
+            // 
+			pictureBox2.Image = Resources.someren;
+            pictureBox2.Location = new System.Drawing.Point(626, 0);
+            pictureBox2.Margin = new Padding(1, 3, 1, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(127, 116);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.TabIndex = 2;
+            pictureBox2.TabStop = false;
+			//
+			//lblChooseStartDate
+			//
+			this.lblChooseStartDate.AutoSize = true;
             this.lblChooseStartDate.Location = new System.Drawing.Point(32, 103);
             this.lblChooseStartDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblChooseStartDate.Name = "lblChooseStartDate";
             this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
             this.lblChooseStartDate.TabIndex = 2;
-            this.lblChooseStartDate.Text = "Choose a start date";
+            this.lblChooseStartDate.Text = "Choose a start date";            
             // 
             // monthCalendarEndDate
             // 
@@ -1225,7 +1323,7 @@ namespace SomerenUI
             this.lblParticipants.Name = "lblParticipants";
             this.lblParticipants.Size = new System.Drawing.Size(137, 20);
             this.lblParticipants.TabIndex = 2;
-            this.lblParticipants.Text = "Participants";
+            this.lblParticipants.Text = "Participants";        
             // 
             // removeParticipantButton
             // 
@@ -1302,6 +1400,48 @@ namespace SomerenUI
             this.listviewactivity1.UseCompatibleStateImageBehavior = false;
             this.listviewactivity1.View = System.Windows.Forms.View.Details;
             // 
+            // listViewNonSupervisors
+            // 
+            listViewNonSupervisors.Location = new System.Drawing.Point(10, 234);
+            listViewNonSupervisors.Margin = new Padding(1, 3, 1, 3);
+            listViewNonSupervisors.Name = "listViewNonSupervisors";
+            listViewNonSupervisors.Size = new System.Drawing.Size(327, 116);
+            listViewNonSupervisors.TabIndex = 5;
+            listViewNonSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewNonSupervisors.View = View.Details;
+            listViewNonSupervisors.SelectedIndexChanged += listViewNonSupervisors_SelectedIndexChanged;
+            // 
+            // listViewActivitiesInSupervisors
+            // 
+            listViewActivitiesInSupervisors.Location = new System.Drawing.Point(370, 129);
+            listViewActivitiesInSupervisors.Margin = new Padding(1, 3, 1, 3);
+            listViewActivitiesInSupervisors.Name = "listViewActivitiesInSupervisors";
+            listViewActivitiesInSupervisors.Size = new System.Drawing.Size(373, 221);
+            listViewActivitiesInSupervisors.TabIndex = 6;
+            listViewActivitiesInSupervisors.UseCompatibleStateImageBehavior = false;
+            listViewActivitiesInSupervisors.View = View.Details;
+            listViewActivitiesInSupervisors.SelectedIndexChanged += listViewActivitiesInSupervisors_SelectedIndexChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(17, 190);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(214, 37);
+            label4.TabIndex = 7;
+            label4.Text = "Non-Supervisors";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.Location = new System.Drawing.Point(370, 79);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(123, 37);
+            label5.TabIndex = 8;
+            label5.Text = "Activities";
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1349,7 +1489,8 @@ namespace SomerenUI
             this.pnlParticipants.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-
+			panelSupervisors.ResumeLayout(false);
+            panelSupervisors.PerformLayout();
         }
         #endregion
 
@@ -1473,5 +1614,15 @@ namespace SomerenUI
         private Button addParticipantButton;
         private Panel pnlParticipants;
         private Label lblParticipants;
+        private Panel panelSupervisors;
+        private ListView listViewSupervisors;
+        private Label label3;
+        private PictureBox pictureBox2;
+        private Button removeSupervisorButton;
+        private Button addSupervisorButton;
+        private Label label5;
+        private Label label4;
+        private ListView listViewActivitiesInSupervisors;
+        private ListView listViewNonSupervisors;
     }
 }
