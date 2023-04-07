@@ -127,6 +127,25 @@ namespace SomerenUI
             this.teacherpanel = new System.Windows.Forms.Panel();
             this.listViewteachers = new System.Windows.Forms.ListView();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.pnlParticipants = new System.Windows.Forms.Panel();
+            this.pnlSupervisors = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listViewActivitiesInSupervisors = new System.Windows.Forms.ListView();
+            this.listViewNonSupervisors = new System.Windows.Forms.ListView();
+            this.removeSupervisorButton = new System.Windows.Forms.Button();
+            this.addSupervisorButton = new System.Windows.Forms.Button();
+            this.listViewSupervisors = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.removeParticipantButton = new System.Windows.Forms.Button();
+            this.addParticipantButton = new System.Windows.Forms.Button();
+            this.nonParticipantsBtn = new System.Windows.Forms.Button();
+            this.participantsBtn = new System.Windows.Forms.Button();
+            this.listviewnonparticipants = new System.Windows.Forms.ListView();
+            this.listviewparticipants = new System.Windows.Forms.ListView();
+            this.listviewactivity1 = new System.Windows.Forms.ListView();
+            this.lblParticipants = new System.Windows.Forms.Label();
             this.pnlTimetable = new System.Windows.Forms.Panel();
             this.datePickerTimetable = new System.Windows.Forms.DateTimePicker();
             this.lblWeekDate = new System.Windows.Forms.Label();
@@ -153,15 +172,6 @@ namespace SomerenUI
             this.lblChooseStartDate = new System.Windows.Forms.Label();
             this.monthCalendarEndDate = new System.Windows.Forms.MonthCalendar();
             this.monthCalendarStartDate = new System.Windows.Forms.MonthCalendar();
-            this.removeParticipantButton = new System.Windows.Forms.Button();
-            this.addParticipantButton = new System.Windows.Forms.Button();
-            this.nonParticipantsBtn = new System.Windows.Forms.Button();
-            this.participantsBtn = new System.Windows.Forms.Button();
-            this.listviewnonparticipants = new System.Windows.Forms.ListView();
-            this.listviewparticipants = new System.Windows.Forms.ListView();
-            this.listviewactivity1 = new System.Windows.Forms.ListView();
-            this.pnlParticipants = new System.Windows.Forms.Panel();
-            this.lblParticipants = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardPictureBox)).BeginInit();
@@ -179,12 +189,14 @@ namespace SomerenUI
             this.pnlActivity.SuspendLayout();
             this.teacherpanel.SuspendLayout();
             this.panelContainer.SuspendLayout();
+            this.pnlParticipants.SuspendLayout();
+            this.pnlSupervisors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlTimetable.SuspendLayout();
             this.panelDrinks.SuspendLayout();
             this.vatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.pnlRevenueReport.SuspendLayout();
-            this.pnlParticipants.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -206,24 +218,22 @@ namespace SomerenUI
             this.menuStrip1.Size = new System.Drawing.Size(861, 32);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            listViewNonSupervisors = new ListView();
-            listViewActivitiesInSupervisors = new ListView();
-            label4 = new Label();
-            label5 = new Label();
             // 
             // dashboardToolStripMenuItem
             // 
-            dashboardToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dashboardToolStripMenuItem1, exitToolStripMenuItem });
-            dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            dashboardToolStripMenuItem.Size = new System.Drawing.Size(85, 21);
-            dashboardToolStripMenuItem.Text = "Application";
+            this.dashboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardToolStripMenuItem1,
+            this.exitToolStripMenuItem});
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
+            this.dashboardToolStripMenuItem.Text = "Application";
             // 
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
             this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
-			this.dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
+            this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -234,10 +244,10 @@ namespace SomerenUI
             // 
             // studentsToolStripMenuItem
             // 
-            studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            studentsToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
-            studentsToolStripMenuItem.Text = "Students";
-            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
+            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.studentsToolStripMenuItem.Text = "Students";
+            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
@@ -248,10 +258,10 @@ namespace SomerenUI
             // 
             // activitiesToolStripMenuItem
             // 
-            activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
-            activitiesToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
-            activitiesToolStripMenuItem.Text = "Activities";
-            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
+            this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
+            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.activitiesToolStripMenuItem.Text = "Activities";
+            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
@@ -304,6 +314,7 @@ namespace SomerenUI
             this.supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
             this.supervisorsToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.supervisorsToolStripMenuItem.Text = "Supervisors";
+            this.supervisorsToolStripMenuItem.Click += new System.EventHandler(this.supervisorsToolStripMenuItem_Click);
             // 
             // participantsToolStripMenuItem
             // 
@@ -318,25 +329,6 @@ namespace SomerenUI
             this.timetableToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
             this.timetableToolStripMenuItem.Text = "Timetable";
             this.timetableToolStripMenuItem.Click += new System.EventHandler(this.timetableToolStripMenuItem_Click);
-            // 
-            // supervisorsToolStripMenuItem
-            // 
-            supervisorsToolStripMenuItem.Name = "supervisorsToolStripMenuItem";
-            supervisorsToolStripMenuItem.Size = new System.Drawing.Size(88, 21);
-            supervisorsToolStripMenuItem.Text = "Supervisors";
-            supervisorsToolStripMenuItem.Click += supervisorsToolStripMenuItem_Click;
-            // 
-            // participantsToolStripMenuItem
-            // 
-            participantsToolStripMenuItem.Name = "participantsToolStripMenuItem";
-            participantsToolStripMenuItem.Size = new System.Drawing.Size(87, 21);
-            participantsToolStripMenuItem.Text = "Participants";
-            // 
-            // timetableToolStripMenuItem
-            // 
-            timetableToolStripMenuItem.Name = "timetableToolStripMenuItem";
-            timetableToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
-            timetableToolStripMenuItem.Text = "Timetable";
             // 
             // pnlDashboard
             // 
@@ -919,6 +911,7 @@ namespace SomerenUI
             // 
             // panelContainer
             // 
+            this.panelContainer.Controls.Add(this.pnlSupervisors);
             this.panelContainer.Controls.Add(this.pnlParticipants);
             this.panelContainer.Controls.Add(this.pnlTimetable);
             this.panelContainer.Controls.Add(this.pnlDashboard);
@@ -936,6 +929,222 @@ namespace SomerenUI
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(861, 548);
             this.panelContainer.TabIndex = 2;
+            // 
+            // pnlParticipants
+            // 
+            this.pnlParticipants.Controls.Add(this.removeParticipantButton);
+            this.pnlParticipants.Controls.Add(this.addParticipantButton);
+            this.pnlParticipants.Controls.Add(this.nonParticipantsBtn);
+            this.pnlParticipants.Controls.Add(this.participantsBtn);
+            this.pnlParticipants.Controls.Add(this.listviewnonparticipants);
+            this.pnlParticipants.Controls.Add(this.listviewparticipants);
+            this.pnlParticipants.Controls.Add(this.listviewactivity1);
+            this.pnlParticipants.Controls.Add(this.lblParticipants);
+            this.pnlParticipants.Location = new System.Drawing.Point(0, 0);
+            this.pnlParticipants.Name = "pnlParticipants";
+            this.pnlParticipants.Size = new System.Drawing.Size(861, 648);
+            this.pnlParticipants.TabIndex = 9;
+            // 
+            // pnlSupervisors
+            // 
+            this.pnlSupervisors.Controls.Add(this.label5);
+            this.pnlSupervisors.Controls.Add(this.label4);
+            this.pnlSupervisors.Controls.Add(this.listViewActivitiesInSupervisors);
+            this.pnlSupervisors.Controls.Add(this.listViewNonSupervisors);
+            this.pnlSupervisors.Controls.Add(this.removeSupervisorButton);
+            this.pnlSupervisors.Controls.Add(this.addSupervisorButton);
+            this.pnlSupervisors.Controls.Add(this.listViewSupervisors);
+            this.pnlSupervisors.Controls.Add(this.label3);
+            this.pnlSupervisors.Controls.Add(this.pictureBox2);
+            this.pnlSupervisors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSupervisors.Location = new System.Drawing.Point(0, 0);
+            this.pnlSupervisors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlSupervisors.Name = "pnlSupervisors";
+            this.pnlSupervisors.Size = new System.Drawing.Size(861, 548);
+            this.pnlSupervisors.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(370, 79);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(135, 41);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Activities";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(17, 190);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(239, 41);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Non-Supervisors";
+            // 
+            // listViewActivitiesInSupervisors
+            // 
+            this.listViewActivitiesInSupervisors.FullRowSelect = true;
+            this.listViewActivitiesInSupervisors.Location = new System.Drawing.Point(370, 129);
+            this.listViewActivitiesInSupervisors.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            this.listViewActivitiesInSupervisors.Name = "listViewActivitiesInSupervisors";
+            this.listViewActivitiesInSupervisors.Size = new System.Drawing.Size(373, 221);
+            this.listViewActivitiesInSupervisors.TabIndex = 6;
+            this.listViewActivitiesInSupervisors.UseCompatibleStateImageBehavior = false;
+            this.listViewActivitiesInSupervisors.View = System.Windows.Forms.View.Details;
+            this.listViewActivitiesInSupervisors.SelectedIndexChanged += new System.EventHandler(this.listViewActivitiesInSupervisors_SelectedIndexChanged);
+            // 
+            // listViewNonSupervisors
+            // 
+            this.listViewNonSupervisors.FullRowSelect = true;
+            this.listViewNonSupervisors.Location = new System.Drawing.Point(10, 234);
+            this.listViewNonSupervisors.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            this.listViewNonSupervisors.Name = "listViewNonSupervisors";
+            this.listViewNonSupervisors.Size = new System.Drawing.Size(327, 116);
+            this.listViewNonSupervisors.TabIndex = 5;
+            this.listViewNonSupervisors.UseCompatibleStateImageBehavior = false;
+            this.listViewNonSupervisors.View = System.Windows.Forms.View.Details;
+            this.listViewNonSupervisors.SelectedIndexChanged += new System.EventHandler(this.listViewNonSupervisors_SelectedIndexChanged);
+            // 
+            // removeSupervisorButton
+            // 
+            this.removeSupervisorButton.Location = new System.Drawing.Point(611, 369);
+            this.removeSupervisorButton.Name = "removeSupervisorButton";
+            this.removeSupervisorButton.Size = new System.Drawing.Size(130, 25);
+            this.removeSupervisorButton.TabIndex = 4;
+            this.removeSupervisorButton.Text = "Remove supervisor";
+            this.removeSupervisorButton.UseVisualStyleBackColor = true;
+            this.removeSupervisorButton.Click += new System.EventHandler(this.removeSupervisorButton_Click);
+            // 
+            // addSupervisorButton
+            // 
+            this.addSupervisorButton.Location = new System.Drawing.Point(373, 369);
+            this.addSupervisorButton.Name = "addSupervisorButton";
+            this.addSupervisorButton.Size = new System.Drawing.Size(130, 25);
+            this.addSupervisorButton.TabIndex = 3;
+            this.addSupervisorButton.Text = "Add supervisor";
+            this.addSupervisorButton.UseVisualStyleBackColor = true;
+            this.addSupervisorButton.Click += new System.EventHandler(this.addSupervisorButton_Click);
+            // 
+            // listViewSupervisors
+            // 
+            this.listViewSupervisors.FullRowSelect = true;
+            this.listViewSupervisors.Location = new System.Drawing.Point(10, 49);
+            this.listViewSupervisors.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            this.listViewSupervisors.Name = "listViewSupervisors";
+            this.listViewSupervisors.Size = new System.Drawing.Size(327, 116);
+            this.listViewSupervisors.TabIndex = 1;
+            this.listViewSupervisors.UseCompatibleStateImageBehavior = false;
+            this.listViewSupervisors.View = System.Windows.Forms.View.Details;
+            this.listViewSupervisors.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisors_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(10, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(170, 41);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Supervisors";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox2.Location = new System.Drawing.Point(626, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(127, 116);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
+            // removeParticipantButton
+            // 
+            this.removeParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.removeParticipantButton.Location = new System.Drawing.Point(480, 461);
+            this.removeParticipantButton.Name = "removeParticipantButton";
+            this.removeParticipantButton.Size = new System.Drawing.Size(281, 34);
+            this.removeParticipantButton.TabIndex = 6;
+            this.removeParticipantButton.Text = "Click here to remove Participant!";
+            this.removeParticipantButton.UseVisualStyleBackColor = false;
+            this.removeParticipantButton.Click += new System.EventHandler(this.removeParticipantButton_Click);
+            // 
+            // addParticipantButton
+            // 
+            this.addParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.addParticipantButton.Location = new System.Drawing.Point(52, 461);
+            this.addParticipantButton.Name = "addParticipantButton";
+            this.addParticipantButton.Size = new System.Drawing.Size(281, 34);
+            this.addParticipantButton.TabIndex = 5;
+            this.addParticipantButton.Text = "Click here to add Participant!";
+            this.addParticipantButton.UseVisualStyleBackColor = false;
+            this.addParticipantButton.Click += new System.EventHandler(this.addParticipantButton_Click);
+            // 
+            // nonParticipantsBtn
+            // 
+            this.nonParticipantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.nonParticipantsBtn.Location = new System.Drawing.Point(483, 241);
+            this.nonParticipantsBtn.Name = "nonParticipantsBtn";
+            this.nonParticipantsBtn.Size = new System.Drawing.Size(190, 34);
+            this.nonParticipantsBtn.TabIndex = 4;
+            this.nonParticipantsBtn.Text = "Non-Participants";
+            this.nonParticipantsBtn.UseVisualStyleBackColor = false;
+            this.nonParticipantsBtn.Click += new System.EventHandler(this.nonParticipantsBtn_Click);
+            // 
+            // participantsBtn
+            // 
+            this.participantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.participantsBtn.Location = new System.Drawing.Point(51, 241);
+            this.participantsBtn.Name = "participantsBtn";
+            this.participantsBtn.Size = new System.Drawing.Size(112, 34);
+            this.participantsBtn.TabIndex = 3;
+            this.participantsBtn.Text = "Participants";
+            this.participantsBtn.UseVisualStyleBackColor = false;
+            this.participantsBtn.Click += new System.EventHandler(this.participantsBtn_Click);
+            // 
+            // listviewnonparticipants
+            // 
+            this.listviewnonparticipants.FullRowSelect = true;
+            this.listviewnonparticipants.GridLines = true;
+            this.listviewnonparticipants.Location = new System.Drawing.Point(483, 281);
+            this.listviewnonparticipants.Name = "listviewnonparticipants";
+            this.listviewnonparticipants.Size = new System.Drawing.Size(362, 156);
+            this.listviewnonparticipants.TabIndex = 2;
+            this.listviewnonparticipants.UseCompatibleStateImageBehavior = false;
+            // 
+            // listviewparticipants
+            // 
+            this.listviewparticipants.FullRowSelect = true;
+            this.listviewparticipants.GridLines = true;
+            this.listviewparticipants.Location = new System.Drawing.Point(51, 281);
+            this.listviewparticipants.Name = "listviewparticipants";
+            this.listviewparticipants.Size = new System.Drawing.Size(397, 156);
+            this.listviewparticipants.TabIndex = 1;
+            this.listviewparticipants.UseCompatibleStateImageBehavior = false;
+            // 
+            // listviewactivity1
+            // 
+            this.listviewactivity1.FullRowSelect = true;
+            this.listviewactivity1.GridLines = true;
+            this.listviewactivity1.Location = new System.Drawing.Point(51, 56);
+            this.listviewactivity1.Name = "listviewactivity1";
+            this.listviewactivity1.Size = new System.Drawing.Size(797, 170);
+            this.listviewactivity1.TabIndex = 0;
+            this.listviewactivity1.UseCompatibleStateImageBehavior = false;
+            this.listviewactivity1.View = System.Windows.Forms.View.Details;
+            // 
+            // lblParticipants
+            // 
+            this.lblParticipants.AutoSize = true;
+            this.lblParticipants.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblParticipants.Location = new System.Drawing.Point(21, 11);
+            this.lblParticipants.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblParticipants.Name = "lblParticipants";
+            this.lblParticipants.Size = new System.Drawing.Size(170, 41);
+            this.lblParticipants.TabIndex = 2;
+            this.lblParticipants.Text = "Participants";
             // 
             // pnlTimetable
             // 
@@ -1150,36 +1359,8 @@ namespace SomerenUI
             this.pnlRevenueReport.Size = new System.Drawing.Size(1596, 1033);
             this.pnlRevenueReport.TabIndex = 3;
             // 
-            // panelSupervisors
+            // lblRevenueReportHeader
             // 
-            panelSupervisors.Controls.Add(label5);
-            panelSupervisors.Controls.Add(label4);
-            panelSupervisors.Controls.Add(listViewActivitiesInSupervisors);
-            panelSupervisors.Controls.Add(listViewNonSupervisors);
-            panelSupervisors.Controls.Add(removeSupervisorButton);
-            panelSupervisors.Controls.Add(addSupervisorButton);
-            panelSupervisors.Controls.Add(listViewSupervisors);
-            panelSupervisors.Controls.Add(label3);
-            panelSupervisors.Controls.Add(pictureBox2);
-            panelSupervisors.Dock = DockStyle.Fill;
-            panelSupervisors.Location = new System.Drawing.Point(0, 0);
-            panelSupervisors.Margin = new Padding(3, 4, 3, 4);
-            panelSupervisors.Name = "panelSupervisors";
-            panelSupervisors.Size = new System.Drawing.Size(753, 466);
-            panelSupervisors.TabIndex = 3;
-            // 
-            // removeSupervisorButton
-            // 
-			removeSupervisorButton.Location = new System.Drawing.Point(611, 369);
-            removeSupervisorButton.Name = "removeSupervisorButton";
-            removeSupervisorButton.Size = new System.Drawing.Size(130, 25);
-            removeSupervisorButton.TabIndex = 4;
-            removeSupervisorButton.Text = "Remove supervisor";
-            removeSupervisorButton.UseVisualStyleBackColor = true;
-            removeSupervisorButton.Click += removeSupervisorButton_Click;
-			//
-			//lblRevenueReportHeader
-			//
             this.lblRevenueReportHeader.AutoSize = true;
             this.lblRevenueReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblRevenueReportHeader.Location = new System.Drawing.Point(21, 11);
@@ -1188,10 +1369,10 @@ namespace SomerenUI
             this.lblRevenueReportHeader.Size = new System.Drawing.Size(228, 41);
             this.lblRevenueReportHeader.TabIndex = 6;
             this.lblRevenueReportHeader.Text = "Revenue Report";
-			//
-			//lvRevenueReport
-			//
-			this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            // 
+            // lvRevenueReport
+            // 
+            this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lvRevenueReport.Location = new System.Drawing.Point(32, 400);
             this.lvRevenueReport.Margin = new System.Windows.Forms.Padding(2);
             this.lvRevenueReport.MultiSelect = false;
@@ -1200,83 +1381,35 @@ namespace SomerenUI
             this.lvRevenueReport.TabIndex = 5;
             this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
             // 
-            // addSupervisorButton
+            // lblRevenueDateRange
             // 
-            addSupervisorButton.Location = new System.Drawing.Point(373, 369);
-            addSupervisorButton.Name = "addSupervisorButton";
-            addSupervisorButton.Size = new System.Drawing.Size(130, 25);
-            addSupervisorButton.TabIndex = 3;
-            addSupervisorButton.Text = "Add supervisor";
-            addSupervisorButton.UseVisualStyleBackColor = true;
-            addSupervisorButton.Click += addSupervisorButton_Click;
-            //
-			//lblRevenueDateRange
-			//
-			this.lblRevenueDateRange.AutoSize = true;
+            this.lblRevenueDateRange.AutoSize = true;
             this.lblRevenueDateRange.Location = new System.Drawing.Point(32, 380);
             this.lblRevenueDateRange.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRevenueDateRange.Name = "lblRevenueDateRange";
             this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
             this.lblRevenueDateRange.TabIndex = 4;
             this.lblRevenueDateRange.Text = "Revenue Report";
-			// 
-            // listViewSupervisors
             // 
-            listViewSupervisors.Location = new System.Drawing.Point(10, 49);
-            listViewSupervisors.Margin = new Padding(1, 3, 1, 3);
-            listViewSupervisors.Name = "listViewSupervisors";
-            listViewSupervisors.Size = new System.Drawing.Size(327, 116);
-            listViewSupervisors.TabIndex = 1;
-            listViewSupervisors.UseCompatibleStateImageBehavior = false;
-            listViewSupervisors.View = View.Details;
-            listViewSupervisors.SelectedIndexChanged += listViewSupervisors_SelectedIndexChanged;
-            listViewSupervisors.Enabled = true;
-            listViewNonSupervisors.Enabled = true;
-            listViewActivitiesInSupervisors.Enabled = true;
-            listViewSupervisors.FullRowSelect = true;
-            listViewNonSupervisors.FullRowSelect = true;
-            listViewActivitiesInSupervisors.FullRowSelect = true;
-            //
-			//lblChooseEndDate
-			//
-			this.lblChooseEndDate.AutoSize = true;
+            // lblChooseEndDate
+            // 
+            this.lblChooseEndDate.AutoSize = true;
             this.lblChooseEndDate.Location = new System.Drawing.Point(400, 103);
             this.lblChooseEndDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblChooseEndDate.Name = "lblChooseEndDate";
             this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
             this.lblChooseEndDate.TabIndex = 3;
             this.lblChooseEndDate.Text = "Choose an end date";
-			// 
-            // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label3.Location = new System.Drawing.Point(10, 4);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(152, 37);
-            label3.TabIndex = 0;
-            label3.Text = "Supervisors";
+            // lblChooseStartDate
             // 
-            // pictureBox2
-            // 
-			pictureBox2.Image = Resources.someren;
-            pictureBox2.Location = new System.Drawing.Point(626, 0);
-            pictureBox2.Margin = new Padding(1, 3, 1, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new System.Drawing.Size(127, 116);
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
-			//
-			//lblChooseStartDate
-			//
-			this.lblChooseStartDate.AutoSize = true;
+            this.lblChooseStartDate.AutoSize = true;
             this.lblChooseStartDate.Location = new System.Drawing.Point(32, 103);
             this.lblChooseStartDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblChooseStartDate.Name = "lblChooseStartDate";
             this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
             this.lblChooseStartDate.TabIndex = 2;
-            this.lblChooseStartDate.Text = "Choose a start date";            
+            this.lblChooseStartDate.Text = "Choose a start date";
             // 
             // monthCalendarEndDate
             // 
@@ -1298,149 +1431,6 @@ namespace SomerenUI
             this.monthCalendarStartDate.ShowTodayCircle = false;
             this.monthCalendarStartDate.TabIndex = 0;
             this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
-            // 
-            // pnlParticipants
-            // 
-            this.pnlParticipants.Controls.Add(this.removeParticipantButton);
-            this.pnlParticipants.Controls.Add(this.addParticipantButton);
-            this.pnlParticipants.Controls.Add(this.nonParticipantsBtn);
-            this.pnlParticipants.Controls.Add(this.participantsBtn);
-            this.pnlParticipants.Controls.Add(this.listviewnonparticipants);
-            this.pnlParticipants.Controls.Add(this.listviewparticipants);
-            this.pnlParticipants.Controls.Add(this.listviewactivity1);
-            this.pnlParticipants.Controls.Add(this.lblParticipants);
-            this.pnlParticipants.Location = new System.Drawing.Point(0, 0);
-            this.pnlParticipants.Name = "pnlParticipants";
-            this.pnlParticipants.Size = new System.Drawing.Size(861, 648);
-            this.pnlParticipants.TabIndex = 9;
-            //
-            //lblParticipants
-            //
-            this.lblParticipants.AutoSize = true;
-            this.lblParticipants.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblParticipants.Location = new System.Drawing.Point(21,11);
-            this.lblParticipants.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblParticipants.Name = "lblParticipants";
-            this.lblParticipants.Size = new System.Drawing.Size(137, 20);
-            this.lblParticipants.TabIndex = 2;
-            this.lblParticipants.Text = "Participants";        
-            // 
-            // removeParticipantButton
-            // 
-            this.removeParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.removeParticipantButton.Location = new System.Drawing.Point(480, 461);
-            this.removeParticipantButton.Name = "removeParticipantButton";
-            this.removeParticipantButton.Size = new System.Drawing.Size(281, 34);
-            this.removeParticipantButton.TabIndex = 6;
-            this.removeParticipantButton.Text = "Click here to remove Participant!";
-            this.removeParticipantButton.UseVisualStyleBackColor = false;
-            this.removeParticipantButton.Click += new System.EventHandler(this.removeParticipantButton_Click);
-            // 
-            // addParticipantButton
-            // 
-            this.addParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.addParticipantButton.Location = new System.Drawing.Point(52, 461);
-            this.addParticipantButton.Name = "addParticipantButton";
-            this.addParticipantButton.Size = new System.Drawing.Size(281, 34);
-            this.addParticipantButton.TabIndex = 5;
-            this.addParticipantButton.Text = "Click here to add Participant!";
-            this.addParticipantButton.UseVisualStyleBackColor = false;
-            this.addParticipantButton.Click += new System.EventHandler(this.addParticipantButton_Click);
-            // 
-            // nonParticipantsBtn
-            // 
-            this.nonParticipantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nonParticipantsBtn.Location = new System.Drawing.Point(483, 241);
-            this.nonParticipantsBtn.Name = "nonParticipantsBtn";
-            this.nonParticipantsBtn.Size = new System.Drawing.Size(190, 34);
-            this.nonParticipantsBtn.TabIndex = 4;
-            this.nonParticipantsBtn.Text = "Non-Participants";
-            this.nonParticipantsBtn.UseVisualStyleBackColor = false;
-            this.nonParticipantsBtn.Click += new System.EventHandler(this.nonParticipantsBtn_Click);
-            // 
-            // participantsBtn
-            // 
-            this.participantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.participantsBtn.Location = new System.Drawing.Point(51, 241);
-            this.participantsBtn.Name = "participantsBtn";
-            this.participantsBtn.Size = new System.Drawing.Size(112, 34);
-            this.participantsBtn.TabIndex = 3;
-            this.participantsBtn.Text = "Participants";
-            this.participantsBtn.UseVisualStyleBackColor = false;
-            this.participantsBtn.Click += new System.EventHandler(this.participantsBtn_Click);
-            // 
-            // listviewnonparticipants
-            // 
-            this.listviewnonparticipants.FullRowSelect = true;
-            this.listviewnonparticipants.GridLines = true;
-            this.listviewnonparticipants.Location = new System.Drawing.Point(483, 281);
-            this.listviewnonparticipants.Name = "listviewnonparticipants";
-            this.listviewnonparticipants.Size = new System.Drawing.Size(362, 156);
-            this.listviewnonparticipants.TabIndex = 2;
-            this.listviewnonparticipants.UseCompatibleStateImageBehavior = false;
-            // 
-            // listviewparticipants
-            // 
-            this.listviewparticipants.FullRowSelect = true;
-            this.listviewparticipants.GridLines = true;
-            this.listviewparticipants.Location = new System.Drawing.Point(51, 281);
-            this.listviewparticipants.Name = "listviewparticipants";
-            this.listviewparticipants.Size = new System.Drawing.Size(397, 156);
-            this.listviewparticipants.TabIndex = 1;
-            this.listviewparticipants.UseCompatibleStateImageBehavior = false;
-            // 
-            // listviewactivity1
-            // 
-            this.listviewactivity1.FullRowSelect = true;
-            this.listviewactivity1.GridLines = true;
-            this.listviewactivity1.Location = new System.Drawing.Point(51, 56);
-            this.listviewactivity1.Name = "listviewactivity1";
-            this.listviewactivity1.Size = new System.Drawing.Size(797, 170);
-            this.listviewactivity1.TabIndex = 0;
-            this.listviewactivity1.UseCompatibleStateImageBehavior = false;
-            this.listviewactivity1.View = System.Windows.Forms.View.Details;
-            // 
-            // listViewNonSupervisors
-            // 
-            listViewNonSupervisors.Location = new System.Drawing.Point(10, 234);
-            listViewNonSupervisors.Margin = new Padding(1, 3, 1, 3);
-            listViewNonSupervisors.Name = "listViewNonSupervisors";
-            listViewNonSupervisors.Size = new System.Drawing.Size(327, 116);
-            listViewNonSupervisors.TabIndex = 5;
-            listViewNonSupervisors.UseCompatibleStateImageBehavior = false;
-            listViewNonSupervisors.View = View.Details;
-            listViewNonSupervisors.SelectedIndexChanged += listViewNonSupervisors_SelectedIndexChanged;
-            // 
-            // listViewActivitiesInSupervisors
-            // 
-            listViewActivitiesInSupervisors.Location = new System.Drawing.Point(370, 129);
-            listViewActivitiesInSupervisors.Margin = new Padding(1, 3, 1, 3);
-            listViewActivitiesInSupervisors.Name = "listViewActivitiesInSupervisors";
-            listViewActivitiesInSupervisors.Size = new System.Drawing.Size(373, 221);
-            listViewActivitiesInSupervisors.TabIndex = 6;
-            listViewActivitiesInSupervisors.UseCompatibleStateImageBehavior = false;
-            listViewActivitiesInSupervisors.View = View.Details;
-            listViewActivitiesInSupervisors.SelectedIndexChanged += listViewActivitiesInSupervisors_SelectedIndexChanged;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label4.Location = new System.Drawing.Point(17, 190);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(214, 37);
-            label4.TabIndex = 7;
-            label4.Text = "Non-Supervisors";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label5.Location = new System.Drawing.Point(370, 79);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(123, 37);
-            label5.TabIndex = 8;
-            label5.Text = "Activities";
             // 
             // SomerenUI
             // 
@@ -1477,6 +1467,11 @@ namespace SomerenUI
             this.teacherpanel.ResumeLayout(false);
             this.teacherpanel.PerformLayout();
             this.panelContainer.ResumeLayout(false);
+            this.pnlParticipants.ResumeLayout(false);
+            this.pnlParticipants.PerformLayout();
+            this.pnlSupervisors.ResumeLayout(false);
+            this.pnlSupervisors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnlTimetable.ResumeLayout(false);
             this.pnlTimetable.PerformLayout();
             this.panelDrinks.ResumeLayout(false);
@@ -1486,11 +1481,9 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.pnlRevenueReport.ResumeLayout(false);
             this.pnlRevenueReport.PerformLayout();
-            this.pnlParticipants.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-			panelSupervisors.ResumeLayout(false);
-            panelSupervisors.PerformLayout();
+
         }
         #endregion
 
@@ -1614,7 +1607,6 @@ namespace SomerenUI
         private Button addParticipantButton;
         private Panel pnlParticipants;
         private Label lblParticipants;
-        private Panel panelSupervisors;
         private ListView listViewSupervisors;
         private Label label3;
         private PictureBox pictureBox2;
@@ -1624,5 +1616,6 @@ namespace SomerenUI
         private Label label4;
         private ListView listViewActivitiesInSupervisors;
         private ListView listViewNonSupervisors;
+        private Panel pnlSupervisors;
     }
 }

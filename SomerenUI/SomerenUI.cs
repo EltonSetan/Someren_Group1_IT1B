@@ -9,7 +9,7 @@ using SomerenLogic;
 using SomerenModel;
 using SomerenService;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
-using Activity = SomerenModel.Activity;
+using Activities = SomerenModel.Activities;
 
 namespace SomerenUI
 {
@@ -24,7 +24,7 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks,cashpanel, vatPanel, pnlRevenueReport, pnlTimetable, pnlParticipants, panelSupervisors})
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks,cashpanel, vatPanel, pnlRevenueReport, pnlTimetable, pnlParticipants, pnlSupervisors })
             {
                 panel.Visible = false;
             }
@@ -340,7 +340,7 @@ namespace SomerenUI
 		
         private void ShowSupervisorsPanel()
         {
-            ShowPanel(panelSupervisors);
+            ShowPanel(pnlSupervisors);
             listViewSupervisors.HideSelection = false;
             listViewNonSupervisors.HideSelection = false;
             listViewActivitiesInSupervisors.HideSelection = false;
@@ -355,7 +355,7 @@ namespace SomerenUI
             }
             try
             {
-                List<Activity> activities = GetActivities();
+                List<Activities> activities = GetActivities();
                 ShowActivitiesInSupervisors(activities);
             }
             catch (Exception e)
@@ -375,42 +375,42 @@ namespace SomerenUI
             listViewSupervisors.View = View.Details;
             listViewSupervisors.Columns.AddRange(new[]
             {
-        new ColumnHeader { Text = "Lecturer ID" },
-        new ColumnHeader { Text = "First Name" },
-        new ColumnHeader { Text = "Last Name" },
-    });
+                new ColumnHeader { Text = "Lecturer ID" },
+                new ColumnHeader { Text = "First Name" },
+                new ColumnHeader { Text = "Last Name" },
+            });
 
             foreach (Teacher supervisor in supervisors)
             {
                 var item = new ListViewItem(supervisor.Id.ToString());
                 item.SubItems.AddRange(new[]
                 {
-            supervisor.Name,
-            supervisor.LastName,
-        });
+                    supervisor.Name,
+                    supervisor.LastName,
+                });
                 item.Tag = supervisor;
                 listViewSupervisors.Items.Add(item);
             }
 
             listViewSupervisors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-        private void ShowActivitiesInSupervisors(List<Activity> activities)
+        private void ShowActivitiesInSupervisors(List<Activities> activities)
         {
             listViewActivitiesInSupervisors.Clear();
             listViewActivitiesInSupervisors.View = View.Details;
             listViewActivitiesInSupervisors.Columns.AddRange(new[] {
-        new ColumnHeader { Text = "Activity ID" },
-        new ColumnHeader { Text = "Name" },
-        new ColumnHeader { Text = "Date" },
-    });
+                new ColumnHeader { Text = "Activity ID" },
+                new ColumnHeader { Text = "Name" },
+                new ColumnHeader { Text = "Date" },
+            });
 
-            foreach (Activity activity in activities)
+            foreach (Activities activity in activities)
             {
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
-            activity.Name,
-            activity.Date,
-        });
+                    activity.Name,
+                    activity.Date,
+                });
                 item.Tag = activity;
                 listViewActivitiesInSupervisors.Items.Add(item);
             }
@@ -439,10 +439,10 @@ namespace SomerenUI
             lvRevenueReport.Clear();
             lvRevenueReport.View = View.Details;
             lvRevenueReport.Columns.AddRange(new[] {
-            new ColumnHeader { Text = "Sales" },
-            new ColumnHeader { Text = "Turnover" },
-            new ColumnHeader { Text = "Number of Customers"}
-        });
+                new ColumnHeader { Text = "Sales" },
+                new ColumnHeader { Text = "Turnover" },
+                new ColumnHeader { Text = "Number of Customers"}
+            });
             List<double> report = new List<double>();
             report.Add(sales);
             report.Add(turnover);
@@ -1170,7 +1170,7 @@ namespace SomerenUI
         {
             if (listViewActivitiesInSupervisors.SelectedItems.Count > 0)
             {
-                Activity selectedActivity = (Activity)listViewActivitiesInSupervisors.SelectedItems[0].Tag;
+                Activities selectedActivity = (Activities)listViewActivitiesInSupervisors.SelectedItems[0].Tag;
                 int activityId = selectedActivity.Id;
 
                 List<Teacher> supervisors = new SupervisorService().GetSupervisorsForActivity(activityId);

@@ -12,8 +12,8 @@ namespace SomerenDAL
         {
             string query = @"SELECT l.LecturerId, l.FirstName, l.LastName
                              FROM dbo.Supervise s
-                             INNER JOIN dbo.Lecturer l ON s.LecturerId = l.LecturerId
-                             WHERE s.ActivityId = @ActivityId AND l.isSupervisor = 'Yes'";
+                             JOIN dbo.Lecturer l ON s.LecturerId = l.LecturerId
+                             WHERE s.ActivityId = @ActivityId";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("@ActivityId", activityId)
@@ -70,8 +70,8 @@ namespace SomerenDAL
                      WHERE ActivityId = @ActivityId AND LecturerId = @LecturerId";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
-        new SqlParameter("@ActivityId", activityId),
-        new SqlParameter("@LecturerId", lecturerId)
+                new SqlParameter("@ActivityId", activityId),
+                new SqlParameter("@LecturerId", lecturerId)
             };
             ExecuteEditQuery(query, sqlParameters);
         }
