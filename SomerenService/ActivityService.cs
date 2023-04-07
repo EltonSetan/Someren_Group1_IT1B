@@ -13,10 +13,23 @@ namespace SomerenService
             activitydb = new ActivityDao();
         }
 
-        public List<Activity> GetActivity()
+        public List<Activities> GetActivity()
         {
-            List<Activity> activities = activitydb.GetAllActivities();
+            List<Activities> activities = activitydb.GetAllActivities();
             return activities;
         }
+        public void AddActivity(Activities activities)
+        {
+            activitydb.Add(activities);
+        }
+        public void UpdateActivity(Activities activities)
+        {
+            activitydb.Update(activities);
+        }
+        public void DeleteActivity(Activities activities)
+        {
+            activitydb.Delete(activities);
+        }
+
     }
 }

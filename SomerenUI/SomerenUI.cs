@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -266,7 +267,7 @@ namespace SomerenUI
 
             try
             {
-                List<Activity> activities = GetActivities();
+                List<Activities> activities = GetActivities();
                 DisplayActivities(activities);
             }
             catch (Exception e)
@@ -297,12 +298,12 @@ namespace SomerenUI
         }
 
 
-        private List<Activity> GetActivities()
+        private List<Activities> GetActivities()
         {
             return new ActivityService().GetActivity();
         }
 
-        private void DisplayActivities(List<Activity> activities)
+        private void DisplayActivities(List<Activities> activities)
         {
             lvActivities.Clear();
             lvActivities.View = View.Details;
@@ -310,14 +311,17 @@ namespace SomerenUI
         new ColumnHeader { Text = "Activity ID" },
         new ColumnHeader { Text = "Name" },
         new ColumnHeader { Text = "Date" },
+        new ColumnHeader { Text = "End Time" },
     });
 
-            foreach (Activity activity in activities)
+            foreach (Activities activity in activities)
             {
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
-            activity.Name,
-            activity.Date,
+                activity.Name.ToString(),
+                activity.Date.ToString(),
+                activity.EndTime.ToString(),
+
         });
                 item.Tag = activity;
                 lvActivities.Items.Add(item);
@@ -335,9 +339,9 @@ namespace SomerenUI
                 DateTime startDate = monthCalendarStartDate.SelectionRange.Start;
                 DateTime endDate = monthCalendarEndDate.SelectionRange.End;
 
-                int sales = GetSales(startDate,endDate);
+                int sales = GetSales(startDate, endDate);
                 double turnover = GetTurnover(startDate, endDate);
-                int nrOfCustomers = GetTotalCustomers(startDate,endDate);
+                int nrOfCustomers = GetTotalCustomers(startDate, endDate);
 
                 DisplayReport(sales, turnover, nrOfCustomers);
             }
@@ -387,7 +391,7 @@ namespace SomerenUI
 
             lvRevenueReport.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-        
+
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ShowDashboardPanel();
@@ -654,6 +658,54 @@ namespace SomerenUI
             DateTime endDate = monthCalendarEndDate.SelectionRange.Start;
             lblRevenueDateRange.Text = $"Revenue Report from {monthCalendarStartDate.SelectionRange.Start.ToString("dd/MM/yyyy")} to {endDate.ToString("dd/MM/yyyy")}";
             ShowRevenuePanel();
+        }
+
+        private void lvActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAd_Click(object sender, EventArgs e)
+        {
+            Activities activity = new Activities()
+            {
+                Id = int.Parse(txtActivityID.Text),
+                Name = txtName.Text,
+                Date = txtDate.Text,
+                EndTime = DateTime.Parse(txtEndTime.Text),
+
+            };
+            activityService.AddActivity(activity);
+        }
+        ActivityService activityService = new ActivityService();
+
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            //ShowActivitiesPanel();
+            txtActivityID.Text = " ";
+            txtName.Text = " ";
+            txtDate.Text = " ";
+            txtEndTime.Text = " ";
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
+
+            selectedActivity.Id = int.Parse(txtActivityID.Text);
+            selectedActivity.Name = txtName.Text;
+            selectedActivity.Date = txtDate.Text;
+            selectedActivity.EndTime = DateTime.Parse(txtEndTime.Text);
+            activityService.UpdateActivity(selectedActivity);
+
+        }
+
+        private void btnRemo_Click(object sender, EventArgs e)
+        {
+            Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
+            activityService.DeleteActivity(selectedActivity);
+            DisplayActivities(activityService.GetActivity());
         }
     }
 }
