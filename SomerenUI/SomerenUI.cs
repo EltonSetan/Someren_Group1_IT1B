@@ -1180,22 +1180,6 @@ namespace SomerenUI
             }
         }
 
-
-        // Fetch and display supervisors for the selected activity
-        private void FetchAndDisplaySupervisors(int activityId)
-        {
-            List<Teacher> supervisors = new SupervisorService().GetSupervisorsForActivity(activityId);
-            DisplaySupervisors(supervisors);
-        }
-
-        // Fetch and display non-supervisors for the selected activity
-        private void FetchAndDisplayNonSupervisors(int activityId)
-        {
-            List<Teacher> nonSupervisors = new SupervisorService().GetNonSupervisorsForActivity(activityId);
-            DisplayNonSupervisors(nonSupervisors);
-        }
-
-
         private void DisplayNonSupervisors(List<Teacher> nonSupervisors)
         {
             listViewNonSupervisors.Items.Clear();
