@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -267,7 +268,7 @@ namespace SomerenUI
 
             try
             {
-                List<Activity> activities = GetActivities();
+                List<Activities> activities = GetActivities();
                 DisplayActivities(activities);
             }
             catch (Exception e)
@@ -298,12 +299,12 @@ namespace SomerenUI
         }
 
 
-        private List<Activity> GetActivities()
+        private List<Activities> GetActivities()
         {
             return new ActivityService().GetActivity();
         }
 
-        private void DisplayActivities(List<Activity> activities)
+        private void DisplayActivities(List<Activities> activities)
         {
             lvActivities.Clear();
             lvActivities.View = View.Details;
@@ -311,14 +312,17 @@ namespace SomerenUI
         new ColumnHeader { Text = "Activity ID" },
         new ColumnHeader { Text = "Name" },
         new ColumnHeader { Text = "Date" },
+        new ColumnHeader { Text = "End Time" },
     });
 
-            foreach (Activity activity in activities)
+            foreach (Activities activity in activities)
             {
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
-            activity.Name,
-            activity.Date,
+                activity.Name.ToString(),
+                activity.Date.ToString(),
+                activity.EndTime.ToString(),
+
         });
                 item.Tag = activity;
                 lvActivities.Items.Add(item);
@@ -724,6 +728,116 @@ namespace SomerenUI
             pnlThursday.Controls.Clear();
             pnlFriday.Controls.Clear();
             ShowTimetablePanel();
+		}
+		
+        private void lvActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+
+            if (lvActivities.SelectedItems.Count > 0)
+            {
+
+                ListViewItem selectedItem = lvActivities.SelectedItems[0];
+                int id = int.Parse(selectedItem.SubItems[0].Text);
+                Activities selectedActivity = selectedItem.Tag as Activities;
+
+                txtActivityID.Text = selectedActivity.Id.ToString();
+                txtName.Text = selectedActivity.Name;
+                txtDate.Text =selectedActivity.Date;
+                txtEndTime.Text = selectedActivity.EndTime.ToString(); 
+                
+                // Change the Add button to Update
+                btnAd.Text = "Change";
+                btnAd.Click -= btnAd_Click; // Remove the Add event handler
+                btnAd.Click += btnChange_Click; // Add the Update event handler
+            }
+            else
+            {
+                // Clear input fields
+                txtActivityID.Clear();
+                txtName.Clear();
+                txtStock.Clear();
+                txtDate.Clear();
+                txtEndTime.Clear();
+
+                // Change the Update button back to Add if it's not already "Add"
+                if (btnAd.Text != "Add")
+                {
+                    btnAd.Text = "Add";
+                    btnAd.Click -= btnChange_Click; // Remove the Update event handler
+                    btnAd.Click += btnAd_Click; // Add the Add event handler
+                }
+            }
+        }
+
+        private void btnAd_Click(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+            
+            try
+            {
+                Activities activity = new Activities()
+                {
+                    Id = int.Parse(txtActivityID.Text),
+                    Name = txtName.Text,
+                    Date = txtDate.Text,
+                    EndTime = DateTime.Parse(txtEndTime.Text),
+
+                };
+                activityService.AddActivity(activity);
+                DisplayActivities(activityService.GetActivity());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"Please use the correct format and fill in all fields.");
+            }
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+            Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
+
+            try
+            {
+                selectedActivity.Id = int.Parse(txtActivityID.Text);
+                selectedActivity.Name = txtName.Text;
+                selectedActivity.Date = txtDate.Text;
+                selectedActivity.EndTime = DateTime.Parse(txtEndTime.Text);
+                activityService.UpdateActivity(selectedActivity);
+                DisplayActivities(activityService.GetActivity());
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show($"Please use the correct format and fill in all fields.");
+            }
+
+            // Clear input fields after updating the activity
+            txtActivityID.Clear();
+            txtName.Clear();
+            txtDate.Clear();
+            txtEndTime.Clear();
+            
+
+            // Change the Update button back to Add
+            btnAd.Text = "Add";
+            btnAd.Click -= btnChange_Click; // Remove the Update event handler
+            btnAd.Click += btnAd_Click; // Add the Add event handler
+
+        }
+
+        private void btnRemo_Click(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+
+            DialogResult result = MessageBox.Show("Are you sure you want to remove this activity?","Confirm removal", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
+                activityService.DeleteActivity(selectedActivity);
+                DisplayActivities(activityService.GetActivity());
+            }
         }
     }
 }

@@ -115,6 +115,17 @@ namespace SomerenUI
             this.Date = new System.Windows.Forms.ColumnHeader();
             this.lvActivities = new System.Windows.Forms.ListView();
             this.pnlActivity = new System.Windows.Forms.Panel();
+			txtEndTime = new TextBox();
+            txtDate = new TextBox();
+            txtName = new TextBox();
+            txtActivityID = new TextBox();
+            lblEndTime = new Label();
+            lblDate = new Label();
+            lblName = new Label();
+            lblActivityID = new Label();
+            btnChange = new Button();
+            btnRemo = new Button();
+            btnAd = new Button();
             this.lblActivity = new System.Windows.Forms.Label();
             this.teacherpanel = new System.Windows.Forms.Panel();
             this.listViewteachers = new System.Windows.Forms.ListView();
@@ -191,19 +202,17 @@ namespace SomerenUI
             // 
             // dashboardToolStripMenuItem
             // 
-            this.dashboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dashboardToolStripMenuItem1,
-            this.exitToolStripMenuItem});
-            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
-            this.dashboardToolStripMenuItem.Text = "Application";
+            dashboardToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dashboardToolStripMenuItem1, exitToolStripMenuItem });
+            dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            dashboardToolStripMenuItem.Size = new System.Drawing.Size(176, 42);
+            dashboardToolStripMenuItem.Text = "Application";
             // 
             // dashboardToolStripMenuItem1
             // 
-            this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
-            this.dashboardToolStripMenuItem1.Text = "Dashboard";
-            this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
+            dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
+            dashboardToolStripMenuItem1.Size = new System.Drawing.Size(287, 46);
+            dashboardToolStripMenuItem1.Text = "Dashboard";
+            dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -214,10 +223,10 @@ namespace SomerenUI
             // 
             // studentsToolStripMenuItem
             // 
-            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.studentsToolStripMenuItem.Text = "Students";
-            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
+            studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+            studentsToolStripMenuItem.Size = new System.Drawing.Size(144, 42);
+            studentsToolStripMenuItem.Text = "Students";
+            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
             // 
             // lecturersToolStripMenuItem
             // 
@@ -228,10 +237,10 @@ namespace SomerenUI
             // 
             // activitiesToolStripMenuItem
             // 
-            this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
-            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-            this.activitiesToolStripMenuItem.Text = "Activities";
-            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
+            activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
+            activitiesToolStripMenuItem.Size = new System.Drawing.Size(147, 42);
+            activitiesToolStripMenuItem.Text = "Activities";
+            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
             // 
             // roomsToolStripMenuItem
             // 
@@ -721,21 +730,6 @@ namespace SomerenUI
             this.lecturersLabel.TabIndex = 0;
             this.lecturersLabel.Text = "Lecturers";
             // 
-            // Id
-            // 
-            this.Id.Text = "Id";
-            this.Id.Width = 50;
-            // 
-            // Activity
-            // 
-            this.Activity.Text = "Activity";
-            this.Activity.Width = 200;
-            // 
-            // Date
-            // 
-            this.Date.Text = "Date";
-            this.Date.Width = 100;
-            // 
             // lvActivities
             // 
             this.lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -751,21 +745,116 @@ namespace SomerenUI
             this.lvActivities.TabIndex = 1;
             this.lvActivities.UseCompatibleStateImageBehavior = false;
             this.lvActivities.View = System.Windows.Forms.View.Details;
+			lvActivities.SelectedIndexChanged += new EventHandler(lvActivities_SelectedIndexChanged);
             // 
             // pnlActivity
             // 
-            this.pnlActivity.Controls.Add(this.lvActivities);
-            this.pnlActivity.Controls.Add(this.lblActivity);
-            this.pnlActivity.Controls.Add(this.activitiesPictureBox);
-            this.pnlActivity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlActivity.Location = new System.Drawing.Point(0, 0);
-            this.pnlActivity.Margin = new System.Windows.Forms.Padding(1);
-            this.pnlActivity.Name = "pnlActivity";
-            this.pnlActivity.Size = new System.Drawing.Size(861, 548);
-            this.pnlActivity.TabIndex = 4;
+            pnlActivity.Controls.Add(txtEndTime);
+            pnlActivity.Controls.Add(txtDate);
+            pnlActivity.Controls.Add(txtName);
+            pnlActivity.Controls.Add(txtActivityID);
+            pnlActivity.Controls.Add(lblEndTime);
+            pnlActivity.Controls.Add(lblDate);
+            pnlActivity.Controls.Add(lblName);
+            pnlActivity.Controls.Add(lblActivityID);
+            pnlActivity.Controls.Add(btnRemo);
+            pnlActivity.Controls.Add(btnAd);
+            pnlActivity.Controls.Add(lvActivities);
+            pnlActivity.Controls.Add(lblActivity);
+            pnlActivity.Controls.Add(activitiesPictureBox);
+            pnlActivity.Dock = DockStyle.Fill;
+            pnlActivity.Location = new System.Drawing.Point(0, 56);
+            pnlActivity.Margin = new Padding(2);
+            pnlActivity.Name = "pnlActivity";
+            pnlActivity.Size = new System.Drawing.Size(1614, 1046);
+            pnlActivity.TabIndex = 4;
+            // 
+            // txtEndTime
+            // 
+            txtEndTime.Location = new System.Drawing.Point(1275, 862);
+            txtEndTime.Name = "txtEndTime";
+            txtEndTime.Size = new System.Drawing.Size(200, 45);
+            txtEndTime.TabIndex = 14;
+            // 
+            // txtDate
+            // 
+            txtDate.Location = new System.Drawing.Point(891, 858);
+            txtDate.Name = "txtDate";
+            txtDate.Size = new System.Drawing.Size(200, 45);
+            txtDate.TabIndex = 13;
+            // 
+            // txtName
+            // 
+            txtName.Location = new System.Drawing.Point(538, 855);
+            txtName.Name = "txtName";
+            txtName.Size = new System.Drawing.Size(200, 45);
+            txtName.TabIndex = 12;
+            // 
+            // txtActivityID
+            // 
+            txtActivityID.Location = new System.Drawing.Point(169, 861);
+            txtActivityID.Name = "txtActivityID";
+            txtActivityID.Size = new System.Drawing.Size(200, 45);
+            txtActivityID.TabIndex = 11;
+            // 
+            // lblEndTime
+            // 
+            lblEndTime.AutoSize = true;
+            lblEndTime.Location = new System.Drawing.Point(1119, 858);
+            lblEndTime.Name = "lblEndTime";
+            lblEndTime.Size = new System.Drawing.Size(132, 38);
+            lblEndTime.TabIndex = 10;
+            lblEndTime.Text = "End Time";
+            // 
+            // lblDate
+            // 
+            lblDate.AutoSize = true;
+            lblDate.Location = new System.Drawing.Point(799, 862);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new System.Drawing.Size(75, 38);
+            lblDate.TabIndex = 9;
+            lblDate.Text = "Date";
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Location = new System.Drawing.Point(441, 861);
+            lblName.Name = "lblName";
+            lblName.Size = new System.Drawing.Size(91, 38);
+            lblName.TabIndex = 8;
+            lblName.Text = "Name";
+            // 
+            // lblActivityID
+            // 
+            lblActivityID.AutoSize = true;
+            lblActivityID.Location = new System.Drawing.Point(32, 849);
+            lblActivityID.Name = "lblActivityID";
+            lblActivityID.Size = new System.Drawing.Size(142, 38);
+            lblActivityID.TabIndex = 7;
+            lblActivityID.Text = "Activity ID";
+            // 
+            // btnRemo
+            // 
+            btnRemo.Location = new System.Drawing.Point(538, 915);
+            btnRemo.Name = "btnRemo";
+            btnRemo.Size = new System.Drawing.Size(150, 46);
+            btnRemo.TabIndex = 4;
+            btnRemo.Text = "Remove";
+            btnRemo.UseVisualStyleBackColor = true;
+            btnRemo.Click += btnRemo_Click;
+            // 
+            // btnAd
+            // 
+            btnAd.Location = new System.Drawing.Point(180, 915);
+            btnAd.Name = "btnAd";
+            btnAd.Size = new System.Drawing.Size(150, 46);
+            btnAd.TabIndex = 3;
+            btnAd.Text = "Add";
+            btnAd.UseVisualStyleBackColor = true;
+            btnAd.Click += btnAd_Click;
             // 
             // lblActivity
-            // 
+            //
             this.lblActivity.AutoSize = true;
             this.lblActivity.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblActivity.Location = new System.Drawing.Point(13, 6);
@@ -776,15 +865,15 @@ namespace SomerenUI
             // 
             // teacherpanel
             // 
-            this.teacherpanel.Controls.Add(this.listViewteachers);
-            this.teacherpanel.Controls.Add(this.lecturersLabel);
-            this.teacherpanel.Controls.Add(this.lecturersPictureBox);
-            this.teacherpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.teacherpanel.Location = new System.Drawing.Point(0, 0);
-            this.teacherpanel.Margin = new System.Windows.Forms.Padding(1);
-            this.teacherpanel.Name = "teacherpanel";
-            this.teacherpanel.Size = new System.Drawing.Size(861, 548);
-            this.teacherpanel.TabIndex = 3;
+            teacherpanel.Controls.Add(listViewteachers);
+            teacherpanel.Controls.Add(lecturersLabel);
+            teacherpanel.Controls.Add(lecturersPictureBox);
+            teacherpanel.Dock = DockStyle.Fill;
+            teacherpanel.Location = new System.Drawing.Point(0, 0);
+            teacherpanel.Margin = new Padding(2);
+            teacherpanel.Name = "teacherpanel";
+            teacherpanel.Size = new System.Drawing.Size(1614, 1046);
+            teacherpanel.TabIndex = 3;
             // 
             // listViewteachers
             // 
@@ -1096,6 +1185,106 @@ namespace SomerenUI
             this.monthCalendarStartDate.TabIndex = 0;
             this.monthCalendarStartDate.DateChanged += new DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
             // 
+            // lblVATReportHeader
+            // 
+            lblVATReportHeader.AutoSize = true;
+            lblVATReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblVATReportHeader.Location = new System.Drawing.Point(21, 11);
+            lblVATReportHeader.Margin = new Padding(6, 0, 6, 0);
+            lblVATReportHeader.Name = "lblVATReportHeader";
+            lblVATReportHeader.Size = new System.Drawing.Size(263, 65);
+            lblVATReportHeader.TabIndex = 7;
+            lblVATReportHeader.Text = "VAT Report";
+            // 
+            // pnlRevenueReport
+            // 
+            pnlRevenueReport.Controls.Add(lblRevenueReportHeader);
+            pnlRevenueReport.Controls.Add(lvRevenueReport);
+            pnlRevenueReport.Controls.Add(lblRevenueDateRange);
+            pnlRevenueReport.Controls.Add(lblChooseEndDate);
+            pnlRevenueReport.Controls.Add(lblChooseStartDate);
+            pnlRevenueReport.Controls.Add(monthCalendarEndDate);
+            pnlRevenueReport.Controls.Add(monthCalendarStartDate);
+            pnlRevenueReport.Controls.Add(revenuePictureBox);
+            pnlRevenueReport.Location = new System.Drawing.Point(0, 0);
+            pnlRevenueReport.Margin = new Padding(6, 7, 6, 7);
+            pnlRevenueReport.Name = "pnlRevenueReport";
+            pnlRevenueReport.Size = new System.Drawing.Size(1596, 1033);
+            pnlRevenueReport.TabIndex = 3;
+            // 
+            // lblRevenueReportHeader
+            // 
+            lblRevenueReportHeader.AutoSize = true;
+            lblRevenueReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblRevenueReportHeader.Location = new System.Drawing.Point(21, 11);
+            lblRevenueReportHeader.Margin = new Padding(6, 0, 6, 0);
+            lblRevenueReportHeader.Name = "lblRevenueReportHeader";
+            lblRevenueReportHeader.Size = new System.Drawing.Size(363, 65);
+            lblRevenueReportHeader.TabIndex = 6;
+            lblRevenueReportHeader.Text = "Revenue Report";
+            // 
+            // lvRevenueReport
+            // 
+            lvRevenueReport.ImeMode = ImeMode.NoControl;
+            lvRevenueReport.Location = new System.Drawing.Point(32, 671);
+            lvRevenueReport.Margin = new Padding(2);
+            lvRevenueReport.MultiSelect = false;
+            lvRevenueReport.Name = "lvRevenueReport";
+            lvRevenueReport.Size = new System.Drawing.Size(1238, 330);
+            lvRevenueReport.TabIndex = 5;
+            lvRevenueReport.UseCompatibleStateImageBehavior = false;
+            // 
+            // lblRevenueDateRange
+            // 
+            lblRevenueDateRange.AutoSize = true;
+            lblRevenueDateRange.Location = new System.Drawing.Point(32, 626);
+            lblRevenueDateRange.Margin = new Padding(6, 0, 6, 0);
+            lblRevenueDateRange.Name = "lblRevenueDateRange";
+            lblRevenueDateRange.Size = new System.Drawing.Size(213, 38);
+            lblRevenueDateRange.TabIndex = 4;
+            lblRevenueDateRange.Text = "Revenue Report";
+            // 
+            // lblChooseEndDate
+            // 
+            lblChooseEndDate.AutoSize = true;
+            lblChooseEndDate.Location = new System.Drawing.Point(799, 103);
+            lblChooseEndDate.Margin = new Padding(6, 0, 6, 0);
+            lblChooseEndDate.Name = "lblChooseEndDate";
+            lblChooseEndDate.Size = new System.Drawing.Size(264, 38);
+            lblChooseEndDate.TabIndex = 3;
+            lblChooseEndDate.Text = "Choose an end date";
+            // 
+            // lblChooseStartDate
+            // 
+            lblChooseStartDate.AutoSize = true;
+            lblChooseStartDate.Location = new System.Drawing.Point(32, 103);
+            lblChooseStartDate.Margin = new Padding(6, 0, 6, 0);
+            lblChooseStartDate.Name = "lblChooseStartDate";
+            lblChooseStartDate.Size = new System.Drawing.Size(255, 38);
+            lblChooseStartDate.TabIndex = 2;
+            lblChooseStartDate.Text = "Choose a start date";
+            // 
+            // monthCalendarEndDate
+            // 
+            monthCalendarEndDate.Location = new System.Drawing.Point(799, 168);
+            monthCalendarEndDate.Margin = new Padding(19, 20, 19, 20);
+            monthCalendarEndDate.Name = "monthCalendarEndDate";
+            monthCalendarEndDate.ShowToday = false;
+            monthCalendarEndDate.ShowTodayCircle = false;
+            monthCalendarEndDate.TabIndex = 1;
+            monthCalendarEndDate.DateChanged += monthCalendarEndDate_DateChanged;
+            // 
+            // monthCalendarStartDate
+            // 
+            monthCalendarStartDate.Location = new System.Drawing.Point(32, 168);
+            monthCalendarStartDate.Margin = new Padding(19, 20, 19, 20);
+            monthCalendarStartDate.MaxDate = new DateTime(2024, 3, 22, 0, 0, 0, 0);
+            monthCalendarStartDate.Name = "monthCalendarStartDate";
+            monthCalendarStartDate.ShowToday = false;
+            monthCalendarStartDate.ShowTodayCircle = false;
+            monthCalendarStartDate.TabIndex = 0;
+            monthCalendarStartDate.DateChanged += monthCalendarStartDate_DateChanged;
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1143,9 +1332,7 @@ namespace SomerenUI
             this.pnlRevenueReport.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
         #endregion
 
 
@@ -1176,7 +1363,7 @@ namespace SomerenUI
         private System.Windows.Forms.ListView lvActivities;
         private System.Windows.Forms.ColumnHeader Id;
         private System.Windows.Forms.ColumnHeader Activity;
-        private System.Windows.Forms.ColumnHeader Date;
+        private System.Windows.Forms.ColumnHeader StartTime;
 
         private System.Windows.Forms.Panel roomsPanel;
         private System.Windows.Forms.Panel panelDrinks;
@@ -1248,5 +1435,17 @@ namespace SomerenUI
         private Label lblWeekDate;
         private Label lblTimetableHeader;
         private DateTimePicker datePickerTimetable;
+        private ColumnHeader EndTime;
+        private Label lblEndTime;
+        private Label lblDate;
+        private Label lblName;
+        private Label lblActivityID;
+        private Button btnChange;
+        private Button btnRemo;
+        private Button btnAd;
+        private TextBox txtDate;
+        private TextBox txtName;
+        private TextBox txtActivityID;
+        private TextBox txtEndTime;
     }
 }
