@@ -716,42 +716,46 @@ namespace SomerenUI
             // 
             // removeParticipantButton
             // 
-            this.removeParticipantButton.Location = new System.Drawing.Point(52, 560);
+            this.removeParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.removeParticipantButton.Location = new System.Drawing.Point(52, 514);
             this.removeParticipantButton.Name = "removeParticipantButton";
             this.removeParticipantButton.Size = new System.Drawing.Size(281, 34);
             this.removeParticipantButton.TabIndex = 6;
             this.removeParticipantButton.Text = "Click here to remove Participant!";
-            this.removeParticipantButton.UseVisualStyleBackColor = true;
+            this.removeParticipantButton.UseVisualStyleBackColor = false;
             this.removeParticipantButton.Click += new System.EventHandler(this.removeParticipantButton_Click);
             // 
             // addParticipantButton
             // 
-            this.addParticipantButton.Location = new System.Drawing.Point(52, 514);
+            this.addParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.addParticipantButton.Location = new System.Drawing.Point(52, 461);
             this.addParticipantButton.Name = "addParticipantButton";
             this.addParticipantButton.Size = new System.Drawing.Size(281, 34);
             this.addParticipantButton.TabIndex = 5;
             this.addParticipantButton.Text = "Click here to add Participant!";
-            this.addParticipantButton.UseVisualStyleBackColor = true;
+            this.addParticipantButton.UseVisualStyleBackColor = false;
             this.addParticipantButton.Click += new System.EventHandler(this.addParticipantButton_Click);
             // 
             // nonParticipantsBtn
             // 
+            this.nonParticipantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.nonParticipantsBtn.Location = new System.Drawing.Point(483, 241);
             this.nonParticipantsBtn.Name = "nonParticipantsBtn";
             this.nonParticipantsBtn.Size = new System.Drawing.Size(190, 34);
             this.nonParticipantsBtn.TabIndex = 4;
             this.nonParticipantsBtn.Text = "Non-Participants";
-            this.nonParticipantsBtn.UseVisualStyleBackColor = true;
+            this.nonParticipantsBtn.UseVisualStyleBackColor = false;
             this.nonParticipantsBtn.Click += new System.EventHandler(this.nonParticipantsBtn_Click);
             // 
             // participantsBtn
             // 
+            this.participantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.participantsBtn.Location = new System.Drawing.Point(51, 241);
             this.participantsBtn.Name = "participantsBtn";
             this.participantsBtn.Size = new System.Drawing.Size(112, 34);
             this.participantsBtn.TabIndex = 3;
             this.participantsBtn.Text = "Participants";
-            this.participantsBtn.UseVisualStyleBackColor = true;
+            this.participantsBtn.UseVisualStyleBackColor = false;
             this.participantsBtn.Click += new System.EventHandler(this.participantsBtn_Click);
             // 
             // listviewnonparticipants
@@ -760,7 +764,7 @@ namespace SomerenUI
             this.listviewnonparticipants.GridLines = true;
             this.listviewnonparticipants.Location = new System.Drawing.Point(483, 281);
             this.listviewnonparticipants.Name = "listviewnonparticipants";
-            this.listviewnonparticipants.Size = new System.Drawing.Size(362, 213);
+            this.listviewnonparticipants.Size = new System.Drawing.Size(362, 156);
             this.listviewnonparticipants.TabIndex = 2;
             this.listviewnonparticipants.UseCompatibleStateImageBehavior = false;
             // 
@@ -770,7 +774,7 @@ namespace SomerenUI
             this.listviewparticipants.GridLines = true;
             this.listviewparticipants.Location = new System.Drawing.Point(51, 281);
             this.listviewparticipants.Name = "listviewparticipants";
-            this.listviewparticipants.Size = new System.Drawing.Size(397, 213);
+            this.listviewparticipants.Size = new System.Drawing.Size(397, 156);
             this.listviewparticipants.TabIndex = 1;
             this.listviewparticipants.UseCompatibleStateImageBehavior = false;
             // 
