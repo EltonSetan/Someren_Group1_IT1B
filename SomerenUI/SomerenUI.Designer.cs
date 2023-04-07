@@ -110,9 +110,9 @@ namespace SomerenUI
             this.listViewRooms = new System.Windows.Forms.ListView();
             this.roomsLabel = new System.Windows.Forms.Label();
             this.lecturersLabel = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.ColumnHeader();
-            this.Activity = new System.Windows.Forms.ColumnHeader();
-            this.Date = new System.Windows.Forms.ColumnHeader();
+            //this.Id = new System.Windows.Forms.ColumnHeader();
+            //this.Activity = new System.Windows.Forms.ColumnHeader();
+            //this.Date = new System.Windows.Forms.ColumnHeader();
             this.lvActivities = new System.Windows.Forms.ListView();
             this.pnlActivity = new System.Windows.Forms.Panel();
 			txtEndTime = new TextBox();
@@ -732,16 +732,16 @@ namespace SomerenUI
             // 
             // lvActivities
             // 
-            this.lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Id,
-            this.Activity,
-            this.Date});
+            //this.lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            //this.Id,
+            //this.Activity,
+            //this.Date});
             this.lvActivities.FullRowSelect = true;
             this.lvActivities.GridLines = true;
             this.lvActivities.Location = new System.Drawing.Point(17, 53);
             this.lvActivities.Margin = new System.Windows.Forms.Padding(1);
             this.lvActivities.Name = "lvActivities";
-            this.lvActivities.Size = new System.Drawing.Size(782, 386);
+            this.lvActivities.Size = new System.Drawing.Size(650, 300);
             this.lvActivities.TabIndex = 1;
             this.lvActivities.UseCompatibleStateImageBehavior = false;
             this.lvActivities.View = System.Windows.Forms.View.Details;
@@ -766,41 +766,41 @@ namespace SomerenUI
             pnlActivity.Location = new System.Drawing.Point(0, 56);
             pnlActivity.Margin = new Padding(2);
             pnlActivity.Name = "pnlActivity";
-            pnlActivity.Size = new System.Drawing.Size(1614, 1046);
+            pnlActivity.Size = new System.Drawing.Size(861, 548);
             pnlActivity.TabIndex = 4;
             // 
             // txtEndTime
             // 
-            txtEndTime.Location = new System.Drawing.Point(1275, 862);
+            txtEndTime.Location = new System.Drawing.Point(440, 400);
             txtEndTime.Name = "txtEndTime";
             txtEndTime.Size = new System.Drawing.Size(200, 45);
             txtEndTime.TabIndex = 14;
             // 
             // txtDate
             // 
-            txtDate.Location = new System.Drawing.Point(891, 858);
+            txtDate.Location = new System.Drawing.Point(220, 400);
             txtDate.Name = "txtDate";
             txtDate.Size = new System.Drawing.Size(200, 45);
             txtDate.TabIndex = 13;
             // 
             // txtName
             // 
-            txtName.Location = new System.Drawing.Point(538, 855);
+            txtName.Location = new System.Drawing.Point(100, 400);
             txtName.Name = "txtName";
-            txtName.Size = new System.Drawing.Size(200, 45);
+            txtName.Size = new System.Drawing.Size(100, 45);
             txtName.TabIndex = 12;
             // 
             // txtActivityID
             // 
-            txtActivityID.Location = new System.Drawing.Point(169, 861);
+            txtActivityID.Location = new System.Drawing.Point(16, 400);
             txtActivityID.Name = "txtActivityID";
-            txtActivityID.Size = new System.Drawing.Size(200, 45);
+            txtActivityID.Size = new System.Drawing.Size(50, 45);
             txtActivityID.TabIndex = 11;
             // 
             // lblEndTime
             // 
             lblEndTime.AutoSize = true;
-            lblEndTime.Location = new System.Drawing.Point(1119, 858);
+            lblEndTime.Location = new System.Drawing.Point(440, 380);
             lblEndTime.Name = "lblEndTime";
             lblEndTime.Size = new System.Drawing.Size(132, 38);
             lblEndTime.TabIndex = 10;
@@ -809,7 +809,7 @@ namespace SomerenUI
             // lblDate
             // 
             lblDate.AutoSize = true;
-            lblDate.Location = new System.Drawing.Point(799, 862);
+            lblDate.Location = new System.Drawing.Point(220, 380);
             lblDate.Name = "lblDate";
             lblDate.Size = new System.Drawing.Size(75, 38);
             lblDate.TabIndex = 9;
@@ -818,7 +818,7 @@ namespace SomerenUI
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new System.Drawing.Point(441, 861);
+            lblName.Location = new System.Drawing.Point(100, 380);
             lblName.Name = "lblName";
             lblName.Size = new System.Drawing.Size(91, 38);
             lblName.TabIndex = 8;
@@ -827,7 +827,7 @@ namespace SomerenUI
             // lblActivityID
             // 
             lblActivityID.AutoSize = true;
-            lblActivityID.Location = new System.Drawing.Point(32, 849);
+            lblActivityID.Location = new System.Drawing.Point(15, 380);
             lblActivityID.Name = "lblActivityID";
             lblActivityID.Size = new System.Drawing.Size(142, 38);
             lblActivityID.TabIndex = 7;
@@ -835,9 +835,9 @@ namespace SomerenUI
             // 
             // btnRemo
             // 
-            btnRemo.Location = new System.Drawing.Point(538, 915);
+            btnRemo.Location = new System.Drawing.Point(700, 375);
             btnRemo.Name = "btnRemo";
-            btnRemo.Size = new System.Drawing.Size(150, 46);
+            btnRemo.Size = new System.Drawing.Size(100, 30);
             btnRemo.TabIndex = 4;
             btnRemo.Text = "Remove";
             btnRemo.UseVisualStyleBackColor = true;
@@ -845,9 +845,9 @@ namespace SomerenUI
             // 
             // btnAd
             // 
-            btnAd.Location = new System.Drawing.Point(180, 915);
+            btnAd.Location = new System.Drawing.Point(700, 420);
             btnAd.Name = "btnAd";
-            btnAd.Size = new System.Drawing.Size(150, 46);
+            btnAd.Size = new System.Drawing.Size(100, 30);
             btnAd.TabIndex = 3;
             btnAd.Text = "Add";
             btnAd.UseVisualStyleBackColor = true;
@@ -1363,7 +1363,6 @@ namespace SomerenUI
         private System.Windows.Forms.ListView lvActivities;
         private System.Windows.Forms.ColumnHeader Id;
         private System.Windows.Forms.ColumnHeader Activity;
-        private System.Windows.Forms.ColumnHeader StartTime;
 
         private System.Windows.Forms.Panel roomsPanel;
         private System.Windows.Forms.Panel panelDrinks;

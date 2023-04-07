@@ -830,13 +830,19 @@ namespace SomerenUI
         private void btnRemo_Click(object sender, EventArgs e)
         {
             ActivityService activityService = new ActivityService();
-
-            DialogResult result = MessageBox.Show("Are you sure you want to remove this activity?","Confirm removal", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if (lvActivities.SelectedItems.Count == 0)
             {
-                Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
-                activityService.DeleteActivity(selectedActivity);
-                DisplayActivities(activityService.GetActivity());
+                MessageBox.Show("Please select an activity to delete.");
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to remove this activity?", "Confirm removal", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
+                    activityService.DeleteActivity(selectedActivity);
+                    DisplayActivities(activityService.GetActivity());
+                }
             }
         }
     }
