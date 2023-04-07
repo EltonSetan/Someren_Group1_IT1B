@@ -353,7 +353,7 @@ namespace SomerenUI
             // dashboardPictureBox
             // 
             this.dashboardPictureBox.Image = global::SomerenUI.Properties.Resources.someren;
-            this.dashboardPictureBox.Location = new System.Drawing.Point(894, 0);
+            this.dashboardPictureBox.Location = new System.Drawing.Point(700, 0);
             this.dashboardPictureBox.Margin = new System.Windows.Forms.Padding(1, 4, 1, 4);
             this.dashboardPictureBox.Name = "dashboardPictureBox";
             this.dashboardPictureBox.Size = new System.Drawing.Size(181, 171);
@@ -904,7 +904,7 @@ namespace SomerenUI
             this.listViewteachers.Location = new System.Drawing.Point(17, 53);
             this.listViewteachers.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.listViewteachers.Name = "listViewteachers";
-            this.listViewteachers.Size = new System.Drawing.Size(782, 386);
+            this.listViewteachers.Size = new System.Drawing.Size(582, 386);
             this.listViewteachers.TabIndex = 9999999;
             this.listViewteachers.UseCompatibleStateImageBehavior = false;
             this.listViewteachers.View = System.Windows.Forms.View.Details;
