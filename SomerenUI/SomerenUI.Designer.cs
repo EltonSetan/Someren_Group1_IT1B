@@ -113,7 +113,6 @@ namespace SomerenUI
             lblDate = new Label();
             lblName = new Label();
             lblActivityID = new Label();
-            btnRefresh = new Button();
             btnChange = new Button();
             btnRemo = new Button();
             btnAd = new Button();
@@ -639,7 +638,7 @@ namespace SomerenUI
             lvActivities.TabIndex = 1;
             lvActivities.UseCompatibleStateImageBehavior = false;
             lvActivities.View = View.Details;
-            lvActivities.SelectedIndexChanged += lvActivities_SelectedIndexChanged;
+            lvActivities.SelectedIndexChanged += new EventHandler(lvActivities_SelectedIndexChanged);
             // 
             // EndTime
             // 
@@ -655,8 +654,6 @@ namespace SomerenUI
             pnlActivity.Controls.Add(lblDate);
             pnlActivity.Controls.Add(lblName);
             pnlActivity.Controls.Add(lblActivityID);
-            pnlActivity.Controls.Add(btnRefresh);
-            pnlActivity.Controls.Add(btnChange);
             pnlActivity.Controls.Add(btnRemo);
             pnlActivity.Controls.Add(btnAd);
             pnlActivity.Controls.Add(lvActivities);
@@ -732,26 +729,6 @@ namespace SomerenUI
             lblActivityID.Size = new System.Drawing.Size(142, 38);
             lblActivityID.TabIndex = 7;
             lblActivityID.Text = "Activity ID";
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Location = new System.Drawing.Point(1275, 913);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new System.Drawing.Size(150, 46);
-            btnRefresh.TabIndex = 6;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
-            // btnChange
-            // 
-            btnChange.Location = new System.Drawing.Point(891, 915);
-            btnChange.Name = "btnChange";
-            btnChange.Size = new System.Drawing.Size(150, 46);
-            btnChange.TabIndex = 5;
-            btnChange.Text = "Update";
-            btnChange.UseVisualStyleBackColor = true;
-            btnChange.Click += btnChange_Click;
             // 
             // btnRemo
             // 
@@ -1210,7 +1187,6 @@ namespace SomerenUI
         private Label lblDate;
         private Label lblName;
         private Label lblActivityID;
-        private Button btnRefresh;
         private Button btnChange;
         private Button btnRemo;
         private Button btnAd;

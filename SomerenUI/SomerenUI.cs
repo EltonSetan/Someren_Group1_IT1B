@@ -662,50 +662,112 @@ namespace SomerenUI
 
         private void lvActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ActivityService activityService = new ActivityService();
 
+            if (lvActivities.SelectedItems.Count > 0)
+            {
+
+                ListViewItem selectedItem = lvActivities.SelectedItems[0];
+                int id = int.Parse(selectedItem.SubItems[0].Text);
+                Activities selectedActivity = selectedItem.Tag as Activities;
+
+                txtActivityID.Text = selectedActivity.Id.ToString();
+                txtName.Text = selectedActivity.Name;
+                txtDate.Text =selectedActivity.Date;
+                txtEndTime.Text = selectedActivity.EndTime.ToString(); 
+                
+                // Change the Add button to Update
+                btnAd.Text = "Change";
+                btnAd.Click -= btnAd_Click; // Remove the Add event handler
+                btnAd.Click += btnChange_Click; // Add the Update event handler
+            }
+            else
+            {
+                // Clear input fields
+                txtActivityID.Clear();
+                txtName.Clear();
+                txtStock.Clear();
+                txtDate.Clear();
+                txtEndTime.Clear();
+
+                // Change the Update button back to Add if it's not already "Add"
+                if (btnAd.Text != "Add")
+                {
+                    btnAd.Text = "Add";
+                    btnAd.Click -= btnChange_Click; // Remove the Update event handler
+                    btnAd.Click += btnAd_Click; // Add the Add event handler
+                }
+            }
         }
 
         private void btnAd_Click(object sender, EventArgs e)
         {
-            Activities activity = new Activities()
+            ActivityService activityService = new ActivityService();
+            
+            try
             {
-                Id = int.Parse(txtActivityID.Text),
-                Name = txtName.Text,
-                Date = txtDate.Text,
-                EndTime = DateTime.Parse(txtEndTime.Text),
+                Activities activity = new Activities()
+                {
+                    Id = int.Parse(txtActivityID.Text),
+                    Name = txtName.Text,
+                    Date = txtDate.Text,
+                    EndTime = DateTime.Parse(txtEndTime.Text),
 
-            };
-            activityService.AddActivity(activity);
-        }
-        ActivityService activityService = new ActivityService();
-
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            //ShowActivitiesPanel();
-            txtActivityID.Text = " ";
-            txtName.Text = " ";
-            txtDate.Text = " ";
-            txtEndTime.Text = " ";
+                };
+                activityService.AddActivity(activity);
+                DisplayActivities(activityService.GetActivity());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"Please use the correct format and fill in all fields.");
+            }
         }
 
         private void btnChange_Click(object sender, EventArgs e)
         {
+            ActivityService activityService = new ActivityService();
             Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
 
-            selectedActivity.Id = int.Parse(txtActivityID.Text);
-            selectedActivity.Name = txtName.Text;
-            selectedActivity.Date = txtDate.Text;
-            selectedActivity.EndTime = DateTime.Parse(txtEndTime.Text);
-            activityService.UpdateActivity(selectedActivity);
+            try
+            {
+                selectedActivity.Id = int.Parse(txtActivityID.Text);
+                selectedActivity.Name = txtName.Text;
+                selectedActivity.Date = txtDate.Text;
+                selectedActivity.EndTime = DateTime.Parse(txtEndTime.Text);
+                activityService.UpdateActivity(selectedActivity);
+                DisplayActivities(activityService.GetActivity());
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show($"Please use the correct format and fill in all fields.");
+            }
+
+            // Clear input fields after updating the activity
+            txtActivityID.Clear();
+            txtName.Clear();
+            txtDate.Clear();
+            txtEndTime.Clear();
+            
+
+            // Change the Update button back to Add
+            btnAd.Text = "Add";
+            btnAd.Click -= btnChange_Click; // Remove the Update event handler
+            btnAd.Click += btnAd_Click; // Add the Add event handler
 
         }
 
         private void btnRemo_Click(object sender, EventArgs e)
         {
-            Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
-            activityService.DeleteActivity(selectedActivity);
-            DisplayActivities(activityService.GetActivity());
+            ActivityService activityService = new ActivityService();
+
+            DialogResult result = MessageBox.Show("Are you sure you want to remove this activity?","Confirm removal", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Activities selectedActivity = (Activities)lvActivities.SelectedItems[0].Tag;
+                activityService.DeleteActivity(selectedActivity);
+                DisplayActivities(activityService.GetActivity());
+            }
         }
     }
 }

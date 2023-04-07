@@ -36,49 +36,42 @@ namespace SomerenDAL
             }
             return activities;
         }
+
         public void Add(Activities activity)
         {
-            conn.Open();
-            SqlCommand command = new SqlCommand(
-            "INSERT INTO Activity (Id, Name, Date, EndTime ) " +
-            "VALUES (@ActivityId, @ActivityName, @Date, @EndTime); " +
-           "SELECT SCOPE_IDENTITY();",
-            conn);
+            string query = "INSERT INTO Activity (ActivityId, ActivityName, Date, EndTime) VALUES (@ActivityId, @ActivityName, @Date, @EndTime)";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@ActivityId", activity.Id),
+                new SqlParameter("@ActivityName", activity.Name),
+                new SqlParameter("@Date", activity.Date),
+                new SqlParameter("@EndTime", activity.EndTime)
+            };
 
-            command.Parameters.AddWithValue("@ActivityId", activity.Id);
-            command.Parameters.AddWithValue("@ActivityName", activity.Name);
-            command.Parameters.AddWithValue("@Date", activity.Date);
-            command.Parameters.AddWithValue("@EndTime)", activity.EndTime);
-            
-            conn.Close();
+           ExecuteEditQuery(query, sqlParameters);
         }
         public void Update(Activities activity)
         {
-            conn.Open();
-            SqlCommand command = new SqlCommand(
-            "UPDATE Activity SET Id = @ActivityId, Name = @ActivityName, Date = @Date, EndTime = @EndTime" +
-            "WHERE Id = @ActivityActivity",
-            conn);
-            command.Parameters.AddWithValue("@ActivityId", activity.Id);
-            command.Parameters.AddWithValue("@ActivityName", activity.Name);
-            command.Parameters.AddWithValue("@Date", activity.Date);
-            command.Parameters.AddWithValue("@EndTime)", activity.EndTime);
+            string query = "UPDATE Activity SET ActivityId = @ActivityId, ActivityName = @ActivityName, Date = @Date, EndTime = @EndTime WHERE ActivityId = @ActivityId";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@ActivityId", activity.Id),
+                new SqlParameter("@ActivityName", activity.Name),
+                new SqlParameter("@Date", activity.Date),
+                new SqlParameter("@EndTime", activity.EndTime)
+            };
 
-            int nrOfRowsAffected = command.ExecuteNonQuery();
-            conn.Close();
-            // TODO: nrOfRowsAffected... (throw exception, or return boolean, ...)
+            ExecuteEditQuery(query, sqlParameters);
         }
         public void Delete(Activities activity)
         {
-            conn.Open();
-            SqlCommand command = new SqlCommand(
-            "DELETE FROM Activity WHERE Id = @Activity",
-            conn);
-            command.Parameters.AddWithValue("@Activity", activity.Id);
+            string query = "DELETE FROM Activity WHERE ActivityId = @ActivityId";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("@ActivityId", activity.Id)
+            };
 
-            int nrOfRowsAffected = command.ExecuteNonQuery();
-            conn.Close();
-            // TODO: nrOfRowsAffected... (throw exception, or return boolean, ...)
+            ExecuteEditQuery(query, sqlParameters);
         }
     }
 }
