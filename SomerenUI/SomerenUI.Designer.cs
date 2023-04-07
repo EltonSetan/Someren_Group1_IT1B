@@ -73,17 +73,15 @@ namespace SomerenUI
             this.dashboardPictureBox = new System.Windows.Forms.PictureBox();
             this.fpnlWeek = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMonday = new System.Windows.Forms.Panel();
+            this.pnlTuesday = new System.Windows.Forms.Panel();
             this.pnlWednesday = new System.Windows.Forms.Panel();
             this.pnlThursday = new System.Windows.Forms.Panel();
             this.pnlFriday = new System.Windows.Forms.Panel();
-            this.pnlTuesday = new System.Windows.Forms.Panel();
             this.lblMonday = new System.Windows.Forms.Label();
             this.lblTuesday = new System.Windows.Forms.Label();
             this.lblWednesday = new System.Windows.Forms.Label();
             this.lblThursday = new System.Windows.Forms.Label();
             this.lblFriday = new System.Windows.Forms.Label();
-            this.dashboardPictureBox = new System.Windows.Forms.PictureBox();
-            this.lblDashboard = new System.Windows.Forms.Label();
             this.cashpanel = new System.Windows.Forms.Panel();
             this.btnCheckout = new System.Windows.Forms.Button();
             this.listViewStudetnsCashRegister = new System.Windows.Forms.ListView();
@@ -112,23 +110,20 @@ namespace SomerenUI
             this.listViewRooms = new System.Windows.Forms.ListView();
             this.roomsLabel = new System.Windows.Forms.Label();
             this.lecturersLabel = new System.Windows.Forms.Label();
-            //this.Id = new System.Windows.Forms.ColumnHeader();
-            //this.Activity = new System.Windows.Forms.ColumnHeader();
-            //this.Date = new System.Windows.Forms.ColumnHeader();
             this.lvActivities = new System.Windows.Forms.ListView();
             this.pnlActivity = new System.Windows.Forms.Panel();
-			txtEndTime = new TextBox();
-            txtDate = new TextBox();
-            txtName = new TextBox();
-            txtActivityID = new TextBox();
-            lblEndTime = new Label();
-            lblDate = new Label();
-            lblName = new Label();
-            lblActivityID = new Label();
-            btnChange = new Button();
-            btnRemo = new Button();
-            btnAd = new Button();
+            this.txtEndTime = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtActivityID = new System.Windows.Forms.TextBox();
+            this.lblEndTime = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblActivityID = new System.Windows.Forms.Label();
+            this.btnRemo = new System.Windows.Forms.Button();
+            this.btnAd = new System.Windows.Forms.Button();
             this.lblActivity = new System.Windows.Forms.Label();
+            this.btnChange = new System.Windows.Forms.Button();
             this.teacherpanel = new System.Windows.Forms.Panel();
             this.listViewteachers = new System.Windows.Forms.ListView();
             this.panelContainer = new System.Windows.Forms.Panel();
@@ -136,14 +131,6 @@ namespace SomerenUI
             this.datePickerTimetable = new System.Windows.Forms.DateTimePicker();
             this.lblWeekDate = new System.Windows.Forms.Label();
             this.lblTimetableHeader = new System.Windows.Forms.Label();
-            this.participantspanel = new System.Windows.Forms.Panel();
-            this.removeParticipantButton = new System.Windows.Forms.Button();
-            this.addParticipantButton = new System.Windows.Forms.Button();
-            this.nonParticipantsBtn = new System.Windows.Forms.Button();
-            this.participantsBtn = new System.Windows.Forms.Button();
-            this.listviewnonparticipants = new System.Windows.Forms.ListView();
-            this.listviewparticipants = new System.Windows.Forms.ListView();
-            this.listviewactivity1 = new System.Windows.Forms.ListView();
             this.panelDrinks = new System.Windows.Forms.Panel();
             this.drinksStockLabel = new System.Windows.Forms.Label();
             this.vatPanel = new System.Windows.Forms.Panel();
@@ -166,6 +153,15 @@ namespace SomerenUI
             this.lblChooseStartDate = new System.Windows.Forms.Label();
             this.monthCalendarEndDate = new System.Windows.Forms.MonthCalendar();
             this.monthCalendarStartDate = new System.Windows.Forms.MonthCalendar();
+            this.removeParticipantButton = new System.Windows.Forms.Button();
+            this.addParticipantButton = new System.Windows.Forms.Button();
+            this.nonParticipantsBtn = new System.Windows.Forms.Button();
+            this.participantsBtn = new System.Windows.Forms.Button();
+            this.listviewnonparticipants = new System.Windows.Forms.ListView();
+            this.listviewparticipants = new System.Windows.Forms.ListView();
+            this.listviewactivity1 = new System.Windows.Forms.ListView();
+            this.pnlParticipants = new System.Windows.Forms.Panel();
+            this.lblParticipants = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardPictureBox)).BeginInit();
@@ -184,11 +180,11 @@ namespace SomerenUI
             this.teacherpanel.SuspendLayout();
             this.panelContainer.SuspendLayout();
             this.pnlTimetable.SuspendLayout();
-            this.participantspanel.SuspendLayout();
             this.panelDrinks.SuspendLayout();
             this.vatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.pnlRevenueReport.SuspendLayout();
+            this.pnlParticipants.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -213,17 +209,18 @@ namespace SomerenUI
             // 
             // dashboardToolStripMenuItem
             // 
-            dashboardToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dashboardToolStripMenuItem1, exitToolStripMenuItem });
-            dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            dashboardToolStripMenuItem.Size = new System.Drawing.Size(176, 42);
-            dashboardToolStripMenuItem.Text = "Application";
+            this.dashboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardToolStripMenuItem1,
+            this.exitToolStripMenuItem});
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
+            this.dashboardToolStripMenuItem.Text = "Application";
             // 
             // dashboardToolStripMenuItem1
             // 
-            dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            dashboardToolStripMenuItem1.Size = new System.Drawing.Size(287, 46);
-            dashboardToolStripMenuItem1.Text = "Dashboard";
-            dashboardToolStripMenuItem1.Click += dashboardToolStripMenuItem1_Click;
+            this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
+            this.dashboardToolStripMenuItem1.Text = "Dashboard";
             // 
             // exitToolStripMenuItem
             // 
@@ -234,30 +231,31 @@ namespace SomerenUI
             // 
             // studentsToolStripMenuItem
             // 
-            studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            studentsToolStripMenuItem.Size = new System.Drawing.Size(144, 42);
-            studentsToolStripMenuItem.Text = "Students";
-            studentsToolStripMenuItem.Click += studentsToolStripMenuItem_Click;
+            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.studentsToolStripMenuItem.Text = "Students";
+            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
-            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(98, 29);
+            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.lecturersToolStripMenuItem.Text = "Lecturers";
             this.lecturersToolStripMenuItem.Click += new System.EventHandler(this.lecturersToolStripMenuItem_Click);
             // 
             // activitiesToolStripMenuItem
             // 
-            activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
-            activitiesToolStripMenuItem.Size = new System.Drawing.Size(147, 42);
-            activitiesToolStripMenuItem.Text = "Activities";
-            activitiesToolStripMenuItem.Click += activitiesToolStripMenuItem_Click;
+            this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
+            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.activitiesToolStripMenuItem.Text = "Activities";
+            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.roomsToolStripMenuItem.Text = "Rooms";
+            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // drinksToolStripMenuItem
             // 
@@ -267,33 +265,34 @@ namespace SomerenUI
             this.revenueReportToolStripMenuItem,
             this.vATCalculationToolStripMenuItem});
             this.drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
-            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
+            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.drinksToolStripMenuItem.Text = "Drinks";
             // 
             // drinkStockToolStripMenuItem
             // 
             this.drinkStockToolStripMenuItem.Name = "drinkStockToolStripMenuItem";
-            this.drinkStockToolStripMenuItem.Size = new System.Drawing.Size(238, 34);
+            this.drinkStockToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.drinkStockToolStripMenuItem.Text = "Drink Stock";
             this.drinkStockToolStripMenuItem.Click += new System.EventHandler(this.drinkStockToolStripMenuItem_Click);
             // 
             // cashRegisterToolStripMenuItem
             // 
             this.cashRegisterToolStripMenuItem.Name = "cashRegisterToolStripMenuItem";
-            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(238, 34);
+            this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.cashRegisterToolStripMenuItem.Text = "Cash Register";
             this.cashRegisterToolStripMenuItem.Click += new System.EventHandler(this.cashRegisterToolStripMenuItem_Click);
             // 
             // revenueReportToolStripMenuItem
             // 
             this.revenueReportToolStripMenuItem.Name = "revenueReportToolStripMenuItem";
-            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(238, 34);
+            this.revenueReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.revenueReportToolStripMenuItem.Text = "Revenue Report";
+            this.revenueReportToolStripMenuItem.Click += new System.EventHandler(this.revenueReportToolStripMenuItem_Click);
             // 
             // vATCalculationToolStripMenuItem
             // 
             this.vATCalculationToolStripMenuItem.Name = "vATCalculationToolStripMenuItem";
-            this.vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(238, 34);
+            this.vATCalculationToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.vATCalculationToolStripMenuItem.Text = "VAT calculation";
             this.vATCalculationToolStripMenuItem.Click += new System.EventHandler(this.vATCalculationToolStripMenuItem_Click);
             // 
@@ -306,7 +305,7 @@ namespace SomerenUI
             // participantsToolStripMenuItem
             // 
             this.participantsToolStripMenuItem.Name = "participantsToolStripMenuItem";
-            this.participantsToolStripMenuItem.Size = new System.Drawing.Size(118, 29);
+            this.participantsToolStripMenuItem.Size = new System.Drawing.Size(99, 24);
             this.participantsToolStripMenuItem.Text = "Participants";
             this.participantsToolStripMenuItem.Click += new System.EventHandler(this.participantsToolStripMenuItem_Click);
             // 
@@ -325,13 +324,18 @@ namespace SomerenUI
             this.pnlDashboard.Location = new System.Drawing.Point(0, 0);
             this.pnlDashboard.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.pnlDashboard.Name = "pnlDashboard";
-            this.pnlDashboard.Size = new System.Drawing.Size(1076, 688);
+            this.pnlDashboard.Size = new System.Drawing.Size(861, 548);
             this.pnlDashboard.TabIndex = 1;
             // 
             // lblDashboard
             // 
             this.lblDashboard.AutoSize = true;
             this.lblDashboard.Location = new System.Drawing.Point(0, 0);
+            this.lblDashboard.Name = "lblDashboard";
+            this.lblDashboard.Size = new System.Drawing.Size(262, 20);
+            this.lblDashboard.TabIndex = 0;
+            this.lblDashboard.Text = "Welcome to the Someren Application!";
+            // 
             // dashboardPictureBox
             // 
             this.dashboardPictureBox.Image = global::SomerenUI.Properties.Resources.someren;
@@ -342,11 +346,6 @@ namespace SomerenUI
             this.dashboardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.dashboardPictureBox.TabIndex = 2;
             this.dashboardPictureBox.TabStop = false;
-            this.lblDashboard.Name = "lblDashboard";
-            this.lblDashboard.Size = new System.Drawing.Size(313, 25);
-            this.lblDashboard.TabIndex = 0;
-            this.lblDashboard.Text = "Welcome to the Someren Application!";
-            // 
             // 
             // fpnlWeek
             // 
@@ -363,35 +362,35 @@ namespace SomerenUI
             // 
             // pnlMonday
             // 
-            this.pnlMonday.Location = new System.Drawing.Point(0, 3);
+            this.pnlMonday.Location = new System.Drawing.Point(3, 3);
             this.pnlMonday.Name = "pnlMonday";
             this.pnlMonday.Size = new System.Drawing.Size(160, 516);
             this.pnlMonday.TabIndex = 10;
             // 
             // pnlTuesday
             // 
-            this.pnlTuesday.Location = new System.Drawing.Point(160, 3);
+            this.pnlTuesday.Location = new System.Drawing.Point(169, 3);
             this.pnlTuesday.Name = "pnlTuesday";
             this.pnlTuesday.Size = new System.Drawing.Size(160, 516);
             this.pnlTuesday.TabIndex = 11;
             // 
             // pnlWednesday
             // 
-            this.pnlWednesday.Location = new System.Drawing.Point(292, 3);
+            this.pnlWednesday.Location = new System.Drawing.Point(335, 3);
             this.pnlWednesday.Name = "pnlWednesday";
             this.pnlWednesday.Size = new System.Drawing.Size(160, 516);
             this.pnlWednesday.TabIndex = 12;
             // 
             // pnlThursday
             // 
-            this.pnlThursday.Location = new System.Drawing.Point(356, 211);
+            this.pnlThursday.Location = new System.Drawing.Point(501, 3);
             this.pnlThursday.Name = "pnlThursday";
             this.pnlThursday.Size = new System.Drawing.Size(160, 516);
             this.pnlThursday.TabIndex = 13;
             // 
             // pnlFriday
             // 
-            this.pnlFriday.Location = new System.Drawing.Point(499, 211);
+            this.pnlFriday.Location = new System.Drawing.Point(667, 3);
             this.pnlFriday.Name = "pnlFriday";
             this.pnlFriday.Size = new System.Drawing.Size(160, 516);
             this.pnlFriday.TabIndex = 14;
@@ -464,7 +463,7 @@ namespace SomerenUI
             this.btnCheckout.TabIndex = 2;
             this.btnCheckout.Text = "Buy";
             this.btnCheckout.UseVisualStyleBackColor = true;
-            this.btnCheckout.Click += new EventHandler(btnCheckout_Click);
+            this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
             // 
             // listViewStudetnsCashRegister
             // 
@@ -476,7 +475,7 @@ namespace SomerenUI
             this.listViewStudetnsCashRegister.Size = new System.Drawing.Size(569, 176);
             this.listViewStudetnsCashRegister.TabIndex = 0;
             this.listViewStudetnsCashRegister.UseCompatibleStateImageBehavior = false;
-            this.listViewStudetnsCashRegister.SelectedIndexChanged += new EventHandler(ListViewStudetnsCashRegister_SelectedIndexChanged);
+            this.listViewStudetnsCashRegister.SelectedIndexChanged += new System.EventHandler(this.ListViewStudetnsCashRegister_SelectedIndexChanged);
             // 
             // listViewDrinksCashRegister
             // 
@@ -488,7 +487,7 @@ namespace SomerenUI
             this.listViewDrinksCashRegister.Size = new System.Drawing.Size(569, 176);
             this.listViewDrinksCashRegister.TabIndex = 4;
             this.listViewDrinksCashRegister.UseCompatibleStateImageBehavior = false;
-            this.listViewDrinksCashRegister.SelectedIndexChanged += new EventHandler(ListViewDrinksCashRegister_SelectedIndexChanged);
+            this.listViewDrinksCashRegister.SelectedIndexChanged += new System.EventHandler(this.ListViewDrinksCashRegister_SelectedIndexChanged);
             // 
             // lblTotalPrice
             // 
@@ -530,8 +529,8 @@ namespace SomerenUI
             this.listViewdrinks.Size = new System.Drawing.Size(569, 118);
             this.listViewdrinks.TabIndex = 1;
             this.listViewdrinks.UseCompatibleStateImageBehavior = false;
-            this.listViewdrinks.SelectedIndexChanged += new EventHandler(listViewdrinks_SelectedIndexChanged);
-            this.listViewdrinks.MouseClick += new MouseEventHandler(listViewdrinks_MouseClick);
+            this.listViewdrinks.SelectedIndexChanged += new System.EventHandler(this.listViewdrinks_SelectedIndexChanged);
+            this.listViewdrinks.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewdrinks_MouseClick);
             // 
             // btnRemove
             // 
@@ -542,7 +541,7 @@ namespace SomerenUI
             this.btnRemove.TabIndex = 6;
             this.btnRemove.Text = "Remove drink";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new EventHandler(BtnRemove_Click);
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // btnAdd
             // 
@@ -553,7 +552,7 @@ namespace SomerenUI
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add drink";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new EventHandler(BtnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // txtStock
             // 
@@ -723,7 +722,7 @@ namespace SomerenUI
             // roomsLabel
             // 
             this.roomsLabel.AutoSize = true;
-            this.roomsLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+            this.roomsLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.roomsLabel.Location = new System.Drawing.Point(11, 5);
             this.roomsLabel.Name = "roomsLabel";
             this.roomsLabel.Size = new System.Drawing.Size(110, 41);
@@ -742,10 +741,6 @@ namespace SomerenUI
             // 
             // lvActivities
             // 
-            //this.lvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            //this.Id,
-            //this.Activity,
-            //this.Date});
             this.lvActivities.FullRowSelect = true;
             this.lvActivities.GridLines = true;
             this.lvActivities.Location = new System.Drawing.Point(17, 53);
@@ -755,116 +750,114 @@ namespace SomerenUI
             this.lvActivities.TabIndex = 1;
             this.lvActivities.UseCompatibleStateImageBehavior = false;
             this.lvActivities.View = System.Windows.Forms.View.Details;
-			lvActivities.SelectedIndexChanged += new EventHandler(lvActivities_SelectedIndexChanged);
+            this.lvActivities.SelectedIndexChanged += new System.EventHandler(this.lvActivities_SelectedIndexChanged);
             // 
             // pnlActivity
             // 
-            pnlActivity.Controls.Add(txtEndTime);
-            pnlActivity.Controls.Add(txtDate);
-            pnlActivity.Controls.Add(txtName);
-            pnlActivity.Controls.Add(txtActivityID);
-            pnlActivity.Controls.Add(lblEndTime);
-            pnlActivity.Controls.Add(lblDate);
-            pnlActivity.Controls.Add(lblName);
-            pnlActivity.Controls.Add(lblActivityID);
-            pnlActivity.Controls.Add(btnRemo);
-            pnlActivity.Controls.Add(btnAd);
-            pnlActivity.Controls.Add(lvActivities);
-            pnlActivity.Controls.Add(lblActivity);
-            pnlActivity.Controls.Add(activitiesPictureBox);
-            pnlActivity.Dock = DockStyle.Fill;
-            pnlActivity.Location = new System.Drawing.Point(0, 56);
-            pnlActivity.Margin = new Padding(2);
-            pnlActivity.Name = "pnlActivity";
-            pnlActivity.Size = new System.Drawing.Size(861, 548);
-            pnlActivity.TabIndex = 4;
+            this.pnlActivity.Controls.Add(this.txtEndTime);
+            this.pnlActivity.Controls.Add(this.txtDate);
+            this.pnlActivity.Controls.Add(this.txtName);
+            this.pnlActivity.Controls.Add(this.txtActivityID);
+            this.pnlActivity.Controls.Add(this.lblEndTime);
+            this.pnlActivity.Controls.Add(this.lblDate);
+            this.pnlActivity.Controls.Add(this.lblName);
+            this.pnlActivity.Controls.Add(this.lblActivityID);
+            this.pnlActivity.Controls.Add(this.btnRemo);
+            this.pnlActivity.Controls.Add(this.btnAd);
+            this.pnlActivity.Controls.Add(this.lvActivities);
+            this.pnlActivity.Controls.Add(this.lblActivity);
+            this.pnlActivity.Controls.Add(this.activitiesPictureBox);
+            this.pnlActivity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlActivity.Location = new System.Drawing.Point(0, 0);
+            this.pnlActivity.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlActivity.Name = "pnlActivity";
+            this.pnlActivity.Size = new System.Drawing.Size(861, 548);
+            this.pnlActivity.TabIndex = 4;
             // 
             // txtEndTime
             // 
-            txtEndTime.Location = new System.Drawing.Point(440, 400);
-            txtEndTime.Name = "txtEndTime";
-            txtEndTime.Size = new System.Drawing.Size(200, 45);
-            txtEndTime.TabIndex = 14;
+            this.txtEndTime.Location = new System.Drawing.Point(440, 400);
+            this.txtEndTime.Name = "txtEndTime";
+            this.txtEndTime.Size = new System.Drawing.Size(200, 27);
+            this.txtEndTime.TabIndex = 14;
             // 
             // txtDate
             // 
-            txtDate.Location = new System.Drawing.Point(220, 400);
-            txtDate.Name = "txtDate";
-            txtDate.Size = new System.Drawing.Size(200, 45);
-            txtDate.TabIndex = 13;
+            this.txtDate.Location = new System.Drawing.Point(220, 400);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(200, 27);
+            this.txtDate.TabIndex = 13;
             // 
             // txtName
             // 
-            txtName.Location = new System.Drawing.Point(100, 400);
-            txtName.Name = "txtName";
-            txtName.Size = new System.Drawing.Size(100, 45);
-            txtName.TabIndex = 12;
+            this.txtName.Location = new System.Drawing.Point(100, 400);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(100, 27);
+            this.txtName.TabIndex = 12;
             // 
             // txtActivityID
             // 
-            txtActivityID.Location = new System.Drawing.Point(16, 400);
-            txtActivityID.Name = "txtActivityID";
-            txtActivityID.Size = new System.Drawing.Size(50, 45);
-            txtActivityID.TabIndex = 11;
+            this.txtActivityID.Location = new System.Drawing.Point(16, 400);
+            this.txtActivityID.Name = "txtActivityID";
+            this.txtActivityID.Size = new System.Drawing.Size(50, 27);
+            this.txtActivityID.TabIndex = 11;
             // 
             // lblEndTime
             // 
-            lblEndTime.AutoSize = true;
-            lblEndTime.Location = new System.Drawing.Point(440, 380);
-            lblEndTime.Name = "lblEndTime";
-            lblEndTime.Size = new System.Drawing.Size(132, 38);
-            lblEndTime.TabIndex = 10;
-            lblEndTime.Text = "End Time";
+            this.lblEndTime.AutoSize = true;
+            this.lblEndTime.Location = new System.Drawing.Point(440, 380);
+            this.lblEndTime.Name = "lblEndTime";
+            this.lblEndTime.Size = new System.Drawing.Size(71, 20);
+            this.lblEndTime.TabIndex = 10;
+            this.lblEndTime.Text = "End Time";
             // 
             // lblDate
             // 
-            lblDate.AutoSize = true;
-            lblDate.Location = new System.Drawing.Point(220, 380);
-            lblDate.Name = "lblDate";
-            lblDate.Size = new System.Drawing.Size(75, 38);
-            lblDate.TabIndex = 9;
-            lblDate.Text = "Date";
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(220, 380);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(41, 20);
+            this.lblDate.TabIndex = 9;
+            this.lblDate.Text = "Date";
             // 
             // lblName
             // 
-            lblName.AutoSize = true;
-            lblName.Location = new System.Drawing.Point(100, 380);
-            lblName.Name = "lblName";
-            lblName.Size = new System.Drawing.Size(91, 38);
-            lblName.TabIndex = 8;
-            lblName.Text = "Name";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(100, 380);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(49, 20);
+            this.lblName.TabIndex = 8;
+            this.lblName.Text = "Name";
             // 
             // lblActivityID
             // 
-            lblActivityID.AutoSize = true;
-            lblActivityID.Location = new System.Drawing.Point(15, 380);
-            lblActivityID.Name = "lblActivityID";
-            lblActivityID.Size = new System.Drawing.Size(142, 38);
-            lblActivityID.TabIndex = 7;
-            lblActivityID.Text = "Activity ID";
+            this.lblActivityID.AutoSize = true;
+            this.lblActivityID.Location = new System.Drawing.Point(15, 380);
+            this.lblActivityID.Name = "lblActivityID";
+            this.lblActivityID.Size = new System.Drawing.Size(77, 20);
+            this.lblActivityID.TabIndex = 7;
+            this.lblActivityID.Text = "Activity ID";
             // 
             // btnRemo
             // 
-            btnRemo.Location = new System.Drawing.Point(700, 375);
-            btnRemo.Name = "btnRemo";
-            btnRemo.Size = new System.Drawing.Size(100, 30);
-            btnRemo.TabIndex = 4;
-            btnRemo.Text = "Remove";
-            btnRemo.UseVisualStyleBackColor = true;
-            btnRemo.Click += btnRemo_Click;
+            this.btnRemo.Location = new System.Drawing.Point(700, 375);
+            this.btnRemo.Name = "btnRemo";
+            this.btnRemo.Size = new System.Drawing.Size(100, 30);
+            this.btnRemo.TabIndex = 4;
+            this.btnRemo.Text = "Remove";
+            this.btnRemo.UseVisualStyleBackColor = true;
             // 
             // btnAd
             // 
-            btnAd.Location = new System.Drawing.Point(700, 420);
-            btnAd.Name = "btnAd";
-            btnAd.Size = new System.Drawing.Size(100, 30);
-            btnAd.TabIndex = 3;
-            btnAd.Text = "Add";
-            btnAd.UseVisualStyleBackColor = true;
-            btnAd.Click += btnAd_Click;
+            this.btnAd.Location = new System.Drawing.Point(700, 420);
+            this.btnAd.Name = "btnAd";
+            this.btnAd.Size = new System.Drawing.Size(100, 30);
+            this.btnAd.TabIndex = 3;
+            this.btnAd.Text = "Add";
+            this.btnAd.UseVisualStyleBackColor = true;
             // 
             // lblActivity
-            //
+            // 
             this.lblActivity.AutoSize = true;
             this.lblActivity.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblActivity.Location = new System.Drawing.Point(13, 6);
@@ -873,17 +866,24 @@ namespace SomerenUI
             this.lblActivity.TabIndex = 2;
             this.lblActivity.Text = "Activities";
             // 
+            // btnChange
+            // 
+            this.btnChange.Location = new System.Drawing.Point(0, 0);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(75, 23);
+            this.btnChange.TabIndex = 0;
+            // 
             // teacherpanel
             // 
-            teacherpanel.Controls.Add(listViewteachers);
-            teacherpanel.Controls.Add(lecturersLabel);
-            teacherpanel.Controls.Add(lecturersPictureBox);
-            teacherpanel.Dock = DockStyle.Fill;
-            teacherpanel.Location = new System.Drawing.Point(0, 0);
-            teacherpanel.Margin = new Padding(2);
-            teacherpanel.Name = "teacherpanel";
-            teacherpanel.Size = new System.Drawing.Size(1614, 1046);
-            teacherpanel.TabIndex = 3;
+            this.teacherpanel.Controls.Add(this.listViewteachers);
+            this.teacherpanel.Controls.Add(this.lecturersLabel);
+            this.teacherpanel.Controls.Add(this.lecturersPictureBox);
+            this.teacherpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.teacherpanel.Location = new System.Drawing.Point(0, 0);
+            this.teacherpanel.Margin = new System.Windows.Forms.Padding(2);
+            this.teacherpanel.Name = "teacherpanel";
+            this.teacherpanel.Size = new System.Drawing.Size(861, 548);
+            this.teacherpanel.TabIndex = 3;
             // 
             // listViewteachers
             // 
@@ -897,6 +897,7 @@ namespace SomerenUI
             // 
             // panelContainer
             // 
+            this.panelContainer.Controls.Add(this.pnlParticipants);
             this.panelContainer.Controls.Add(this.pnlTimetable);
             this.panelContainer.Controls.Add(this.pnlDashboard);
             this.panelContainer.Controls.Add(this.panelDrinks);
@@ -958,95 +959,6 @@ namespace SomerenUI
             this.lblTimetableHeader.TabIndex = 10;
             this.lblTimetableHeader.Text = "Weekly Timetable";
             // 
-            // participantspanel
-            // 
-            this.participantspanel.Controls.Add(this.removeParticipantButton);
-            this.participantspanel.Controls.Add(this.addParticipantButton);
-            this.participantspanel.Controls.Add(this.nonParticipantsBtn);
-            this.participantspanel.Controls.Add(this.participantsBtn);
-            this.participantspanel.Controls.Add(this.listviewnonparticipants);
-            this.participantspanel.Controls.Add(this.listviewparticipants);
-            this.participantspanel.Controls.Add(this.listviewactivity1);
-            this.participantspanel.Location = new System.Drawing.Point(0, 0);
-            this.participantspanel.Name = "participantspanel";
-            this.participantspanel.Size = new System.Drawing.Size(1073, 685);
-            this.participantspanel.TabIndex = 3;
-            // 
-            // removeParticipantButton
-            // 
-            this.removeParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.removeParticipantButton.Location = new System.Drawing.Point(52, 514);
-            this.removeParticipantButton.Name = "removeParticipantButton";
-            this.removeParticipantButton.Size = new System.Drawing.Size(281, 34);
-            this.removeParticipantButton.TabIndex = 6;
-            this.removeParticipantButton.Text = "Click here to remove Participant!";
-            this.removeParticipantButton.UseVisualStyleBackColor = false;
-            this.removeParticipantButton.Click += new System.EventHandler(this.removeParticipantButton_Click);
-            // 
-            // addParticipantButton
-            // 
-            this.addParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.addParticipantButton.Location = new System.Drawing.Point(52, 461);
-            this.addParticipantButton.Name = "addParticipantButton";
-            this.addParticipantButton.Size = new System.Drawing.Size(281, 34);
-            this.addParticipantButton.TabIndex = 5;
-            this.addParticipantButton.Text = "Click here to add Participant!";
-            this.addParticipantButton.UseVisualStyleBackColor = false;
-            this.addParticipantButton.Click += new System.EventHandler(this.addParticipantButton_Click);
-            // 
-            // nonParticipantsBtn
-            // 
-            this.nonParticipantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nonParticipantsBtn.Location = new System.Drawing.Point(483, 241);
-            this.nonParticipantsBtn.Name = "nonParticipantsBtn";
-            this.nonParticipantsBtn.Size = new System.Drawing.Size(190, 34);
-            this.nonParticipantsBtn.TabIndex = 4;
-            this.nonParticipantsBtn.Text = "Non-Participants";
-            this.nonParticipantsBtn.UseVisualStyleBackColor = false;
-            this.nonParticipantsBtn.Click += new System.EventHandler(this.nonParticipantsBtn_Click);
-            // 
-            // participantsBtn
-            // 
-            this.participantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.participantsBtn.Location = new System.Drawing.Point(51, 241);
-            this.participantsBtn.Name = "participantsBtn";
-            this.participantsBtn.Size = new System.Drawing.Size(112, 34);
-            this.participantsBtn.TabIndex = 3;
-            this.participantsBtn.Text = "Participants";
-            this.participantsBtn.UseVisualStyleBackColor = false;
-            this.participantsBtn.Click += new System.EventHandler(this.participantsBtn_Click);
-            // 
-            // listviewnonparticipants
-            // 
-            this.listviewnonparticipants.FullRowSelect = true;
-            this.listviewnonparticipants.GridLines = true;
-            this.listviewnonparticipants.Location = new System.Drawing.Point(483, 281);
-            this.listviewnonparticipants.Name = "listviewnonparticipants";
-            this.listviewnonparticipants.Size = new System.Drawing.Size(362, 156);
-            this.listviewnonparticipants.TabIndex = 2;
-            this.listviewnonparticipants.UseCompatibleStateImageBehavior = false;
-            // 
-            // listviewparticipants
-            // 
-            this.listviewparticipants.FullRowSelect = true;
-            this.listviewparticipants.GridLines = true;
-            this.listviewparticipants.Location = new System.Drawing.Point(51, 281);
-            this.listviewparticipants.Name = "listviewparticipants";
-            this.listviewparticipants.Size = new System.Drawing.Size(397, 156);
-            this.listviewparticipants.TabIndex = 1;
-            this.listviewparticipants.UseCompatibleStateImageBehavior = false;
-            // 
-            // listviewactivity1
-            // 
-            this.listviewactivity1.FullRowSelect = true;
-            this.listviewactivity1.GridLines = true;
-            this.listviewactivity1.Location = new System.Drawing.Point(51, 56);
-            this.listviewactivity1.Name = "listviewactivity1";
-            this.listviewactivity1.Size = new System.Drawing.Size(797, 170);
-            this.listviewactivity1.TabIndex = 0;
-            this.listviewactivity1.UseCompatibleStateImageBehavior = false;
-            this.listviewactivity1.View = System.Windows.Forms.View.Details;
-            // 
             // panelDrinks
             // 
             this.panelDrinks.Controls.Add(this.drinksStockLabel);
@@ -1104,7 +1016,7 @@ namespace SomerenUI
             this.btnCalculateVAT.TabIndex = 11;
             this.btnCalculateVAT.Text = "Calculate VAT";
             this.btnCalculateVAT.UseVisualStyleBackColor = true;
-            this.btnCalculateVAT.Click += new EventHandler(btnCalculateVAT_Click);
+            this.btnCalculateVAT.Click += new System.EventHandler(this.btnCalculateVAT_Click);
             // 
             // lblTotalVAT
             // 
@@ -1193,7 +1105,8 @@ namespace SomerenUI
             // 
             this.lblVATReportHeader.AutoSize = true;
             this.lblVATReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblVATReportHeader.Location = new System.Drawing.Point(11, 6);
+            this.lblVATReportHeader.Location = new System.Drawing.Point(21, 11);
+            this.lblVATReportHeader.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblVATReportHeader.Name = "lblVATReportHeader";
             this.lblVATReportHeader.Size = new System.Drawing.Size(165, 41);
             this.lblVATReportHeader.TabIndex = 7;
@@ -1210,16 +1123,17 @@ namespace SomerenUI
             this.pnlRevenueReport.Controls.Add(this.monthCalendarStartDate);
             this.pnlRevenueReport.Controls.Add(this.revenuePictureBox);
             this.pnlRevenueReport.Location = new System.Drawing.Point(0, 0);
-            this.pnlRevenueReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlRevenueReport.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.pnlRevenueReport.Name = "pnlRevenueReport";
-            this.pnlRevenueReport.Size = new System.Drawing.Size(851, 544);
+            this.pnlRevenueReport.Size = new System.Drawing.Size(1596, 1033);
             this.pnlRevenueReport.TabIndex = 3;
             // 
             // lblRevenueReportHeader
             // 
             this.lblRevenueReportHeader.AutoSize = true;
             this.lblRevenueReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblRevenueReportHeader.Location = new System.Drawing.Point(11, 6);
+            this.lblRevenueReportHeader.Location = new System.Drawing.Point(21, 11);
+            this.lblRevenueReportHeader.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRevenueReportHeader.Name = "lblRevenueReportHeader";
             this.lblRevenueReportHeader.Size = new System.Drawing.Size(228, 41);
             this.lblRevenueReportHeader.TabIndex = 6;
@@ -1228,18 +1142,19 @@ namespace SomerenUI
             // lvRevenueReport
             // 
             this.lvRevenueReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lvRevenueReport.Location = new System.Drawing.Point(17, 353);
-            this.lvRevenueReport.Margin = new System.Windows.Forms.Padding(1);
+            this.lvRevenueReport.Location = new System.Drawing.Point(32, 400);
+            this.lvRevenueReport.Margin = new System.Windows.Forms.Padding(2);
             this.lvRevenueReport.MultiSelect = false;
             this.lvRevenueReport.Name = "lvRevenueReport";
-            this.lvRevenueReport.Size = new System.Drawing.Size(662, 176);
+            this.lvRevenueReport.Size = new System.Drawing.Size(400, 100);
             this.lvRevenueReport.TabIndex = 5;
             this.lvRevenueReport.UseCompatibleStateImageBehavior = false;
             // 
             // lblRevenueDateRange
             // 
             this.lblRevenueDateRange.AutoSize = true;
-            this.lblRevenueDateRange.Location = new System.Drawing.Point(17, 329);
+            this.lblRevenueDateRange.Location = new System.Drawing.Point(32, 380);
+            this.lblRevenueDateRange.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRevenueDateRange.Name = "lblRevenueDateRange";
             this.lblRevenueDateRange.Size = new System.Drawing.Size(114, 20);
             this.lblRevenueDateRange.TabIndex = 4;
@@ -1248,7 +1163,8 @@ namespace SomerenUI
             // lblChooseEndDate
             // 
             this.lblChooseEndDate.AutoSize = true;
-            this.lblChooseEndDate.Location = new System.Drawing.Point(426, 54);
+            this.lblChooseEndDate.Location = new System.Drawing.Point(400, 103);
+            this.lblChooseEndDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblChooseEndDate.Name = "lblChooseEndDate";
             this.lblChooseEndDate.Size = new System.Drawing.Size(141, 20);
             this.lblChooseEndDate.TabIndex = 3;
@@ -1257,7 +1173,8 @@ namespace SomerenUI
             // lblChooseStartDate
             // 
             this.lblChooseStartDate.AutoSize = true;
-            this.lblChooseStartDate.Location = new System.Drawing.Point(17, 54);
+            this.lblChooseStartDate.Location = new System.Drawing.Point(32, 103);
+            this.lblChooseStartDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblChooseStartDate.Name = "lblChooseStartDate";
             this.lblChooseStartDate.Size = new System.Drawing.Size(137, 20);
             this.lblChooseStartDate.TabIndex = 2;
@@ -1265,124 +1182,125 @@ namespace SomerenUI
             // 
             // monthCalendarEndDate
             // 
-            this.monthCalendarEndDate.Location = new System.Drawing.Point(426, 88);
-            this.monthCalendarEndDate.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.monthCalendarEndDate.Location = new System.Drawing.Point(400, 150);
+            this.monthCalendarEndDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.monthCalendarEndDate.Name = "monthCalendarEndDate";
             this.monthCalendarEndDate.ShowToday = false;
             this.monthCalendarEndDate.ShowTodayCircle = false;
             this.monthCalendarEndDate.TabIndex = 1;
-            this.monthCalendarEndDate.DateChanged += new DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
+            this.monthCalendarEndDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEndDate_DateChanged);
             // 
             // monthCalendarStartDate
             // 
-            this.monthCalendarStartDate.Location = new System.Drawing.Point(17, 88);
-            this.monthCalendarStartDate.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.monthCalendarStartDate.Location = new System.Drawing.Point(32, 150);
+            this.monthCalendarStartDate.Margin = new System.Windows.Forms.Padding(19, 20, 19, 20);
             this.monthCalendarStartDate.MaxDate = new System.DateTime(2024, 3, 22, 0, 0, 0, 0);
             this.monthCalendarStartDate.Name = "monthCalendarStartDate";
             this.monthCalendarStartDate.ShowToday = false;
             this.monthCalendarStartDate.ShowTodayCircle = false;
             this.monthCalendarStartDate.TabIndex = 0;
-            this.monthCalendarStartDate.DateChanged += new DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
+            this.monthCalendarStartDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarStartDate_DateChanged);
             // 
-            // lblVATReportHeader
+            // pnlParticipants
             // 
-            lblVATReportHeader.AutoSize = true;
-            lblVATReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblVATReportHeader.Location = new System.Drawing.Point(21, 11);
-            lblVATReportHeader.Margin = new Padding(6, 0, 6, 0);
-            lblVATReportHeader.Name = "lblVATReportHeader";
-            lblVATReportHeader.Size = new System.Drawing.Size(263, 65);
-            lblVATReportHeader.TabIndex = 7;
-            lblVATReportHeader.Text = "VAT Report";
+            this.pnlParticipants.Controls.Add(this.removeParticipantButton);
+            this.pnlParticipants.Controls.Add(this.addParticipantButton);
+            this.pnlParticipants.Controls.Add(this.nonParticipantsBtn);
+            this.pnlParticipants.Controls.Add(this.participantsBtn);
+            this.pnlParticipants.Controls.Add(this.listviewnonparticipants);
+            this.pnlParticipants.Controls.Add(this.listviewparticipants);
+            this.pnlParticipants.Controls.Add(this.listviewactivity1);
+            this.pnlParticipants.Controls.Add(this.lblParticipants);
+            this.pnlParticipants.Location = new System.Drawing.Point(0, 0);
+            this.pnlParticipants.Name = "pnlParticipants";
+            this.pnlParticipants.Size = new System.Drawing.Size(861, 648);
+            this.pnlParticipants.TabIndex = 9;
+            //
+            //lblParticipants
+            //
+            this.lblParticipants.AutoSize = true;
+            this.lblParticipants.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblParticipants.Location = new System.Drawing.Point(21,11);
+            this.lblParticipants.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblParticipants.Name = "lblParticipants";
+            this.lblParticipants.Size = new System.Drawing.Size(137, 20);
+            this.lblParticipants.TabIndex = 2;
+            this.lblParticipants.Text = "Participants";
             // 
-            // pnlRevenueReport
+            // removeParticipantButton
             // 
-            pnlRevenueReport.Controls.Add(lblRevenueReportHeader);
-            pnlRevenueReport.Controls.Add(lvRevenueReport);
-            pnlRevenueReport.Controls.Add(lblRevenueDateRange);
-            pnlRevenueReport.Controls.Add(lblChooseEndDate);
-            pnlRevenueReport.Controls.Add(lblChooseStartDate);
-            pnlRevenueReport.Controls.Add(monthCalendarEndDate);
-            pnlRevenueReport.Controls.Add(monthCalendarStartDate);
-            pnlRevenueReport.Controls.Add(revenuePictureBox);
-            pnlRevenueReport.Location = new System.Drawing.Point(0, 0);
-            pnlRevenueReport.Margin = new Padding(6, 7, 6, 7);
-            pnlRevenueReport.Name = "pnlRevenueReport";
-            pnlRevenueReport.Size = new System.Drawing.Size(1596, 1033);
-            pnlRevenueReport.TabIndex = 3;
+            this.removeParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.removeParticipantButton.Location = new System.Drawing.Point(480, 461);
+            this.removeParticipantButton.Name = "removeParticipantButton";
+            this.removeParticipantButton.Size = new System.Drawing.Size(281, 34);
+            this.removeParticipantButton.TabIndex = 6;
+            this.removeParticipantButton.Text = "Click here to remove Participant!";
+            this.removeParticipantButton.UseVisualStyleBackColor = false;
+            this.removeParticipantButton.Click += new System.EventHandler(this.removeParticipantButton_Click);
             // 
-            // lblRevenueReportHeader
+            // addParticipantButton
             // 
-            lblRevenueReportHeader.AutoSize = true;
-            lblRevenueReportHeader.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblRevenueReportHeader.Location = new System.Drawing.Point(21, 11);
-            lblRevenueReportHeader.Margin = new Padding(6, 0, 6, 0);
-            lblRevenueReportHeader.Name = "lblRevenueReportHeader";
-            lblRevenueReportHeader.Size = new System.Drawing.Size(363, 65);
-            lblRevenueReportHeader.TabIndex = 6;
-            lblRevenueReportHeader.Text = "Revenue Report";
+            this.addParticipantButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.addParticipantButton.Location = new System.Drawing.Point(52, 461);
+            this.addParticipantButton.Name = "addParticipantButton";
+            this.addParticipantButton.Size = new System.Drawing.Size(281, 34);
+            this.addParticipantButton.TabIndex = 5;
+            this.addParticipantButton.Text = "Click here to add Participant!";
+            this.addParticipantButton.UseVisualStyleBackColor = false;
+            this.addParticipantButton.Click += new System.EventHandler(this.addParticipantButton_Click);
             // 
-            // lvRevenueReport
+            // nonParticipantsBtn
             // 
-            lvRevenueReport.ImeMode = ImeMode.NoControl;
-            lvRevenueReport.Location = new System.Drawing.Point(32, 671);
-            lvRevenueReport.Margin = new Padding(2);
-            lvRevenueReport.MultiSelect = false;
-            lvRevenueReport.Name = "lvRevenueReport";
-            lvRevenueReport.Size = new System.Drawing.Size(1238, 330);
-            lvRevenueReport.TabIndex = 5;
-            lvRevenueReport.UseCompatibleStateImageBehavior = false;
+            this.nonParticipantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.nonParticipantsBtn.Location = new System.Drawing.Point(483, 241);
+            this.nonParticipantsBtn.Name = "nonParticipantsBtn";
+            this.nonParticipantsBtn.Size = new System.Drawing.Size(190, 34);
+            this.nonParticipantsBtn.TabIndex = 4;
+            this.nonParticipantsBtn.Text = "Non-Participants";
+            this.nonParticipantsBtn.UseVisualStyleBackColor = false;
+            this.nonParticipantsBtn.Click += new System.EventHandler(this.nonParticipantsBtn_Click);
             // 
-            // lblRevenueDateRange
+            // participantsBtn
             // 
-            lblRevenueDateRange.AutoSize = true;
-            lblRevenueDateRange.Location = new System.Drawing.Point(32, 626);
-            lblRevenueDateRange.Margin = new Padding(6, 0, 6, 0);
-            lblRevenueDateRange.Name = "lblRevenueDateRange";
-            lblRevenueDateRange.Size = new System.Drawing.Size(213, 38);
-            lblRevenueDateRange.TabIndex = 4;
-            lblRevenueDateRange.Text = "Revenue Report";
+            this.participantsBtn.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.participantsBtn.Location = new System.Drawing.Point(51, 241);
+            this.participantsBtn.Name = "participantsBtn";
+            this.participantsBtn.Size = new System.Drawing.Size(112, 34);
+            this.participantsBtn.TabIndex = 3;
+            this.participantsBtn.Text = "Participants";
+            this.participantsBtn.UseVisualStyleBackColor = false;
+            this.participantsBtn.Click += new System.EventHandler(this.participantsBtn_Click);
             // 
-            // lblChooseEndDate
+            // listviewnonparticipants
             // 
-            lblChooseEndDate.AutoSize = true;
-            lblChooseEndDate.Location = new System.Drawing.Point(799, 103);
-            lblChooseEndDate.Margin = new Padding(6, 0, 6, 0);
-            lblChooseEndDate.Name = "lblChooseEndDate";
-            lblChooseEndDate.Size = new System.Drawing.Size(264, 38);
-            lblChooseEndDate.TabIndex = 3;
-            lblChooseEndDate.Text = "Choose an end date";
+            this.listviewnonparticipants.FullRowSelect = true;
+            this.listviewnonparticipants.GridLines = true;
+            this.listviewnonparticipants.Location = new System.Drawing.Point(483, 281);
+            this.listviewnonparticipants.Name = "listviewnonparticipants";
+            this.listviewnonparticipants.Size = new System.Drawing.Size(362, 156);
+            this.listviewnonparticipants.TabIndex = 2;
+            this.listviewnonparticipants.UseCompatibleStateImageBehavior = false;
             // 
-            // lblChooseStartDate
+            // listviewparticipants
             // 
-            lblChooseStartDate.AutoSize = true;
-            lblChooseStartDate.Location = new System.Drawing.Point(32, 103);
-            lblChooseStartDate.Margin = new Padding(6, 0, 6, 0);
-            lblChooseStartDate.Name = "lblChooseStartDate";
-            lblChooseStartDate.Size = new System.Drawing.Size(255, 38);
-            lblChooseStartDate.TabIndex = 2;
-            lblChooseStartDate.Text = "Choose a start date";
+            this.listviewparticipants.FullRowSelect = true;
+            this.listviewparticipants.GridLines = true;
+            this.listviewparticipants.Location = new System.Drawing.Point(51, 281);
+            this.listviewparticipants.Name = "listviewparticipants";
+            this.listviewparticipants.Size = new System.Drawing.Size(397, 156);
+            this.listviewparticipants.TabIndex = 1;
+            this.listviewparticipants.UseCompatibleStateImageBehavior = false;
             // 
-            // monthCalendarEndDate
+            // listviewactivity1
             // 
-            monthCalendarEndDate.Location = new System.Drawing.Point(799, 168);
-            monthCalendarEndDate.Margin = new Padding(19, 20, 19, 20);
-            monthCalendarEndDate.Name = "monthCalendarEndDate";
-            monthCalendarEndDate.ShowToday = false;
-            monthCalendarEndDate.ShowTodayCircle = false;
-            monthCalendarEndDate.TabIndex = 1;
-            monthCalendarEndDate.DateChanged += monthCalendarEndDate_DateChanged;
-            // 
-            // monthCalendarStartDate
-            // 
-            monthCalendarStartDate.Location = new System.Drawing.Point(32, 168);
-            monthCalendarStartDate.Margin = new Padding(19, 20, 19, 20);
-            monthCalendarStartDate.MaxDate = new DateTime(2024, 3, 22, 0, 0, 0, 0);
-            monthCalendarStartDate.Name = "monthCalendarStartDate";
-            monthCalendarStartDate.ShowToday = false;
-            monthCalendarStartDate.ShowTodayCircle = false;
-            monthCalendarStartDate.TabIndex = 0;
-            monthCalendarStartDate.DateChanged += monthCalendarStartDate_DateChanged;
+            this.listviewactivity1.FullRowSelect = true;
+            this.listviewactivity1.GridLines = true;
+            this.listviewactivity1.Location = new System.Drawing.Point(51, 56);
+            this.listviewactivity1.Name = "listviewactivity1";
+            this.listviewactivity1.Size = new System.Drawing.Size(797, 170);
+            this.listviewactivity1.TabIndex = 0;
+            this.listviewactivity1.UseCompatibleStateImageBehavior = false;
+            this.listviewactivity1.View = System.Windows.Forms.View.Details;
             // 
             // SomerenUI
             // 
@@ -1392,7 +1310,7 @@ namespace SomerenUI
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);            
+            this.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.Name = "SomerenUI";
             this.Text = "SomerenApp";
             this.menuStrip1.ResumeLayout(false);
@@ -1401,7 +1319,6 @@ namespace SomerenUI
             this.pnlDashboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardPictureBox)).EndInit();
             this.fpnlWeek.ResumeLayout(false);
-            this.fpnlWeek.PerformLayout();
             this.cashpanel.ResumeLayout(false);
             this.cashpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1422,7 +1339,6 @@ namespace SomerenUI
             this.panelContainer.ResumeLayout(false);
             this.pnlTimetable.ResumeLayout(false);
             this.pnlTimetable.PerformLayout();
-            this.participantspanel.ResumeLayout(false);
             this.panelDrinks.ResumeLayout(false);
             this.panelDrinks.PerformLayout();
             this.vatPanel.ResumeLayout(false);
@@ -1430,8 +1346,10 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.pnlRevenueReport.ResumeLayout(false);
             this.pnlRevenueReport.PerformLayout();
+            this.pnlParticipants.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
 
@@ -1546,7 +1464,6 @@ namespace SomerenUI
         private TextBox txtName;
         private TextBox txtActivityID;
         private TextBox txtEndTime;
-        private Panel participantspanel;
         private ListView listviewnonparticipants;
         private ListView listviewparticipants;
         private ListView listviewactivity1;
@@ -1554,5 +1471,7 @@ namespace SomerenUI
         private Button participantsBtn;
         private Button removeParticipantButton;
         private Button addParticipantButton;
+        private Panel pnlParticipants;
+        private Label lblParticipants;
     }
 }

@@ -23,7 +23,7 @@ namespace SomerenUI
 
         private void ShowPanel(Panel panelToShow)
         {
-            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks, vatPanel, pnlRevenueReport, pnlTimetable })
+            foreach (var panel in new[] { pnlDashboard, pnlStudents, teacherpanel, pnlActivity, roomsPanel, panelDrinks,cashpanel, vatPanel, pnlRevenueReport, pnlTimetable, pnlParticipants})
 
             {
                 panel.Visible = false;
@@ -816,12 +816,12 @@ namespace SomerenUI
         }
 
         //Activity list for participants
-        private List<Activity> GetActivitiesForParticipants()
+        private List<Activities> GetActivitiesForParticipants()
         {
             return new ActivityService().GetActivity();
         }
 
-        private void DisplayActivitiesForParticipants(List<Activity> activitiesForParticipants)
+        private void DisplayActivitiesForParticipants(List<Activities> activitiesForParticipants)
         {
             listviewactivity1.Clear();
             listviewactivity1.View = View.Details;
@@ -830,7 +830,7 @@ namespace SomerenUI
                 new ColumnHeader { Text = "Activity Name" },
             });
 
-            foreach (Activity activity in activitiesForParticipants)
+            foreach (Activities activity in activitiesForParticipants)
             {
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
@@ -901,11 +901,11 @@ namespace SomerenUI
         }
         private void Showparticipantspanel()
         {
-            ShowPanel(participantspanel);
+            ShowPanel(pnlParticipants);
 
             try
             {
-                List<Activity> activities = GetActivitiesForParticipants();
+                List<Activities> activities = GetActivitiesForParticipants();
                 DisplayActivitiesForParticipants(activities);
             }
             catch (Exception e)
@@ -921,8 +921,8 @@ namespace SomerenUI
             if (listviewactivity1.SelectedItems.Count > 0)
             {
                 // Get the selected activity
-                Activity selectedActivity = (Activity)listviewactivity1.SelectedItems[0].Tag;
-                int selectedItem = selectedActivity.Id;
+                Activities selectedActivity = (Activities)listviewactivity1.SelectedItems[0].Tag;
+                int selectedItem = int.Parse(selectedActivity.Id.ToString());
 
                 // Get the participants for the selected activity
                 List<Participants> participants = new ParticipantsService().GetParticipantsById(selectedItem);
@@ -941,8 +941,8 @@ namespace SomerenUI
             if (listviewactivity1.SelectedItems.Count > 0)
             {
                 // Get the selected activity
-                Activity selectedActivity = (Activity)listviewactivity1.SelectedItems[0].Tag;
-                int selectedItem = selectedActivity.Id;
+                Activities selectedActivity = (Activities)listviewactivity1.SelectedItems[0].Tag;
+                int selectedItem = int.Parse(selectedActivity.Id.ToString());
 
                 // Get the nonparticipants for the selected activity
                 List<Participants> participants = new ParticipantsService().GetNonParticipantsById(selectedItem);
