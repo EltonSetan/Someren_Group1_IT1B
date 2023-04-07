@@ -1513,8 +1513,7 @@ namespace SomerenUI
 
         private System.Windows.Forms.Panel pnlActivity;
         private System.Windows.Forms.ListView lvActivities;
-        private System.Windows.Forms.ColumnHeader Id;
-        private System.Windows.Forms.ColumnHeader Activity;
+        
 
         private System.Windows.Forms.Panel roomsPanel;
         private System.Windows.Forms.Panel panelDrinks;
@@ -1530,7 +1529,6 @@ namespace SomerenUI
         private Label lblRevenueDateRange;
         private Label lblChooseEndDate;
         private Label lblChooseStartDate;
-        private ListView listViewDrinks;
         private MonthCalendar monthCalendarEndDate;
         private ToolStripMenuItem drinksToolStripMenuItem;
         private ToolStripMenuItem drinkStockToolStripMenuItem;
@@ -1543,11 +1541,9 @@ namespace SomerenUI
         private Label lblTotalPrice;
         private Label lblCashRegister;
         private PictureBox pictureBox1;
-        private ToolStripMenuItem drinksReportToolStripMenuItem;
         private ToolStripMenuItem vATCalculationToolStripMenuItem;
         private Button btnAdd;
         private Button btnRemove;
-        private System.Windows.Forms.TextBox txtInlineEditor;
         private TextBox txtDrinkName;
         private TextBox txtStock;
         private TextBox txtPriceOfDrink;
@@ -1586,7 +1582,6 @@ namespace SomerenUI
         private Label lblWeekDate;
         private Label lblTimetableHeader;
         private DateTimePicker datePickerTimetable;
-        private ColumnHeader EndTime;
         private Label lblEndTime;
         private Label lblDate;
         private Label lblName;
