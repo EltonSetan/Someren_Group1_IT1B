@@ -722,6 +722,7 @@ namespace SomerenUI
             this.removeParticipantButton.TabIndex = 6;
             this.removeParticipantButton.Text = "Click here to remove Participant!";
             this.removeParticipantButton.UseVisualStyleBackColor = true;
+            this.removeParticipantButton.Click += new System.EventHandler(this.removeParticipantButton_Click);
             // 
             // addParticipantButton
             // 
