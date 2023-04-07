@@ -24,7 +24,7 @@ namespace SomerenDAL
                 Activity activity = new Activity()
                 {
                     Id = (int)dr["ActivityId"],
-                    ActivityName = dr["ActivityName"].ToString(),
+                    Name = dr["ActivityName"].ToString(),
                     Date = dr["Date"].ToString()
                 };
                 activities.Add(activity);

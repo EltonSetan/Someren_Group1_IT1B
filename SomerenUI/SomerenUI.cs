@@ -98,7 +98,7 @@ namespace SomerenUI
             {
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
-            activity.ActivityName,
+            activity.Name,
         });
                 item.Tag = activity;
                 listviewactivity1.Items.Add(item);
@@ -284,7 +284,7 @@ namespace SomerenUI
             {
                 var item = new ListViewItem(activity.Id.ToString());
                 item.SubItems.AddRange(new[] {
-            activity.ActivityName,
+            activity.Name,
             activity.Date,
         });
                 item.Tag = activity;
