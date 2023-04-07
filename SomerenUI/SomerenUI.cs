@@ -802,9 +802,9 @@ namespace SomerenUI
                 txtEndTime.Text = selectedActivity.EndTime.ToString(); 
                 
                 // Change the Add button to Update
-                btnAd.Text = "Change";
-                btnAd.Click -= btnAd_Click; // Remove the Add event handler
-                btnAd.Click += btnChange_Click; // Add the Update event handler
+                btnAddActivity.Text = "Change";
+                btnAddActivity.Click -= btnAd_Click; // Remove the Add event handler
+                btnAddActivity.Click += btnChange_Click; // Add the Update event handler
             }
             else
             {
@@ -816,16 +816,16 @@ namespace SomerenUI
                 txtEndTime.Clear();
 
                 // Change the Update button back to Add if it's not already "Add"
-                if (btnAd.Text != "Add")
+                if (btnAddActivity.Text != "Add")
                 {
-                    btnAd.Text = "Add";
-                    btnAd.Click -= btnChange_Click; // Remove the Update event handler
-                    btnAd.Click += btnAd_Click; // Add the Add event handler
+                    btnAddActivity.Text = "Add";
+                    btnAddActivity.Click -= btnChange_Click; // Remove the Update event handler
+                    btnAddActivity.Click += btnAd_Click; // Add the Add event handler
                 }
             }
         }
 
-        private void btnAd_Click(object sender, EventArgs e)
+        private void btnAddActivity_Click(object sender, EventArgs e)
         {
             ActivityService activityService = new ActivityService();
             
@@ -873,16 +873,16 @@ namespace SomerenUI
             txtName.Clear();
             txtDate.Clear();
             txtEndTime.Clear();
-            
+
 
             // Change the Update button back to Add
-            btnAd.Text = "Add";
-            btnAd.Click -= btnChange_Click; // Remove the Update event handler
-            btnAd.Click += btnAd_Click; // Add the Add event handler
+            btnAddActivity.Text = "Add";
+            btnAddActivity.Click -= btnChange_Click; // Remove the Update event handler
+            btnAddActivity.Click += btnAddActivity_Click; // Add the Add event handler
 
         }
 
-        private void btnRemo_Click(object sender, EventArgs e)
+        private void btnRemoveActivity_Click(object sender, EventArgs e)
         {
             ActivityService activityService = new ActivityService();
             if (lvActivities.SelectedItems.Count == 0)

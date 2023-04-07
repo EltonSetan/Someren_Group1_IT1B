@@ -120,8 +120,8 @@ namespace SomerenUI
             this.lblDate = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblActivityID = new System.Windows.Forms.Label();
-            this.btnRemo = new System.Windows.Forms.Button();
-            this.btnAd = new System.Windows.Forms.Button();
+            this.btnRemoveActivity = new System.Windows.Forms.Button();
+            this.btnAddActivity = new System.Windows.Forms.Button();
             this.lblActivity = new System.Windows.Forms.Label();
             this.btnChange = new System.Windows.Forms.Button();
             this.teacherpanel = new System.Windows.Forms.Panel();
@@ -776,8 +776,8 @@ namespace SomerenUI
             this.pnlActivity.Controls.Add(this.lblDate);
             this.pnlActivity.Controls.Add(this.lblName);
             this.pnlActivity.Controls.Add(this.lblActivityID);
-            this.pnlActivity.Controls.Add(this.btnRemo);
-            this.pnlActivity.Controls.Add(this.btnAd);
+            this.pnlActivity.Controls.Add(this.btnRemoveActivity);
+            this.pnlActivity.Controls.Add(this.btnAddActivity);
             this.pnlActivity.Controls.Add(this.lvActivities);
             this.pnlActivity.Controls.Add(this.lblActivity);
             this.pnlActivity.Controls.Add(this.activitiesPictureBox);
@@ -852,23 +852,23 @@ namespace SomerenUI
             this.lblActivityID.TabIndex = 7;
             this.lblActivityID.Text = "Activity ID";
             // 
-            // btnRemo
+            // btnRemoveActivity
             // 
-            this.btnRemo.Location = new System.Drawing.Point(700, 375);
-            this.btnRemo.Name = "btnRemo";
-            this.btnRemo.Size = new System.Drawing.Size(100, 30);
-            this.btnRemo.TabIndex = 4;
-            this.btnRemo.Text = "Remove";
-            this.btnRemo.UseVisualStyleBackColor = true;
+            this.btnRemoveActivity.Location = new System.Drawing.Point(700, 375);
+            this.btnRemoveActivity.Name = "btnRemoveActivity";
+            this.btnRemoveActivity.Size = new System.Drawing.Size(100, 30);
+            this.btnRemoveActivity.TabIndex = 4;
+            this.btnRemoveActivity.Text = "Remove";
+            this.btnRemoveActivity.UseVisualStyleBackColor = true;
             // 
-            // btnAd
+            // btnAddActivity
             // 
-            this.btnAd.Location = new System.Drawing.Point(700, 420);
-            this.btnAd.Name = "btnAd";
-            this.btnAd.Size = new System.Drawing.Size(100, 30);
-            this.btnAd.TabIndex = 3;
-            this.btnAd.Text = "Add";
-            this.btnAd.UseVisualStyleBackColor = true;
+            this.btnAddActivity.Location = new System.Drawing.Point(700, 420);
+            this.btnAddActivity.Name = "btnAddActivity";
+            this.btnAddActivity.Size = new System.Drawing.Size(100, 30);
+            this.btnAddActivity.TabIndex = 3;
+            this.btnAddActivity.Text = "Add";
+            this.btnAddActivity.UseVisualStyleBackColor = true;
             // 
             // lblActivity
             // 
@@ -1592,8 +1592,8 @@ namespace SomerenUI
         private Label lblName;
         private Label lblActivityID;
         private Button btnChange;
-        private Button btnRemo;
-        private Button btnAd;
+        private Button btnRemoveActivity;
+        private Button btnAddActivity;
         private TextBox txtDate;
         private TextBox txtName;
         private TextBox txtActivityID;
