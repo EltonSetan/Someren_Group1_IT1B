@@ -129,14 +129,14 @@ namespace SomerenUI
             this.panelContainer = new System.Windows.Forms.Panel();
             this.pnlParticipants = new System.Windows.Forms.Panel();
             this.pnlSupervisors = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblSupervisedActivities = new System.Windows.Forms.Label();
+            this.lblNonSupervisors = new System.Windows.Forms.Label();
             this.listViewActivitiesInSupervisors = new System.Windows.Forms.ListView();
             this.listViewNonSupervisors = new System.Windows.Forms.ListView();
             this.removeSupervisorButton = new System.Windows.Forms.Button();
             this.addSupervisorButton = new System.Windows.Forms.Button();
             this.listViewSupervisors = new System.Windows.Forms.ListView();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblSupervisorsActivities = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.removeParticipantButton = new System.Windows.Forms.Button();
             this.addParticipantButton = new System.Windows.Forms.Button();
@@ -158,8 +158,8 @@ namespace SomerenUI
             this.lblHighTariffTotal = new System.Windows.Forms.Label();
             this.lblLowTariffTotal = new System.Windows.Forms.Label();
             this.lblQuarterDates = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblVATQuarterSelect = new System.Windows.Forms.Label();
+            this.lblVATYearSelect = new System.Windows.Forms.Label();
             this.cmbQuarter = new System.Windows.Forms.ComboBox();
             this.cmbYear = new System.Windows.Forms.ComboBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
@@ -947,14 +947,14 @@ namespace SomerenUI
             // 
             // pnlSupervisors
             // 
-            this.pnlSupervisors.Controls.Add(this.label5);
-            this.pnlSupervisors.Controls.Add(this.label4);
+            this.pnlSupervisors.Controls.Add(this.lblSupervisedActivities);
+            this.pnlSupervisors.Controls.Add(this.lblNonSupervisors);
             this.pnlSupervisors.Controls.Add(this.listViewActivitiesInSupervisors);
             this.pnlSupervisors.Controls.Add(this.listViewNonSupervisors);
             this.pnlSupervisors.Controls.Add(this.removeSupervisorButton);
             this.pnlSupervisors.Controls.Add(this.addSupervisorButton);
             this.pnlSupervisors.Controls.Add(this.listViewSupervisors);
-            this.pnlSupervisors.Controls.Add(this.label3);
+            this.pnlSupervisors.Controls.Add(this.lblSupervisorsActivities);
             this.pnlSupervisors.Controls.Add(this.pictureBox2);
             this.pnlSupervisors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSupervisors.Location = new System.Drawing.Point(0, 0);
@@ -963,25 +963,25 @@ namespace SomerenUI
             this.pnlSupervisors.Size = new System.Drawing.Size(861, 548);
             this.pnlSupervisors.TabIndex = 3;
             // 
-            // label5
+            // lblSupervisedActivities
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(370, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(135, 41);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Activities";
+            this.lblSupervisedActivities.AutoSize = true;
+            this.lblSupervisedActivities.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSupervisedActivities.Location = new System.Drawing.Point(370, 79);
+            this.lblSupervisedActivities.Name = "lblSupervisedActivities";
+            this.lblSupervisedActivities.Size = new System.Drawing.Size(135, 41);
+            this.lblSupervisedActivities.TabIndex = 8;
+            this.lblSupervisedActivities.Text = "Activities";
             // 
-            // label4
+            // lblNonSupervisors
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(17, 190);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(239, 41);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Non-Supervisors";
+            this.lblNonSupervisors.AutoSize = true;
+            this.lblNonSupervisors.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblNonSupervisors.Location = new System.Drawing.Point(17, 190);
+            this.lblNonSupervisors.Name = "lblNonSupervisors";
+            this.lblNonSupervisors.Size = new System.Drawing.Size(239, 41);
+            this.lblNonSupervisors.TabIndex = 7;
+            this.lblNonSupervisors.Text = "Non-Supervisors";
             // 
             // listViewActivitiesInSupervisors
             // 
@@ -1039,15 +1039,15 @@ namespace SomerenUI
             this.listViewSupervisors.View = System.Windows.Forms.View.Details;
             this.listViewSupervisors.SelectedIndexChanged += new System.EventHandler(this.listViewSupervisors_SelectedIndexChanged);
             // 
-            // label3
+            // lblSupervisorsActivities
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(10, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 41);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Supervisors";
+            this.lblSupervisorsActivities.AutoSize = true;
+            this.lblSupervisorsActivities.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSupervisorsActivities.Location = new System.Drawing.Point(10, 4);
+            this.lblSupervisorsActivities.Name = "lblSupervisorsActivities";
+            this.lblSupervisorsActivities.Size = new System.Drawing.Size(170, 41);
+            this.lblSupervisorsActivities.TabIndex = 0;
+            this.lblSupervisorsActivities.Text = "Supervisors";
             // 
             // pictureBox2
             // 
@@ -1225,8 +1225,8 @@ namespace SomerenUI
             this.vatPanel.Controls.Add(this.lblHighTariffTotal);
             this.vatPanel.Controls.Add(this.lblLowTariffTotal);
             this.vatPanel.Controls.Add(this.lblQuarterDates);
-            this.vatPanel.Controls.Add(this.label2);
-            this.vatPanel.Controls.Add(this.label1);
+            this.vatPanel.Controls.Add(this.lblVATQuarterSelect);
+            this.vatPanel.Controls.Add(this.lblVATYearSelect);
             this.vatPanel.Controls.Add(this.cmbQuarter);
             this.vatPanel.Controls.Add(this.cmbYear);
             this.vatPanel.Controls.Add(this.pictureBox);
@@ -1285,23 +1285,23 @@ namespace SomerenUI
             this.lblQuarterDates.TabIndex = 7;
             this.lblQuarterDates.Text = "Quarter runs from: _____________ to:______________";
             // 
-            // label2
+            // lblVATQuarterSelect
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Select quarter:";
+            this.lblVATQuarterSelect.AutoSize = true;
+            this.lblVATQuarterSelect.Location = new System.Drawing.Point(32, 108);
+            this.lblVATQuarterSelect.Name = "lblVATQuarterSelect";
+            this.lblVATQuarterSelect.Size = new System.Drawing.Size(104, 20);
+            this.lblVATQuarterSelect.TabIndex = 6;
+            this.lblVATQuarterSelect.Text = "Select quarter:";
             // 
-            // label1
+            // lblVATYearSelect
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Select year:";
+            this.lblVATYearSelect.AutoSize = true;
+            this.lblVATYearSelect.Location = new System.Drawing.Point(32, 58);
+            this.lblVATYearSelect.Name = "lblVATYearSelect";
+            this.lblVATYearSelect.Size = new System.Drawing.Size(84, 20);
+            this.lblVATYearSelect.TabIndex = 5;
+            this.lblVATYearSelect.Text = "Select year:";
             // 
             // cmbQuarter
             // 
@@ -1558,8 +1558,8 @@ namespace SomerenUI
         private PictureBox pictureBox;
         private Label lblLowTariffTotal;
         private Label lblQuarterDates;
-        private Label label2;
-        private Label label1;
+        private Label lblVATQuarterSelect;
+        private Label lblVATYearSelect;
         private ComboBox cmbQuarter;
         private Label lblTotalVAT;
         private Label lblHighTariffTotal;
@@ -1608,12 +1608,12 @@ namespace SomerenUI
         private Panel pnlParticipants;
         private Label lblParticipants;
         private ListView listViewSupervisors;
-        private Label label3;
+        private Label lblSupervisorsActivities;
         private PictureBox pictureBox2;
         private Button removeSupervisorButton;
         private Button addSupervisorButton;
-        private Label label5;
-        private Label label4;
+        private Label lblSupervisedActivities;
+        private Label lblNonSupervisors;
         private ListView listViewActivitiesInSupervisors;
         private ListView listViewNonSupervisors;
         private Panel pnlSupervisors;

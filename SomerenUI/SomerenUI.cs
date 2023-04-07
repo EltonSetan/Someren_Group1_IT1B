@@ -803,7 +803,7 @@ namespace SomerenUI
                 
                 // Change the Add button to Update
                 btnAddActivity.Text = "Change";
-                btnAddActivity.Click -= btnAd_Click; // Remove the Add event handler
+                btnAddActivity.Click -= btnAddActivity_Click; // Remove the Add event handler
                 btnAddActivity.Click += btnChange_Click; // Add the Update event handler
             }
             else
@@ -820,7 +820,7 @@ namespace SomerenUI
                 {
                     btnAddActivity.Text = "Add";
                     btnAddActivity.Click -= btnChange_Click; // Remove the Update event handler
-                    btnAddActivity.Click += btnAd_Click; // Add the Add event handler
+                    btnAddActivity.Click += btnAddActivity_Click; // Add the Add event handler
                 }
             }
         }
