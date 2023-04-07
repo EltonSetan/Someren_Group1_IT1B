@@ -61,15 +61,6 @@ namespace SomerenUI
             {
                 List<Activity> activities1 = GetActivities1();
                 DisplayActivities1(activities1);
-                //List<Participants> participants = GetParticipants();
-                //DisplayParticipants(participants);
-                //List<Participants> nonparticipants = GetNonParticipants();
-                //DisplayParticipants(nonparticipants);
-                //foreach (Activity activity in activities1)
-                //{
-                //    List<Participants> participants = GetParticipants(activity);
-                //    DisplayParticipants(participants, activity);
-                //}
             }
             catch (Exception e)
             {
@@ -267,32 +258,7 @@ namespace SomerenUI
             listViewStudents.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        //    private void DisplayParticipants(List<Participants> participants)
-        //    {
-        //        listviewparticipants.Clear();
-        //        listviewparticipants.View = View.Details;
-        //        listviewparticipants.Columns.AddRange(new[] {
-        //    new ColumnHeader { Text = "Student ID" },
-        //    new ColumnHeader { Text = "First Name" },
-        //    new ColumnHeader { Text = "Last Name" },
-        //   // new ColumnHeader { Text = "Phone Number" },
-        //});
-
-        //        foreach (Participants participant in participants)
-        //        {
-        //            var item = new ListViewItem(participant.StudentId.ToString());
-        //            item.SubItems.AddRange(new[] {
-        //        participant.FirstName,
-        //        participant.LastName,
-        //       // student.TelephoneNumber.ToString(),
-        //    });
-        //            item.Tag = participant;
-        //            listviewparticipants.Items.Add(item);
-        //        }
-
-        //        listviewparticipants.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-        //    }
-
+ 
         private void DisplayParticipants(List<Participants> participants)
         {
             listviewparticipants.Clear();
@@ -835,12 +801,31 @@ namespace SomerenUI
         {
             if (listviewnonparticipants.SelectedItems.Count > 0 && listviewactivity1.SelectedItems.Count > 0)
             {
-                int studentId = int.Parse(listviewnonparticipants.SelectedItems[0].Text);
-                int activityId = int.Parse(listviewactivity1.SelectedItems[0].Text);
+                Participants participant = new Participants();
+                {
+                    int studentId = int.Parse(listviewnonparticipants.SelectedItems[0].Text);
+                    int activityId = int.Parse(listviewactivity1.SelectedItems[0].Text);
 
-                ParticipantsService participantsService = new ParticipantsService();
-                participantsService.AddParticipants(activityId, studentId);               
+                    ParticipantsService participantsService = new ParticipantsService();
+                    participantsService.AddParticipants(activityId, studentId);
+
+                    RefreshParticipants(activityId);
+                    RefreshNonParticipants(activityId);
+                }
+
             }
+        }
+
+        private void RefreshParticipants(int activityId)
+        {
+            List<Participants> participants = new ParticipantsService().GetParticipantsById(activityId);
+            DisplayParticipants(participants);
+        }
+
+        private void RefreshNonParticipants(int activityId)
+        {
+            List<Participants> participants = new ParticipantsService().GetNonParticipantsById(activityId);
+            DisplayNonParticipants(participants);
         }
     }
 }
